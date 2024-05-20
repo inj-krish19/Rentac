@@ -1,3 +1,4 @@
+<?php   session_start();    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +24,98 @@
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 
+<?php
+
+    require_once("connection.php");
+
+    $query = "select productid,product_name,price,description,image_path from product limit 30";
+
+    if( isset($_REQUEST["category"]) ){
+        $tableName = "product_".$_REQUEST["category"]."s";
+        $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
+        inner join $tableName on P.productid = product_id limit 30 ";
+    }
+
+    if( isset($_REQUEST["event"]) ){
+
+        /*
+
+SELECT P.productid,P.product_name, P.price, P.image_path 
+FROM product P 
+INNER JOIN (
+    SELECT A.product_id 
+    FROM product_chairs A 
+    INNER JOIN product P ON P.productid = A.product_id 
+    WHERE A.event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
+    
+    UNION ALL 
+    
+    SELECT B.product_id 
+    FROM product_sofas B 
+    INNER JOIN product P ON P.productid = B.product_id 
+    WHERE B.event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
+    
+    UNION ALL 
+    
+    SELECT C.product_id 
+    FROM product_tables C 
+    INNER JOIN product P ON P.productid = C.product_id 
+    WHERE C.event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
+) AS A ON P.productid = A.product_id;
+        */
+
+        /*
+
+        SELECT COUNT(P.productid) AS total_products
+FROM product P
+INNER JOIN (
+    SELECT product_id
+    FROM product_chairs
+    WHERE event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
+    
+    UNION ALL
+    
+    SELECT product_id
+    FROM product_sofas
+    WHERE event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
+    
+    UNION ALL
+    
+    SELECT product_id
+    FROM product_tables
+    WHERE event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
+) AS A ON P.productid = A.product_id;
+
+*/
+
+        $eventName = $_REQUEST["event"];
+
+        $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P inner join (
+                    
+                    select A.product_id from product_chairs A 
+                    inner join product P ON P.productid = A.product_id 
+                    where A.event_id = (select event_id from event where event_name = '$eventName')
+
+                union all 
+
+                    select B.product_id from product_sofas B
+                    inner join product P ON P.productid = B.product_id 
+                    where B.event_id = (select event_id from event where event_name = '$eventName')
+
+                union all 
+
+                    select C.product_id from product_tables C 
+                    inner join product P ON P.productid = C.product_id 
+                    where C.event_id = (select event_id from event where event_name = '$eventName')
+                
+                ) as Events on P.productid = Events.product_id limit 30";
+
+    }
+
+    $result = mysqli_query($conn,$query);
+
+?>
+
 <body>
     <!-- main container of all the page elements -->
     <div id="wrapper">
@@ -42,9 +135,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="../pages/home.html"><img src="../images/logo/final.png"
-                                            alt="Rentac"></a>
-                                </div>
+                                <div class="mt-logo"><a href="home.html"><img src="../Images/logos/final.png" alt="Rentac"></a></div>
                                 <!-- mt icon list start here -->
                                 <ul class="mt-icon-list">
                                     <li class="hidden-lg hidden-md">
@@ -396,147 +487,28 @@
                             </header><!-- mt shoplist header end here -->
                             <!-- mt productlisthold start here -->
                             <ul class="mt-productlisthold list-inline">
-                                <li>
-                                    <!-- mt product start here -->
-                                    <div class="product-3 marginzero">
-                                        <!-- img start here -->
-                                        <div class="img">
-                                            <img alt="image description" src=" ../Images/chairs/birthday/1.jpg">
-                                        </div>
-                                        <!-- txt start here -->
-                                        <div class="txt">
-                                            <strong class="title">BOMBI CHAIR</strong>
-                                            <span class="price"><i class="fa fa-eur"></i> 399.00</span>
-                                        </div>
-                                        <p>Excepteur occaecat <br> consectetur adipisicing elit <br>sed eiusmod tempor
-                                            incididunt ut <br>labore <br>magna aliqua.</p>
-                                        <!-- links start here -->
-                                        <ul class="links">
-                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
-                                            <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- mt product 3 end here -->
-                                </li>
-                                <li>
-                                    <!-- mt product start here -->
-                                    <div class="product-3 marginzero">
-                                        <!-- img start here -->
-                                        <div class="img">
-                                            <img alt="image description" src=" ../Images/chairs/birthday/2.jpg">
-                                        </div>
-                                        <!-- txt start here -->
-                                        <div class="txt">
-                                            <strong class="title">MARVELOUS CHAIR</strong>
-                                            <span class="price"><i class="fa fa-eur"></i> 399.00</span>
-                                        </div>
-                                        <!-- color start here -->
-
-                                        <p>Excepteur occaecat <br> consectetur adipisicing elit <br>sed eiusmod tempor
-                                            incididunt ut <br>labore <br>magna aliqua.</p>
-                                        <!-- links start here -->
-                                        <ul class="links">
-                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
-
-                                            <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- mt product 3 end here -->
-                                </li>
-                                <li>
-                                    <!-- mt product start here -->
-                                    <div class="product-3 marginzero">
-                                        <!-- img start here -->
-                                        <div class="img">
-                                            <img alt="image description" src=" ../Images/chairs/birthday/3.jpg">
-                                        </div>
-                                        <!-- txt start here -->
-                                        <div class="txt">
-                                            <strong class="title">CHAIR WITH ARMRESTS</strong>
-                                            <span class="price"><i class="fa fa-eur"></i> 399.00</span>
-                                        </div>
-                                        <p>Excepteur occaecat <br> consectetur adipisicing elit <br>sed eiusmod tempor
-                                            incididunt ut <br>labore <br>magna aliqua.</p>
-                                        <!-- links start here -->
-                                        <ul class="links">
-                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
-
-                                            <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- mt product 3 end here -->
-                                </li>
-                                <li>
-                                    <!-- mt product start here -->
-                                    <div class="product-3 marginzero">
-                                        <!-- img start here -->
-                                        <div class="img">
-                                            <img alt="image description" src=" ../Images/chairs/birthday/4.jpg">
-                                        </div>
-                                        <!-- txt start here -->
-                                        <div class="txt">
-                                            <strong class="title">MARVELOUS CHAIR</strong>
-                                            <span class="price"><i class="fa fa-eur"></i> 399.00</span>
-                                        </div>
-                                        <!-- color start here -->
-
-                                        <p>Excepteur occaecat <br> consectetur adipisicing elit <br>sed eiusmod tempor
-                                            incididunt ut <br>labore <br>magna aliqua.</p>
-                                        <!-- links start here -->
-                                        <ul class="links">
-                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
-
-                                            <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- mt product 3 end here -->
-                                </li>
-                                <li>
-                                    <!-- mt product start here -->
-                                    <div class="product-3 marginzero">
-                                        <!-- img start here -->
-                                        <div class="img">
-                                            <img alt="image description" src=" ../Images/chairs/birthday/5.jpg">
-                                        </div>
-                                        <!-- txt start here -->
-                                        <div class="txt">
-                                            <strong class="title">CHAIR WITH ARMRESTS</strong>
-                                            <span class="price"><i class="fa fa-eur"></i> 399.00</span>
-                                        </div>
-                                        <p>Excepteur occaecat <br> consectetur adipisicing elit <br>sed eiusmod tempor
-                                            incididunt ut <br>labore <br>magna aliqua.</p>
-                                        <!-- links start here -->
-                                        <ul class="links">
-                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
-
-                                            <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- mt product 3 end here -->
-                                </li>
-                                <li>
-                                    <!-- mt product start here -->
-                                    <div class="product-3 marginzero">
-                                        <!-- img start here -->
-                                        <div class="img">
-                                            <img alt="image description" src=" ../Images/chairs/birthday/6.jpg">
-                                        </div>
-                                        <!-- txt start here -->
-                                        <div class="txt">
-                                            <strong class="title">BOMBI CHAIR</strong>
-                                            <span class="price"><i class="fa fa-eur"></i> 399.00</span>
-                                        </div>
-                                        <p>Excepteur occaecat <br> consectetur adipisicing elit <br>sed eiusmod tempor
-                                            incididunt ut <br>labore <br>magna aliqua.</p>
-                                        <!-- links start here -->
-                                        <ul class="links">
-                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
-
-                                            <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- mt product 3 end here -->
-                                </li>
+                                <?php   while($record = mysqli_fetch_assoc($result) ){    ?>
+                                    <li>
+                                        <div class="product-3 mx-2">
+                                            <!-- img start here -->
+                                            <div class="img" style="height:300px; width:300px;">
+                                                <img alt="Preview Unavailable" src="<?php echo "../" . $record["image_path"]; ?>">
+                                            </div>
+                                            <!-- txt start here -->
+                                            <div class="txt">
+                                                <strong class="title"><?php echo $record["product_name"]; ?></strong>
+                                                <span class="price"><i class="fa fa-rupee"></i> <?php echo $record["price"]; ?>.00 </span>
+                                            </div>
+                                            <!-- <p class="text-left pd-3" style="margin-bottom:auto;"><?php echo $record["description"]; ?></p> -->
+                                            <!-- links start here -->
+                                            <ul class="links">
+                                                <li><a href="addincart.php?pid=<?php echo $record['productid']; ?>"><i class="icon-handbag"></i></a></li>
+                                                <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div><!-- mt product 3 end here -->
+                                    </li>
+                                <?php   }   ?>
                             </ul><!-- mt productlisthold end here -->
                         </div>
                     </div>
@@ -552,7 +524,7 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../images/logo/final.png" alt="Rentac"></a>
+                                        <a href="index.html"><img src="../Images/logos/final.png" alt="Rentac"></a>
                                     </div>
                                     <p>Exercitation ullamco laboris nisi ut aliquip ex commodo consequat. Duis aute
                                         irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
