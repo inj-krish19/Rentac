@@ -1,0 +1,709 @@
+
+Creation Query 
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Table : Product
+
+CREATE TABLE product (
+    product_id int
+    primary key auto_increment,
+    product_name text(30),
+    image_path text(100),
+    description text(300),
+    price real(8,2),
+    quant int
+);
+
+Table : Event
+
+CREATE TABLE event (
+    event_id int
+    primary key auto_increment,
+    event_name text(30)
+);
+
+Table : product_chairs
+
+CREATE TABLE product_chairs (
+    product_chair_id int
+    primary key auto_increment,
+    product_id int
+    unique key,
+    event_id INT,
+    FOREIGN KEY (product_id) REFERENCES product(product_id),
+    FOREIGN KEY (event_id) REFERENCES event(event_id)
+);
+
+Table : product_sofas
+
+CREATE TABLE product_sofas (
+    product_sofa_id int
+    primary key auto_increment,
+    product_id int
+    unique key,
+    event_id INT,
+    FOREIGN KEY (product_id) REFERENCES product(product_id),
+    FOREIGN KEY (event_id) REFERENCES event(event_id)
+);
+
+
+Table : product_tables
+
+CREATE TABLE product_tables (
+    product_table_id int
+    primary key auto_increment,
+    product_id int
+    unique key,
+    event_id INT,
+    FOREIGN KEY (product_id) REFERENCES product(product_id),
+    FOREIGN KEY (event_id) REFERENCES event(event_id)
+);
+
+Table : Customer
+
+CREATE TABLE customer (
+    customer_id int
+    primary key auto_increment,
+    email text(75),
+    password text(100),
+    fname text(30),
+    lname text(30),
+    contact_no text(15)
+);
+
+
+Table : Retailer
+
+CREATE TABLE retailer (
+    retailer_id  int
+    primary key auto_increment,
+    email text(75),
+    password text(100),
+    fname text(30),
+    lname text(30),
+    contact_no text(15)
+);
+
+Table : Address
+
+CREATE TABLE address (
+    address_id INT 
+    primary key auto_increment,
+    person_id INT,
+    city text(30),
+    district text(30),
+    country text(30),
+    street text(30),
+    pincode text(10),
+
+    FOREIGN KEY (person_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (person_id) REFERENCES retailer(retailer_id),
+
+
+);
+
+Table : Cart
+
+CREATE TABLE cart (
+    product_id INT,
+    customer_id INT,
+    payment_method ENUM('Cash', 'Net Banking'),
+    quantity INT,
+    amount DECIMAL(10,2),
+
+	primary key(product_id,cutomer_id),
+	foreign key (product_id) references product(product_id)
+	foreign key (customer_id) references customer(customer_id)
+);
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Insert Query 
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Table : Product
+
+insert into product(product_name,image_path,description,price,quant) values
+('Comfort Cushion', 'Images/chairs/birthday/1.jpg', 'Modern green patio chairs featuring a sleek design with a cut-out pattern on the backrest Made from durable plastic Lightweight Easy to move Simple,contemporary style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Ergonomic Lounge', 'Images/chairs/birthday/2.jpg', 'Light brown plastic chair Simple design with a curved back and rectangular seat0 Stackable for easy storage Lightweight and easy to transport Suitable for both indoor and outdoor use Weather-resistant material ideal for various climates . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Luxury Seating', 'Images/chairs/birthday/3.jpg', 'Bright yellow color for a vibrant look Made of durable plastic Modern design with a stylish cutout backrest Lightweight and easy to move around Suitable for both indoor and outdoor use Stackable design for convenient storage . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Office Comfort', 'Images/chairs/birthday/4.jpg', 'Black plastic chair Curved back for added comfort Square seat for a modern look Silver-colored metal legs for stability and durability Lightweight and easy to move around Sleek and contemporary design Suitable for indoor and outdoor use Non-slip feet for added safety and floor protection . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Dining Elegance', 'Images/chairs/birthday/5.jpg', 'Made of metal and wood for a sturdy build Black metal frame provides a sleek, modern look Brown wooden seat adds a warm, natural touch Simple design with a curved back for ergonomic support Armrests for added comfort Suitable for various settings including living rooms, patios, and cafes . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Armchair Paradise', 'Images/chairs/birthday/6.jpg', 'Wooden rocking chair with a light brown finish for a natural aesthetic High back and curved seat Cushioned seat upholstered in beige leather for added comfort and style Armrests provide additional support Rocking motion offers soothing and calming experience Durable wood construction ensures stability and longevity Classic design adds charm . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Rocking Rest', 'Images/chairs/birthday/7.jpg', 'Light brown leather armchair with a luxurious appearance High back and square seat ergonomic supporfort Low and wide armrests for added comfort and relaxation Back tufted with a diamond pattern for a classic touch Supported by four wooden legs stained in a dark brown color Tapered legs with slight curve on front legs for added elegance A matching pillow for enhanced comfort and style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BeanBag Bliss', 'Images/chairs/birthday/8.jpg', 'Bright orange plastic chair designed specifically for children Simple design with a backrest and armrests for comfort Lightweight construction makes it easy for children to move around Durable plastic material ensures longevity and withstands heavy use Rounded edges for safety Stackable design for convenient storage when not in use Ideal for children s birthday s . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Recliner Revive', 'Images/chairs/birthday/9.jpg', 'Sleek and modern design with clean lines Premium sapphire blue colour Upholstered seat and backrest for optimal comfort Sturdy wood frame construction Generously padded seat and backrest for plush comfort Easy-to-clean fabric for low maintenance Durable construction ensures long-lasting use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BarStool Boost', 'Images/chairs/birthday/10.jpg', 'Metal chair with a bright yellow color for a vibrant look Simple design featuring a curved backrest with a cutout in the middle Curved seat with a hole in the middle for added comfort and ventilation Suitable for indoor and outdoor use Sleek and modern appearance adds a stylish touch to any space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Folding Flex', 'Images/chairs/birthday/11.jpg', 'Red plastic chair designed for children Small size suitable for kids Simple design with rectangular seat and back Rectangular legs slightly splayed for stability Lightweight and easy to move around Ideal for children s birthday s Rounded edges for safety . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gaming Glory', 'Images/chairs/birthday/12.jpg', 'Elegant brown armchair featuring an intricate fan-shaped cut-out pattern on the backrest Made from high-quality, weather-resistant plastic Lightweight yet sturdy construction Designed armrests for added comfort Classic, sophisticated style with a polished finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Deck Deluxe', 'Images/chairs/birthday/13.jpg', 'Black plastic chair with a stylish geometric pattern on the seat and back High back and armrests for added comfort and support Modern and eye-catching design adds flair to any space Made of durable plastic for long-lasting use Stackable design for convenient storage Lightweight and easy to move around Suitable for both indoor and outdoor use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Patio Paradise', 'Images/chairs/birthday/14.jpg', 'Brown plastic chair with a rich and warm tone High back and armrests for enhanced comfort and support Contoured seat with a textured surface Lightweight construction facilitates easy movement Durable and weather-resistant for outdoor use Easy to clean and maintain for hassle-free upkeep . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Lawn Lounge', 'Images/chairs/birthday/15.jpg', 'Neutral brown color that complements various decor styles High back and armrests for added comfort and support Wide and spacious seat for ample seating area Made of durable plastic Easy to clean Suitable for outdoor use in the garden or on the patio Lightweight construction for easy transport and rearrangement Stackable design for convenient storage when not in use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Director’s Dream', 'Images/chairs/birthday/16.jpg', 'Vibrant green colored plastic chair Constructed from sturdy plastic Curved back design provides support and comfort Textured surface on the seat enhances grip and prevents slipping Lightweight construction facilitates easy portability and rearrangement Suitable for both indoor and outdoor use Easy to maintain . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wingback Wonder', 'Images/chairs/birthday/17.jpg', 'Neutral brown color High back and curved armrests Textured seat and back enhance grip and prevent slipping Durable brown plastic construction Easy to maintain . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Club Comfort', 'Images/chairs/birthday/18.jpg', 'Beige plastic chair Premium quality, comfortable seating with ergonomic design Made to last with high-quality plastic material Comfortable backrest and armrests for optimal relaxation Versatile styling Sleek and modern design complements any decor Easy maintenance,effortlessly wipe clean for hassle-free upkeep . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Slipper Serenity', 'Images/chairs/birthday/19.jpg', 'Bright orange plastic chair Slightly curved back and armrests for comfort Seat and back feature a perforated design for breathability Straight and sturdy legs Simple and functional overall design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Side Splendor', 'Images/chairs/birthday/20.jpg', 'White accent chair with a round back Gold base adds an elegant touch Upholstered in soft velvet fabric for a luxurious feel Comfortable, plush seat for optimal comfort Stylish design perfect for adding a touch of luxury Durable construction ensures long-lasting use Complements a variety of decor styles, from contemporary to classic . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Chaise Charm', 'Images/chairs/birthday/21.jpg', 'Red plastic chair Simple design with a backrest and four legs Lightweight and easy to move around Smooth surface for easy cleaning Stackable design for convenient storage Suitable for indoor and outdoor use Weather-resistant material . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfort Corner', 'Images/chairs/party/1.jpg', 'Metal and wood chair with a sophisticated design Black metal and brown wood for a classic contrast High back and round seat for comfort and style Straight legs provide stability and support Curved back adds a touch of elegance Simple yet elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Ergo Elegance', 'Images/chairs/party/2.jpg', 'Light pink wingback chair exuding retro charm Geometric pattern adds a touch of modernity High back and sides for comfort and style Upholstered in soft fabric for a cozy feel Metal frame for durability and stability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Luxury Lounge', 'Images/chairs/party/3.jpg', 'Black plastic chair with a sleek and modern appearance Curved back and round seat for ergonomic comfort Straight legs with a slight taper for stability Simple and functional design suitable for various setting . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Office Oasis', 'Images/chairs/party/4.jpg', 'Green velvet chair exuding luxury and elegance Gold metal base for a touch of glamour Tufted back and seat for added comfort and style Equipped with wheels for easy mobility Perfect for adding a sophisticated accent to any space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Dining Delight', 'Images/chairs/party/5.jpg', 'Chair with a dark wood frame exuding classic elegance Floral pattern fabric seat and back for a touch of vintage charm Curved back and armrests for added comfort and style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Armchair Affair', 'Images/chairs/party/6.jpg', 'Material crafted from high-quality steam beech wood Durabile and sturdy Versatile design complements a variety of decor schemes Solid construction guarantees long-term durability and reliability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Rocking Retreat', 'Images/chairs/party/7.jpg', 'Black leather bar stool exuding modern sophistication Round seat and backrest for comfort and support Adjustable height for customizable seating options Base made of chrome-plated metal for durability and style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BeanBag Bonanza', 'Images/chairs/party/8.jpg', 'Armchair with a gold frame exuding luxury and elegance Blue velvet upholstery for a rich and luxurious feel Tufted back and seat cushion for added comfort and style Armrests upholstered in velvet for a cohesive look Modern style perfect for adding a touch of sophistication . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Recliner Relax', 'Images/chairs/party/9.jpg', 'Black leather chair with a sleek chrome frame for a modern look High back and armrests for added comfort and support Seat upholstered in black leather with a tufted design for added elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BarStool Bliss', 'Images/chairs/party/10.jpg', 'Bright and colorful chair with a pink and blue floral pattern Gold legs add a touch of glamour and sophistication Upholstered in soft fabric for comfort and style Comfortable, curved back for ergonomic support Perfect for adding a pop of color . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Folding Fiesta', 'Images/chairs/party/11.jpg', 'Yellow armchair exuding warmth and vibrancy Tufted backrest adds texture and visual interest Black wooden legs provide contrast and stability High back and wide seat for enhanced comfort Upholstered in soft velvet fabric for a luxurious feel Button-tufted design on the backrest adds a touch of elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gaming Glory', 'Images/chairs/party/12.jpg', 'Pink velvet chair exuding elegance and charm Round seat for a unique and stylish look Scalloped back adds a touch of sophistication Supported by four gold metal legs for stability and style Perfect for adding a pop of color . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Deck Delight', 'Images/chairs/party/13.jpg', 'Black velvet chair exuding luxury and elegance Silver studs add a touch of sophistication and detail Button-tufted back for a classic and stylish look Silver metal legs provide stability and a modern touch . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Patio Perfection', 'Images/chairs/party/14.jpg', 'Blue velvet chair exuding modern elegance Tufted back adds texture and sophistication Gold metal legs provide a luxurious touch Stylish design perfect for any contemporary home Comfortable and chic, ideal for lounging in style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Lawn Luxury', 'Images/chairs/party/15.jpg', 'Black chair with a sleek metal frame for durability Padded seat and back upholstered in black fabric with a polka dot pattern Curved back and waterfall seat for ergonomic comfort Stylish and modern design perfect for any contemporary space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Director’s Domain', 'Images/chairs/party/16.jpg', 'Light grey folding chair made of durable metal Simple design with a rectangular seat and back Convenient folding feature for easy storage Rectangular legs fold up when not in use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wingback Wonders', 'Images/chairs/party/17.jpg', 'Wood chair with a natural brown finish for a rustic look Curved back with vertical slats for added style and support Solid seat for durability and comfort Stackable design for convenient storage when not in use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Club Comfort', 'Images/chairs/party/18.jpg', 'Black leather office chair exuding professionalism and comfort High back for optimal support during long hours Cushioned seat for added comfort Adjustable height to suit various desk configurations . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfort Companion', 'Images/chairs/seminar/1.jpg', 'Black plastic chair with a sleek, modern design Red cushion for added comfort and a pop of color High back for good support Curved seat for ergonomic comfort Lightweight and easy to move around . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Ergo Elite', 'Images/chairs/seminar/2.jpg', 'Black metal chair with a bamboo-style back for a unique touch Square seat for a simple and functional design Stackable feature for convenient storage . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Luxury Lounge', 'Images/chairs/seminar/3.jpg', 'Charming curvy upholstered form provides a cozy and inviting appearance. Arms flow into the backrest, enhancing comfort and aesthetic appeal. Unibody form with solid wood base offers a modern yet classic aesthetic. Versatile usage Comfortable and stylish design ideal for setting the tone of any space. Inviting and cozy feel . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Office Oasis', 'Images/chairs/seminar/4.jpg', 'Gold wooden chair with a luxurious appearance Ladder back design for a classic and stylish look Wooden seat for durability and comfort Straight legs for stability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Dining Delight', 'Images/chairs/seminar/5.jpg', 'Office chair with a comfortable blue cushioned seat Black cushioned back and armrests for added support Base with five wheels for easy mobility Perfect for providing comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Armchair Ambience', 'Images/chairs/seminar/6.jpg', 'Black mesh chair with a medium back for breathable comfort Armrests for added support during work hours Equipped with wheels for easy mobility . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Rocking Retreat', 'Images/chairs/seminar/7.jpg', 'Black metal framed chair with a round backrest for a modern look Beige fabric seat upholstered in soft, tufted fabric for comfort Lightweight design for easy portability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BeanBag Bliss', 'Images/chairs/seminar/8.jpg', 'Black leather chair with a high back and tufted seat for a classic look Mahogany base with five casters for mobility and stability In good condition with no visible damage, ensuring durability Ideal for adding a touch of elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Recliner Relaxation', 'Images/chairs/seminar/9.jpg', 'Brown folding chair with a silver metal frame for durability Brown plastic seat and back for easy maintenance Lightweight and easy to fold and unfold for convenience Stackable design for efficient storage when not in use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BarStool Bliss', 'Images/chairs/seminar/10.jpg', 'Maroon back and black seat color combination Adjustable height for personalized comfort Breathable mesh back for ventilation Fixed arms for added support Ergonomic design for good back support Sturdy construction for durability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Folding Flex', 'Images/chairs/seminar/11.jpg', 'Sleek black color for a professional appearance Adjustable seat height and backrest Seat lock for stability and support Wheels for easy mobility Swivel function for enhanced maneuverability Armrests for added comfort and support Locking mechanism for secure positioning . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gaming Glory', 'Images/chairs/seminar/12.jpg', 'Black plastic chair with a minimalist design Simple backrest for basic support Four metal legs providing stability and durability Lightweight construction for easy handling Stackable design for convenient storage . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Deck Delight', 'Images/chairs/seminar/13.jpg', 'Wingback armchair upholstered in vibrant turquoise fabric Dark wood frame for a classic and elegant look High back with wings on either side for added comfort and support Padded seat cushion for enhanced comfort Perfect for adding a pop of color and a touch of sophistication to any space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Patio Perfection', 'Images/chairs/seminar/14.jpg', 'Light grey round chair with a unique, modern design Ideal for a contemporary living room or office Made of high-quality materials for durability and comfort Stylish and comfortable . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Lawn Luxury', 'Images/chairs/seminar/15.jpg', 'Light blue fabric chair with a soft, inviting appearance Dark brown wooden base for a classic contrast Curved back for ergonomic support Armrests for added comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Director’s Domain', 'Images/chairs/seminar/16.jpg', 'Brown armchair exuding warmth and comfort Soft, brown fabric upholstery for a cozy feel High back and wide seat for maximum relaxation Dark wood frame and legs for a classic and sturdy design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wingback Wonders', 'Images/chairs/seminar/17.jpg', 'Black office chair with a breathable mesh back Cushioned seat for added comfort Armrests for support and ergonomic use Five-star base with casters for easy mobility Adjustable height to suit various desk levels Tilt mechanism for customizable seating positions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Club Comfort', 'Images/chairs/seminar/18.jpg', 'Office chair with a sleek black leather seat and back Wooden armrests for a touch of elegance Metal swivel base for easy rotation and mobility Chrome legs for a modern and stylish appearance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Slipper Serenity', 'Images/chairs/seminar/19.jpg', 'Wooden chair with a light brown finish for a natural look Curved back with an oval-shaped opening in the center adds visual interest Seat upholstered with cream-colored fabric and cushion for comfort Straight legs with a turned design for added elegance Sturdy construction ensures durability Timeless and classic appearance complements any decor style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Side Splendor', 'Images/chairs/seminar/20.jpg', 'White and gold throne chair exuding regal elegance and opulence High back and armrests for a commanding presence and added comfort Upholstered in luxurious white leather for a lavish look and feel Decorated with gold trim for a touch of sophistication Tufted design on the backrest adds texture and visual interest . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Chaise Charm', 'Images/chairs/seminar/21.jpg', 'Gold metal chair with a luxurious appearance White cushion for added comfort and style Curved back with a floral design for a touch of elegance Curved legs with a gold finish for a cohesive look . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfort Elegance', 'Images/chairs/wedding/1.jpg', 'Black leather armchair exuding elegance and sophistication High back and armrests for added comfort and support Tufted design on the upholstery adds texture and visual interest Rococo style with ornate details A carved wooden frame and metal nailhead trim . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Ergo Essence', 'Images/chairs/wedding/2.jpg', 'Gold stainless steel chair with a luxurious and modern appearance Cream leather seat and back for a sophisticated and elegant look Unique design with a curved back and round opening in the center for added visual interest Comfortable and stylish, perfect for any contemporary space High-quality materials and craftsmanship ensure durability and longevity . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Luxury Loveliness', 'Images/chairs/wedding/3.jpg', 'Beautiful wooden chair with a light brown finish for a natural look Upholstered in beige fabric for a soft and inviting feel Curved back and armrests add elegance and comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Office Opulence', 'Images/chairs/wedding/4.jpg', 'Black metal chair with a sleek and modern design Padded seat and back for enhanced comfort during extended sitting Curved back provides ergonomic support Stackable design for convenient storage when not in use Durable metal construction ensures longevity Suitable for both indoor and outdoor use . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Dining Delight', 'Images/chairs/wedding/5.jpg', 'Opulent throne chair exuding grandeur and luxury Upholstered in luxurious white leather for a lavish feel Intricate gold accents and carvings add to its regal appearance Large size makes it a perfect statement piece for any space High back and wide seat for added comfort and presence . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Armchair Amore', 'Images/chairs/wedding/6.jpg', 'Stainless steel chair with a sleek and modern appearance Red leather seat adds a bold and stylish touch Simple design with a curved back for comfort Four legs provide stability and support Easy to clean and maintain for convenience . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Rocking Romance', 'Images/chairs/wedding/7.jpg', 'Dark grey chair with a tufted back and seat for a luxurious look Curved arms add elegance and comfort Cabriole legs evoke the Rococo style with their ornate curves Rococo-style design exudes sophistication and opulence Perfect for adding a touch of vintage charm to any space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BeanBag Bliss', 'Images/chairs/wedding/8.jpg', 'White and gold Rococo-style chair exuding opulence and elegance Ornate carvings adorn the frame, adding intricate detailing Tufted seat upholstered in luxurious white fabric for comfort and style Gold frame provides a lavish and luxurious touch Curved legs and arms contribute to the chair s regal appearance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Recliner Rhapsody', 'Images/chairs/wedding/9.jpg', 'Red velvet armchair with a luxurious and plush appearance Gold gilded wooden frame adds a touch of elegance and sophistication High back with a crown-shaped top for regal charm Armrests feature a curved shape for added comfort and style Seat upholstered in red velvet with a buttoned design for a classic touch Classic style exudes timeless beauty and elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('BarStool Beauty', 'Images/chairs/wedding/10.jpg', 'Gold Chiavari chair with a timeless and elegant appearance White cushion adds a touch of sophistication and comfort Distinctive lyre-shaped back for a classic and iconic look Typically used for weddings and special events Made of wood for durability and stability Chiavari style exudes charm and elegance Perfect for adding a touch of glamour to any event or occasion . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Folding Fantasy', 'Images/chairs/wedding/11.jpg', 'White and gold throne exuding regal elegance and opulence High back and wide seat for a commanding presence Curved armrests add a touch of grandeur and comfort Frame made of gold-colored metal for a luxurious look Seat and back upholstered in white leather with diamond tufting for a lavish appearance Perfect for adding a sense of majesty to any space or occasion . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gaming Glamour', 'Images/chairs/wedding/12.jpg', 'Black and gold throne chair exuding luxury and sophistication Made of high-quality leather for durability and elegance Tufted design on the seat and back adds texture and visual interest Ornate detailing with intricate gold accents for a regal touch High back and wide seat for comfort and presence Curved armrests enhance the chair s grandeur and comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Deck Dreams', 'Images/chairs/wedding/13.jpg', 'Wooden chair with a light brown finish for a timeless look Round back adds a touch of elegance and charm Seat upholstered with beige fabric for comfort and style Classic style exudes timeless beauty and sophistication Perfect for adding a touch of traditional elegance to any space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Patio Passion', 'Images/chairs/wedding/14.jpg', 'Armchair upholstered in light beige fabric for a soft and inviting feel Black wooden frame with gold accents for a touch of elegance High back and wide seat for maximum comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Lawn Luxury', 'Images/chairs/wedding/15.jpg', 'Light beige sofa exuding timeless elegance Tufted back and seat for added comfort and style Made of wood with a carved design on the front for a touch of sophistication Perfect addition to any home, adding charm and character to the space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Director’s Delight', 'Images/chairs/wedding/16.jpg', 'White sectional sofa with a brass frame for a modern and luxurious look Cushions upholstered in cream-colored velvet fabric for comfort and elegance Low to the ground design adds a contemporary touch Modular design allows for versatile arrangement options Perfect for creating a stylish and inviting seating area . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cozy Haven', 'Images/sofas/birthday/1.jpg', 'Upholstered in white leather, offering a sleek and contemporary look Includes 3 matching white pillows and 2 contrasting beige pillows Designed with square arms and a low back for a modern aesthetic Features square cushions, each with a textured pattern . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Plush Palace', 'Images/sofas/birthday/2.jpg', 'Vintage floral print sofa with a charming retro look Beige background adorned with an orange floral pattern for a vibrant touch Includes two cushions and two armrests for added comfort Supported by four sturdy legs Perfect for adding a touch of vintage elegance to any room . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfort Corner', 'Images/sofas/birthday/3.jpg', 'Features a modern design with a sophisticated look Upholstered in high-quality white leather for a luxurious feel Boasts a unique curved shape, adding an elegant touch to any room Designed with a low-to-the-ground profile for a sleek appearance Offers exceptional comfort, making it ideal for relaxation and lounging . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Snug Sanctuary', 'Images/sofas/birthday/4.jpg', 'Upholstered in luxurious pink velvet for a plush and stylish appearance Features a graceful curved back, adding a touch of elegance Supported by sleek gold legs, providing a sophisticated contrast Showcases a pleated and tufted design, enhancing its visual appeal and texture . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Relaxation Retreat', 'Images/sofas/birthday/5.jpg', 'Upholstered in light grey fabric, perfect for a contemporary aesthetic Accentuated with silver piping around the edges of the cushions and sofa for a refined look Features three main cushions for ample seating comfort Includes two additional cushions on either side of the backrest for added support Boasts a modern design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfy Castle', 'Images/sofas/birthday/6.jpg', 'Upholstered in high-quality black leather for a sleek, modern look Features contrasting white stitching for a stylish accent Designed with three seats, offering ample space for seating Provides exceptional comfort, ideal for everyday use Highly durable construction ensures long-lasting quality and longevity . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Soft Serenity', 'Images/sofas/birthday/7.jpg', 'Beige three-seater sofa with a contemporary design Upholstered in soft fabric for a comfortable touch Features a tufted back and seat cushions for added style Built with a solid wood frame for durability and strength Supported by sleek black legs, enhancing its modern aesthetic . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cuddle Corner', 'Images/sofas/birthday/8.jpg', 'Light brown velvet sofa with a contemporary allure Comes with six matching pillows for added comfort and style Enhanced with elegant gold legs for a touch of luxury Features tufted back and seat cushions, adding visual interest Pillows are also tufted and covered in matching brown velvet, creating a cohesive look . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Dreamy Den', 'Images/sofas/birthday/9.jpg', 'Two-seater sofa upholstered in light beige fabric for a cozy feel Comes with two matching pillows for added comfort and style Solid wood frame for durability and stability Dark brown wooden legs for a classic and elegant look Soft and comfortable cushions for relaxation and lounging . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Snuggle Spot', 'Images/sofas/birthday/10.jpg', 'Three-seater sofa in a rich brown leather upholstery Modern design characterized by a low back and clean lines Offers ample comfort with plenty of cushions and a soft, plush seat Crafted for relaxation with a focus on comfort and style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Restful Refuge', 'Images/sofas/birthday/11.jpg', 'Blue three-seater sofa upholstered in soft fabric for a cozy feel Features a tufted design on the back and seat cushions, adding elegance Comes with two matching pillows for extra comfort and style Supported by four solid wooden legs with a dark finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Pleasant Paradise', 'Images/sofas/birthday/12.jpg', 'Dark grey two-seater sofa Four dark grey and white patterned cushions included Sturdy dark wooden legs for stability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cozy Nook', 'Images/sofas/birthday/13.jpg', 'Three-seater sofa in brown with a dark brown base Tufted design with three back cushions and two seat cushions Upholstered in a soft fabric for a cozy feel Solid wood frame ensures durability Supported by four sturdy legs for stability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfort Cove', 'Images/sofas/birthday/14.jpg', 'Three-seater sofa featuring a brown and beige color scheme Equipped with two cushions on the seat and two on the back, all in dark brown Upholstered in leather for a sophisticated look and easy maintenance Supported by a solid wooden frame for durability Enhanced with dark brown wooden legs, adding a touch of elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Plush Pad', 'Images/sofas/birthday/15.jpg', 'Two-seater sofa boasting a striking burnt orange-red color Comes with two matching cushions in the same vibrant hue Accented with two bright yellow cushions for a pop of color Features a high back and armrests for added comfort Supported by dark wood legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Relaxation Resort', 'Images/sofas/birthday/16.jpg', 'Luxurious purple velvet sofa exuding opulence and style Tufted design with elegant silver nailhead trim for a sophisticated touch Spacious seating area, providing ample room for relaxation . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfy Retreat', 'Images/sofas/birthday/17.jpg', 'Two-seater sofa featuring a beige color with a subtle striped pattern Equipped with two cushions on the seat and two on the back for comfort Curved arms add a touch of elegance to the design Supported by dark wooden feet for stability and style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Soft Space', 'Images/sofas/birthday/18.jpg', 'Brown leather couch with tufted back and seat cushions for added elegance Solid wood frame ensures durability and longevity Dark brown wooden legs contribute to its modern aesthetic . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cuddle Cavern', 'Images/sofas/birthday/19.jpg', 'Three-seater sofa with a sturdy wooden frame for durability Upholstered in blue and white fabric for a fresh and stylish look High back and armrests for added comfort and support Foam-filled cushions upholstered in the same fabric for a cohesive appearance Perfect for providing ample seating . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Dreamy Oasis', 'Images/sofas/birthday/20.jpg', 'Red leather sofa with a modern design for a contemporary look Two seats with a low profile and sleek lines Upholstered in soft and durable leather for comfort and longevity Features two cup holders in the middle for added convenience . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Snuggle Station', 'Images/sofas/birthday/21.jpg', 'Pink velvet sofa exuding elegance and sophistication Scalloped back for a unique and stylish silhouette Gold legs adding a touch of luxury and glamour Tufted cushion for added comfort and visual interest Comes with a matching throw pillow for coordinated style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Restful Haven', 'Images/sofas/birthday/22.jpg', 'Wooden sofa with a natural finish for a rustic charm Curved back and armrests for ergonomic support Seat upholstered in white fabric for a clean and fresh look Low to the ground design for a relaxed and casual seating experience . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Pleasant Den', 'Images/sofas/birthday/23.jpg', 'Light olive green velvet tufted sofa for a luxurious feel Buttoned back and armrests add elegance and sophistication Supported by four wooden legs for stability and style Perfect for adding a touch of opulence . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cozy Corner', 'Images/sofas/birthday/24.jpg', 'Large cream-colored sectional sofa for ample seating space Tufted back and seat cushions for added comfort and style Skirt around the bottom for a classic and elegant look U-shape arrangement with two long sections and one shorter section Long sections with three seat cushions each, shorter section with two Upholstered in a soft and durable fabric for longevity and comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfort Spot', 'Images/sofas/birthday/25.jpg', 'Red striped sofa with a sleek black metal frame Low profile and curved back for modern appeal Cushions upholstered in red and white striped fabric for a bold and stylish look . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Plush Nook', 'Images/sofas/birthday/26.jpg', 'White sofa with a distinctive cloud-like shape, adding whimsy to any room Low profile design for a modern and sleek appearance Upholstered in a soft, plush fabric for maximum comfort Supported by four elegant gold-tone legs, enhancing its luxurious look . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Relaxation Cove', 'Images/sofas/birthday/27.jpg', 'Light grey sofa with textured fabric upholstery for added visual interest Features two cushions on the left and right sides for comfort Includes two scatter cushions in the middle, adorned with a light grey and white geometric pattern Supported by dark wooden legs, providing stability and a touch of contrast . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Comfy Haven', 'Images/sofas/birthday/28.jpg', 'White linen sofa with a solid wood frame for durability and stability Low profile design with a high back and wide arms for added comfort Soft and overstuffed cushions for a cozy seating experience . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Party Paradise', 'Images/sofas/party/1.jpg', 'Black sofa with Beige Backrest Cushion Upholstered in beige fabric Made of sturdy wood or metal with a black finish Decorative cut-out design along the top of the backrest and sides Tufted design for added elegance Comfortable and plush Red Mattress . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celebration Center', 'Images/sofas/party/2.jpg', 'White leather couch featuring a sleek and modern design Accompanied by two dark brown cushions for contrast and comfort Supported by four black legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gather Spot', 'Images/sofas/party/3.jpg', 'White two-seater sofa with a minimalist design Supported by brown wooden legs for a touch of warmth Features a high backrest and armrests for added comfort Upholstered in a light grey fabric, enhancing its modern aesthetic . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Festive Foyer', 'Images/sofas/party/4.jpg', 'Red Three-seater sofa Cushions upholstered in red fabric with a subtle pattern Silver metal frame with decorative circular designs High backrest and armrests for support Suitable for both indoor and outdoor use Simple, functional design with a touch of elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Joy Junction', 'Images/sofas/party/5.jpg', 'Pink Three-seater sofa Cushions upholstered in pink fabric with a floral pattern Silver metal frame with a sleek, modern design High backrest and armrests for support Stylish and comfortable . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Entertainment Escape', 'Images/sofas/party/6.jpg', 'Dark brown Three-seater sofa Upholstered in leather or leather-like material Plush, padded backrests and seat cushions Rolled armrests with nailhead trim Sturdy wooden legs Classic, elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Party Place', 'Images/sofas/party/7.jpg', 'Gold Two-seater sofa Tufted backrest and armrests Rolled arms and back with a Chesterfield design Sturdy black wooden legs Luxurious, opulent design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Social Spot', 'Images/sofas/party/8.jpg', 'Blue velvet sofa with a luxurious and elegant design Features a tufted back for added style and texture Wooden frame providing sturdy support and a classic touch Back of the sofa is a deep teal color, adding depth and contrast A perfect nod to traditional tufted upholstered sofas, combining timeless appeal with modern comfort . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gala Gateway', 'Images/sofas/party/9.jpg', 'Black Three-seater recliner sofa Plush, padded backrests and seat cushions Built-in cup holders in the armrests Reclining mechanism for added comfort Quilted pattern on the sides and backrests Modern, luxurious design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cheer Corner', 'Images/sofas/party/10.jpg', 'White two-seater sofa Upholstered in white silk fabric Elegant, classic design Sturdy white wooden legs Cushined backrest and seat Features a tufted back for added style and texture . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Festive Fling', 'Images/sofas/party/11.jpg', 'White sofa Tufted backrest and seat cushion Upholstered in white fabric High back with a slightly curved design Elegant, classic design Sturdy wooden legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Merriment Mansion', 'Images/sofas/party/12.jpg', 'Brown L-shaped sectional sofa Tufted backrest and seat cushions Upholstered in brown leather or leather-like material Wooden base and frame Spacious seating area Modern, rustic design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celebrate Corner', 'Images/sofas/party/13.jpg', 'The furniture is a black ottoman. It has a flat, rectangular shape. The surface features tufted, segmented cushions. The material appears to be leather or faux leather. It is supported by four small, sturdy legs. The legs are metallic and slightly angled. It has a minimalist, modern design. . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Revelry Retreat', 'Images/sofas/party/14.jpg', 'White three-seater recliner sofa Plush, padded backrests and seat cushions Built-in cup holders in the armrests Reclining mechanism for added comfort Modern, luxurious design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Joy Junction', 'Images/sofas/party/15.jpg', 'Magenta three-seater sofa Upholstered in vibrant magenta fabric Straight, clean lines with a modern design Metal legs for support Comfortable, padded seat and back cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Entertainment Escape', 'Images/sofas/party/16.jpg', 'Floral patterned small sofa with pastel colors Upholstered in fabric with a floral print Soft, padded seat and backrest Lightweight and easy to move Comfortable and stylish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Party Place', 'Images/sofas/party/17.jpg', 'Unique green sofa that makes a bold statement in any room Upholstered in soft, velvety fabric for a luxurious feel Features a tufted design creating a bubbly effect for added visual interest Large size, perfect for lounging or entertaining guests Combines comfort and style, enhancing the overall aesthetic of your space . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Social Spot', 'Images/sofas/party/18.jpg', 'L-shaped sectional sofa Red upholstery with dark brown wooden base Tufted backrest and seat cushions Dark brown wooden frame and base Comfortable, padded seating Modern, stylish design with a touch of classic elegance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gala Gateway', 'Images/sofas/party/19.jpg', 'The sofa has an antique, classical design. It features intricate wooden carvings on the frame and legs. The frame and legs are dark brown in color. The upholstery is light beige or cream. The armrests have a distinctive scroll design. The backrest is straight and padded for comfort. It includes decorative bolster pillows on each side. . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cheer Corner', 'Images/sofas/party/20.jpg', 'Red sofa with purple accents Long, rectangular shape Smooth, curved edges Modern, minimalist design Illuminated with internal lighting Upholstered surface for comfort Suitable for night parties . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Festive Fling', 'Images/sofas/party/21.jpg', 'The sofa has a modern, modular design with distinctive wavy, segmented cushions. It is light brown or tan in color. The material appears to be leather or faux leather. The shape includes a curved backrest with deep, rounded seat cushions. The plush, padded seating enhances comfort. It features a unique, undulating cushion design for a contemporary look. The armrests are integrated into the overall form of the sofa. . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Merriment Mansion', 'Images/sofas/party/22.jpg', 'Modern sofa with a minimalist design Dark gray upholstered seat and backrest for a sleek, contemporary look Black frame with a sturdy, geometric structure Black rectangular armrests enhancing the modern aesthetic Designed for both comfort and style . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celebrate Corner', 'Images/sofas/party/23.jpg', 'Stylish white couch with beige cushions, featuring a modern design and clean lines Brown rug underneath the couch, adding warmth and texture Small table with a simple design, complementing the overall aesthetic Sleek lamp adding a touch of sophistication with its elegant design Cohesive color palette of white, beige, and brown tones . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Revelry Retreat', 'Images/sofas/party/24.jpg', 'Three-seater sofa with a minimalist design Beige upholstered seat and backrest Clean lines for a modern aesthetic Tapered dark legs provide subtle contrast . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Joy Junction', 'Images/sofas/party/25.jpg', 'Sofa with a rustic and vintage look Red tufted upholstery with a wooden frame Cushioned and tufted backrest and armrests Wooden base and legs for a sturdy, natural appearance . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Entertainment Escape', 'Images/sofas/party/26.jpg', 'Modern, curved sofa with light gray upholstery Sleek, contemporary design with a low backrest Accessorized with yellow and white accent pillows Metallic base for a stylish finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Seminar Sofa', 'Images/sofas/seminar/1.jpg', 'Compact sofa with a simple and modern design Black upholstery with a low backrest and boxy shape Short wooden legs provide subtle contrast . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Conference Couch', 'Images/sofas/seminar/2.jpg', 'Luxurious sofa with a modern design Black upholstery with a deep, channel-tufted backrest and armrests Metallic base adds elegance and sophistication . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Lecture Lounger', 'Images/sofas/seminar/3.jpg', 'Sleek sofa with a minimalist design Dark gray upholstery with a low backrest and boxy shape Short wooden legs provide subtle contrast . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Meeting Modular', 'Images/sofas/seminar/4.jpg', 'Modern sofa set: three-seater sofa and two armchairs Black upholstery with sleek, contemporary design Metallic frames add industrial style Includes a glass coffee table and side table . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Learning L-Shaped', 'Images/sofas/seminar/5.jpg', 'Long bench with a minimalist design Black upholstered seat and backrest Natural wood frame for a clean, modern look Suitable for contemporary spaces . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Symposium Settee', 'Images/sofas/seminar/6.jpg', 'Classic sofa set: three-seater sofa and two armchairs Black leather upholstery with cushioned seats and backrests Slightly curved armrests for elegance Short, sturdy legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Workshop Warmth', 'Images/sofas/seminar/7.jpg', 'Modern sofa with black upholstery Quilted pattern on backrest and seat Slightly angled armrests for a contemporary look Boxy shape with a sleek finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Discussion Divan', 'Images/sofas/seminar/8.jpg', 'Three-seater sofa with a sleek design Black upholstered seat and backrest Curved armrests for added comfort Supported by metallic legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Training Throne', 'Images/sofas/seminar/9.jpg', 'Three-seater sofa with a classic look Brown tufted upholstery Rolled armrests for a traditional touch Short, rounded legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Presentation Pit', 'Images/sofas/seminar/10.jpg', 'Two-seater sofa with a modern design Blue upholstered seat and backrest Two white accent pillows with a patterned design Tapered wooden legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Party Place', 'Images/sofas/seminar/11.jpg', 'Bench-style seating with a minimalist design Black upholstered seat and backrest Natural wood frame and legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Social Spot', 'Images/sofas/seminar/12.jpg', 'Three-seater sofa with a contemporary look Black upholstered seat and backrest Boxy shape for a modern aesthetic Supported by metallic legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gala Gateway', 'Images/sofas/seminar/13.jpg', 'Two-seater sofa with a classic Chesterfield design Brown tufted upholstery Rolled armrests for a traditional appearance Short, rounded legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cheer Corner', 'Images/sofas/seminar/14.jpg', 'Three-seater sofa with a modern design Beige upholstered seat and backrest Boxy shape for a sleek look Metallic legs . ', FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Festive Fling', 'Images/sofas/seminar/15.jpg', 'Three-seater sofa with a unique touch Beige upholstered seat and backrest Boxy shape with diamond-patterned stitching on the sides Short legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Merriment Mansion', 'Images/sofas/seminar/16.jpg', 'Brown Three-seater sofa Cushioned seat and backrest Rolled armrests for support Backrest has buttoned design Short black legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celebrate Corner', 'Images/sofas/seminar/17.jpg', 'Two-seater sofa with a vibrant look Yellow upholstered seat and backrest Boxy shape with a quilted seat pattern Supported by metallic legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Revelry Retreat', 'Images/sofas/seminar/18.jpg', 'Two-seater modern sofa Wooden arm-rests with inbuilt bookhelf Square cushions for seat and backrest Upholstered in greyish-white fabric Sustainable as has space for putting books . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Joy Junction', 'Images/sofas/seminar/19.jpg', 'White upholstery with gold accents High backrest with intricate designs Button-tufted white backrest Gold legs and curved armrests Intricate design on backrest and legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Entertainment Escape', 'Images/sofas/seminar/20.jpg', 'Teal upholstery with gold and silver accents Ornate, carved wooden frame High backrest with intricate designs Button-tufted backrest Curved armrests Decorative elements on the legs and backrest . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Party Place', 'Images/sofas/seminar/21.jpg', 'Blue upholstery with gold accents Ornate, carved wooden frame High backrest with intricate designs Curved armrests Decorative elements . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wedding Sofa', 'Images/sofas/wedding/1.jpg', 'Brown upholstery with gold accents Ornate, carved wooden frame High, curved backrest with button-tufting Curved armrests Decorative elements on the legs and backrest . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Bride & Groom Couch', 'Images/sofas/wedding/2.jpg', 'Mustard yellow upholstery Chesterfield style with button-tufting Rolled armrests Low backrest Wooden legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Elegant Ensemble', 'Images/sofas/wedding/3.jpg', 'Dark green upholstery Modern, minimalist design Straight armrests Low backrest Thin, metal legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Glamourous Gathering', 'Images/sofas/wedding/4.jpg', 'White upholstery Modern, minimalist design Straight armrests Low backrest Thin, metal legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Chic Ceremony Couch', 'Images/sofas/wedding/5.jpg', 'Brown upholstery Curved backrest with button-tufting Rolled armrests Low backrest Wooden legs . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Nuptial Nest', 'Images/sofas/wedding/6.jpg', 'Beige upholstery with floral patterns Ornate, carved wooden frame High backrest with floral embroidery Curved armrests Decorative elements on the legs and backrest Matching cushion with floral patterns . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Regal Reception Sofa', 'Images/sofas/wedding/7.jpg', 'White upholstery with gold and red accents Button-tufted white backrest High backrest with intricate designs Gold legs andarmrests Intricate design on backrest and legs Matching white cylindrical cushion . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Bridal Banquette', 'Images/sofas/wedding/8.jpg', 'Gold and white upholstery Ornate, carved wooden frame High backrest with intricate designs Button-tufted white backrest Curved armrests with detailed carvings Decorative elements on the legs and backrest Includes matching cylindrical cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Luxurious Love Seat', 'Images/sofas/wedding/9.jpg', 'Red and white upholstery Ornate, carved wooden frame with gold finish High backrest with intricate designs Button-tufted red backrest Curved armrests with detailed carvings Decorative elements on the legs and backrest Includes matching cylindrical cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Romantic Settee', 'Images/sofas/wedding/10.jpg', 'White upholstery with gold accents Ornate, carved wooden frame with gold finish High, asymmetrical backrest with intricate designs Button-tufted backrest Curved armrests with detailed carvings Decorative elements on the legs and backrest Includes matching cylindrical cushions with tassels . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celebration Chaise', 'Images/sofas/wedding/11.jpg', 'Red upholstery with white and gold accents Ornate, carved wooden frame with gold finish High backrest with intricate designs Button-tufted red backrest Curved armrests with detailed carvings Decorative elements on the legs and backrest . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wedding Whimsy', 'Images/sofas/wedding/12.jpg', 'Red upholstery with black metal frame Simple, modern design Straight armrests Low backrest Thin, black metal legs Includes matching cylindrical cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Groom s Gathering', 'Images/sofas/wedding/13.jpg', 'Beige upholstered sofa Ornate, carved wooden frame with gold coloured detailings High backrest with intricate designs Button-tufted beige backrest Curved armrests with detailed carvings Decorative elements on the legs and backrest Soft cushioned seat . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Bridal Bliss Bench', 'Images/sofas/wedding/14.jpg', 'Beige upholstery with silver accents Ornate, carved wooden frame with silver finish High backrest with intricate designs Curved armrests with detailed carvings Decorative elements on the legs and backrest Includes matching cylindrical cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Love Lounge', 'Images/sofas/wedding/15.jpg', 'White and red upholstery with gold accents Ornate, carved wooden frame with gold finish High backrest with intricate designs Button-tufted white backrest Curved armrests with detailed carvings Decorative elements on the legs and backrest Includes matching cylindrical cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Social Spot', 'Images/sofas/wedding/16.jpg', 'Floral patterned upholstery with wooden frame Ornate, carved wooden frame High backrest with floral patterns Curved armrests with detailed carvings Decorative elements on the legs and backrest Matching floral patterned cushions . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Gala Gateway', 'Images/sofas/wedding/17.jpg', 'Bright green rectangular tabletop with rounded edges Four curved legs and central support Modern, vibrant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Cheer Corner', 'Images/sofas/wedding/18.jpg', 'Light wood round tabletop with smaller raised circular section Four angled legs Minimalist, modern design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Nutty Gesture', 'Images/sofas/wedding/19.jpg', 'White tabletop with octagonal shape Three tapered wooden legs Simple, modern design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Elegant Oasis', 'Images/tables/birthday/1.jpg', 'Light wood rectangular tabletop Four turned legs Traditional, rustic design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wooden Elegance', 'Images/tables/birthday/2.jpg', 'Light wood square tabletop Four straight legs Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Glamorous Gathering', 'Images/tables/birthday/3.jpg', 'Dark wood square tabletop with slatted design Four straight legs Rustic, sturdy design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Fancy Feast', 'Images/tables/birthday/4.jpg', 'Wooden tabletop with round shape Four white metal legs with unique curved design Modern, minimalist design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Chic Celebration', 'Images/tables/birthday/5.jpg', 'Light wood rectangular tabletop Trestle-style legs with central support beam Rustic, farmhouse design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Regal Reception', 'Images/tables/birthday/6.jpg', 'Light wood tabletop with dark central strip Rectangular shape with four straight legs Modern, minimalist design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Glowing Gala', 'Images/tables/birthday/7.jpg', 'Dark wood round tabletop with slatted design Three straight legs Rustic, sturdy design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Sparkling Setting', 'Images/tables/birthday/8.jpg', 'Dark brown rectangular tabletop Four straight, sturdy legs Simple, modern design Central glass insert and smooth finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Radiant Round', 'Images/tables/birthday/9.jpg', 'Light brown wood rectangular tabletop Four straight legs with integrated drawer Simple, functional design with smooth finish Lower support beam for added stability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Marvelous Marble', 'Images/tables/birthday/10.jpg', 'Brown tabletop with black metal legs Round tabletop Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Deluxe Dining', 'Images/tables/birthday/11.jpg', 'Red rectangular tabletop with rounded edges Four curved legs with central support Modern, vibrant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Outdoor Oasis', 'Images/tables/birthday/12.jpg', 'Light brown wood with glass top Rectangular glass tabletop with wooden frame Circular side supports Lower slatted wooden shelf Modern, stylish design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Neon Nights', 'Images/tables/party/1.jpg', 'White tabletop with black metal legs Rectangular tabletop Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Disco Dreams', 'Images/tables/party/2.jpg', 'Brown tabletop with black metal legs Round tabletop Single central metal support with four legs Tall, bar-height design Simple, modern design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Party Pizzazz', 'Images/tables/party/3.jpg', 'Light brown wood square table Four sturdy wooden legs Rustic, simple design Cross support beams for added stability . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Festive Fiesta', 'Images/tables/party/4.jpg', 'Wooden square table Light brown in colour Modern design with stylish legs Two wooden legs elegantly designed . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Colorful Corner', 'Images/tables/party/5.jpg', 'Dark brown table Has a rectangular glass table top Stylish wooden legs fro support Modern and elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celebration Chic', 'Images/tables/party/6.jpg', 'Glass tabletop with wooden frame Round glass tabletop Wooden frame with angled legs Central wooden support ring Modern, minimalist design 10 . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('LED Luxury', 'Images/tables/party/7.jpg', 'Glass tabletop with wooden frame Oval glass tabletop Wooden frame with curved supports Lower glass shelf Modern, elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Fancy Fun', 'Images/tables/party/8.jpg', 'Light brown wood with glass top Rectangular glass tabletop Ornate, carved wooden legs Lower wooden shelf for additional storage Traditional, elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Glamorous Gathering', 'Images/tables/party/9.jpg', 'Dark brown wood Square glass tabletop Ornate, carved wooden legs Open design beneath the tabletop Traditional, elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Stylish Soiree', 'Images/tables/party/10.jpg', 'Dark brown frame with glass top Square glass tabletop Modern, minimalist design Lower glass shelf for additional storage Simple, clean lines . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Conference Companion', 'Images/tables/seminar/1.jpg', 'Light brown wood with glass top Rectangular glass tabletop Ornate, carved wooden legs Lower wooden shelf for additional storage Traditional, elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Boardroom Brilliance', 'Images/tables/seminar/2.jpg', 'Light brown wood with black accents Rectangular wooden tabletop with black slats Four turned wooden legs Traditional, rustic design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Training Triumph', 'Images/tables/seminar/3.jpg', 'Light brown wood with glass top Rectangular glass tabletop Ornate, carved wooden legs Lower wooden slatted shelf for additional storage Traditional, elegant design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Discussion Deluxe', 'Images/tables/seminar/4.jpg', 'Dark brown wood with glass top Rectangular glass tabletop Simple, sturdy wooden frame Lower wooden slatted shelf for additional storage Modern, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Seminar Style', 'Images/tables/seminar/5.jpg', 'Dark brown wood Rectangular wooden tabletop Unique, curved wooden legs Modern, stylish design Smooth finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Learning Lounge', 'Images/tables/seminar/6.jpg', 'Dark brown wood Rectangular wooden tabletop Simple, sturdy wooden frame Wide, flat legs Modern, minimalist design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Workshop Wonder', 'Images/tables/seminar/7.jpg', 'Dark brown wood Rectangular wooden tabletop Angled wooden legs Lower wooden shelf for additional storage Rustic, sturdy design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Educational Elegance', 'Images/tables/seminar/8.jpg', 'Clear glass top with brown wooden frame Rectangular glass tabletop Wooden frame with angled legs Central wooden support beams Modern, minimalist design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Professional Podium', 'Images/tables/seminar/9.jpg', 'Dark brown wood with glass top Square glass tabletop Sturdy wooden frame Lower wooden slatted shelf for additional storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Corporate Class', 'Images/tables/seminar/10.jpg', 'Dark brown wood with glass top Rectangular glass tabletop Ornate, carved wooden legs Traditional, elegant design Smooth finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Elegant Ensemble', 'Images/tables/wedding/1.jpg', 'Black round tabletop Four curved metal legs Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Wedding Wonders', 'Images/tables/wedding/2.jpg', 'Black rectangular tabletop Four metal legs with cross supports Foldable design for easy storage Long, spacious surface . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Bridal Bliss', 'Images/tables/wedding/3.jpg', 'White round tabletop Four metal legs with cross supports Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Celestial Celebrations', 'Images/tables/wedding/4.jpg', 'White round tabletop Four black metal legs Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Romantic Reception', 'Images/tables/wedding/5.jpg', 'Black rectangular tabletop Four metal legs with cross supports Foldable design for easy storage Long, spacious surface . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Charming Charm', 'Images/tables/wedding/6.jpg', 'White rectangular tabletop Four black metal legs with cross supports Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Enchanted Elegance', 'Images/tables/wedding/7.jpg', 'Dark brown wooden rectangular tabletop Four turned wooden legs Traditional, rustic design Smooth finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Royal Romance', 'Images/tables/wedding/8.jpg', 'Light brown wooden rectangular tabletop Four straight wooden legs with cross supports Simple, modern design Smooth finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Garden Gala', 'Images/tables/wedding/9.jpg', 'Light brown wooden round tabletop Three angled wooden legs Modern, minimalist design Smooth finish . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Fairytale Fantasy', 'Images/tables/wedding/10.jpg', 'Dark Brown Wooden Table Glass table-top Four large wooden legs Simple designing Rectangular table-top . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Whimsical Wonderland', 'Images/tables/wedding/11.jpg', 'Black rectangular tabletop Four straight metal legs with cross supports Foldable design for easy storage Simple, functional design . ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10),
+('Opulent Occasion', 'Images/tables/wedding/12.jpg', 'White rectangular tabletop with black legs Four metal legs with angled supports Foldable design for easy storage Long, spacious surface Simple, functional design. ',  FLOOR(ROUND(RAND() * (100 - 1) + 1 , 2 ) )* 20, FLOOR(ROUND(RAND() * (200 - 2) + 2, 2) ) * 10);
+
+
+Table : Product Chairs
+
+INSERT INTO product_chairs (product_id, event_id) 
+VALUES 
+-- Event 1 
+(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), 
+(6, 1), (7, 1), (8, 1), (9, 1), (10, 1), 
+(11, 1), (12, 1), (13, 1), (14, 1), (15, 1), 
+(16, 1), (17, 1), (18, 1), (19, 1), (20, 1), (21, 1), 
+-- Event 2 
+(22, 2), (23, 2), (24, 2), (25, 2), (26, 2), 
+(27, 2), (28, 2), (29, 2), (30, 2), (31, 2), 
+(32, 2), (33, 2), (34, 2), (35, 2), (36, 2), (37, 2), 
+-- Event 3 
+(38, 3), (39, 3), (40, 3), (41, 3), (42, 3),
+(43, 3), (44, 3), (45, 3), (46, 3), (47, 3), 
+(48, 3), (49, 3), (50, 3), (51, 3), (52, 3), 
+(53, 3), (54, 3), (55, 3), (56, 3), (57, 3), 
+-- Event 4 
+(58, 4), (59, 4), (60, 4), (61, 4), (62, 4), 
+(63, 4), (64, 4), (65, 4), (66, 4), (67, 4), 
+(68, 4), (69, 4), (70, 4), (71, 4), (72, 4), (73, 4);
+
+Table : Product Sofas
+
+INSERT INTO product_sofas (product_id, event_id)
+VALUES 
+-- Event 1
+(74, 1), (75, 1), (76, 1), (77, 1), (78, 1), 
+(79, 1), (80, 1), (81, 1), (82, 1), (83, 1),
+(84, 1), (85, 1), (86, 1), (87, 1), (88, 1),
+(89, 1), (90, 1), (91, 1), (92, 1), (93, 1),
+(94, 1), (95, 1), (96, 1), (97, 1), (98, 1),
+(99, 1), (100, 1), (101, 1),
+-- Event 2
+(102, 2), (103, 2), (104, 2), (105, 2), (106, 2), 
+(107, 2), (108, 2), (109, 2), (110, 2), (111, 2),
+(112, 2), (113, 2), (114, 2), (115, 2), (116, 2),
+(117, 2), (118, 2), (119, 2), (120, 2), (121, 2),
+(122, 2), (123, 2), (124, 2), (125, 2), (126, 2), (127, 2),
+-- Event 3
+(128, 3), (129, 3), (130, 3), (131, 3), (132, 3), 
+(133, 3), (134, 3), (135, 3), (136, 3), (137, 3),
+(138, 3), (139, 3), (140, 3), (141, 3), (142, 3),
+(143, 3), (144, 3), (145, 3), (146, 3), (147, 3), (148, 3),
+-- Event 4
+(149, 4), (150, 4), (151, 4), (152, 4), (153, 4), 
+(154, 4), (155, 4), (156, 4), (157, 4), (158, 4),
+(159, 4), (160, 4), (161, 4), (162, 4), (163, 4),
+(164, 4), (165, 4), (166, 4), (167, 4);
+
+Table : Product Tables
+
+INSERT INTO product_tables (product_id, event_id)
+VALUES 
+-- Event 1
+(168, 1), (169, 1), (170, 1), (171, 1), (172, 1), 
+(173, 1), (174, 1), (175, 1), (176, 1), (177, 1),
+(178, 1), (179, 1),
+-- Event 2
+(180, 2), (181, 2), (182, 2), (183, 2), (184, 2), 
+(185, 2), (186, 2), (187, 2), (188, 2), (189, 2),
+-- Event 3
+(190, 3), (191, 3), (192, 3), (193, 3), (194, 3), 
+(195, 3), (196, 3), (197, 3), (198, 3), (199, 3),
+(200, 3), (201, 3), (202, 3),
+-- Event 4
+(203, 4), (204, 4), (205, 4), (206, 4), (207, 4), 
+(208, 4), (209, 4), (210, 4), (211, 4), (212, 4),
+(213, 4), (214, 4);
+
+Table : Event
+
+INSERT INTO event (event_id, event_name)
+VALUES 
+(1, 'birthday'),
+(2, 'party'),
+(3, 'seminar'),
+(4, 'wedding');
+
+Table : Customer
+
+INSERT INTO customer (email, password, fname, lname, contact_no) VALUES
+('john.doe@gmail.com', SHA2(CONCAT('john', 'doe', '123'), 256), 'John', 'Doe', '1234567890'),
+('jane.smith@yahoo.com', SHA2(CONCAT('jane', 'smith', '456'), 256), 'Jane', 'Smith', '0987654321'),
+('mike.jones@gmail.com', SHA2(CONCAT('mike', 'jones', '789'), 256), 'Mike', 'Jones', '4567890123'),
+('susan.white@yahoo.com', SHA2(CONCAT('susan', 'white', '012'), 256), 'Susan', 'White', '7890123456'),
+('david.miller@gmail.com', SHA2(CONCAT('david', 'miller', '345'), 256), 'David', 'Miller', '3456789012'),
+('amy.wilson@yahoo.com', SHA2(CONCAT('amy', 'wilson', '678'), 256), 'Amy', 'Wilson', '9012345678'),
+('ryan.johnson@gmail.com', SHA2(CONCAT('ryan', 'johnson', '901'), 256), 'Ryan', 'Johnson', '2345678901'),
+('emily.brown@yahoo.com', SHA2(CONCAT('emily', 'brown', '234'), 256), 'Emily', 'Brown', '6789012345'),
+('chris.taylor@gmail.com', SHA2(CONCAT('chris', 'taylor', '567'), 256), 'Chris', 'Taylor', '8901234567'),
+('lisa.anderson@yahoo.com', SHA2(CONCAT('lisa', 'anderson', '890'), 256), 'Lisa', 'Anderson', '5678901234'),
+('matt.thomas@gmail.com', SHA2(CONCAT('matt', 'thomas', '123'), 256), 'Matt', 'Thomas', '3456789012'),
+('laura.jackson@yahoo.com', SHA2(CONCAT('laura', 'jackson', '456'), 256), 'Laura', 'Jackson', '1234567890'),
+('adam.roberts@gmail.com', SHA2(CONCAT('adam', 'roberts', '789'), 256), 'Adam', 'Roberts', '9012345678'),
+('katie.campbell@yahoo.com', SHA2(CONCAT('katie', 'campbell', '012'), 256), 'Katie', 'Campbell', '6789012345'),
+('peter.hill@gmail.com', SHA2(CONCAT('peter', 'hill', '345'), 256), 'Peter', 'Hill', '4567890123'),
+('jessica.kelly@yahoo.com', SHA2(CONCAT('jessica', 'kelly', '678'), 256), 'Jessica', 'Kelly', '2345678901'),
+('mark.cook@gmail.com', SHA2(CONCAT('mark', 'cook', '901'), 256), 'Mark', 'Cook', '8901234567'),
+('linda.morris@gmail.com', SHA2(CONCAT('linda', 'morris', '234'), 256), 'Linda', 'Morris', '5678901234'),
+('chad.evans@yahoo.com', SHA2(CONCAT('chad', 'evans', '567'), 256), 'Chad', 'Evans', '6789012345'),
+('megan.hall@gmail.com', SHA2(CONCAT('megan', 'hall', '890'), 256), 'Megan', 'Hall', '4567890123'),
+('steven.clark@yahoo.com', SHA2(CONCAT('steven', 'clark', '123'), 256), 'Steven', 'Clark', '2345678901'),
+('amanda.lee@gmail.com', SHA2(CONCAT('amanda', 'lee', '456'), 256), 'Amanda', 'Lee', '8901234567'),
+('brandon.ward@yahoo.com', SHA2(CONCAT('brandon', 'ward', '789'), 256), 'Brandon', 'Ward', '5678901234'),
+('julie.rogers@gmail.com', SHA2(CONCAT('julie', 'rogers', '012'), 256), 'Julie', 'Rogers', '9012345678'),
+('justin.hughes@yahoo.com', SHA2(CONCAT('justin', 'hughes', '345'), 256), 'Justin', 'Hughes', '6789012345'),
+('erin.foster@gmail.com', SHA2(CONCAT('erin', 'foster', '678'), 256), 'Erin', 'Foster', '1234567890'),
+('cassandra.brooks@yahoo.com', SHA2(CONCAT('cassandra', 'brooks', '901'), 256), 'Cassandra', 'Brooks', '4567890123'),
+('jeffrey.nelson@gmail.com', SHA2(CONCAT('jeffrey', 'nelson', '234'), 256), 'Jeffrey', 'Nelson', '7890123456'),
+('jennifer.perry@yahoo.com', SHA2(CONCAT('jennifer', 'perry', '567'), 256), 'Jennifer', 'Perry', '2345678901'),
+('gregory.washington@gmail.com', SHA2(CONCAT('gregory', 'washington', '890'), 256), 'Gregory', 'Washington', '8901234567'),
+('ashley.hall@yahoo.com', SHA2(CONCAT('ashley', 'hall', '123'), 256), 'Ashley', 'Hall', '5678901234'),
+('brian.cooper@gmail.com', SHA2(CONCAT('brian', 'cooper', '456'), 256), 'Brian', 'Cooper', '2345678901'),
+('sarah.richards@yahoo.com', SHA2(CONCAT('sarah', 'richards', '789'), 256), 'Sarah', 'Richards', '9012345678'),
+('kevin.wood@gmail.com', SHA2(CONCAT('kevin', 'wood', '012'), 256), 'Kevin', 'Wood', '6789012345'),
+('natalie.stewart@yahoo.com', SHA2(CONCAT('natalie', 'stewart', '345'), 256), 'Natalie', 'Stewart', '1234567890'),
+('jacob.ramirez@gmail.com', SHA2(CONCAT('jacob', 'ramirez', '678'), 256), 'Jacob', 'Ramirez', '4567890123'),
+('amanda.howard@yahoo.com', SHA2(CONCAT('amanda', 'howard', '901'), 256), 'Amanda', 'Howard', '7890123456'),
+('daniel.bell@gmail.com', SHA2(CONCAT('daniel', 'bell', '234'), 256), 'Daniel', 'Bell', '2345678901'),
+('donna.ward@yahoo.com', SHA2(CONCAT('donna', 'ward', '567'), 256), 'Donna', 'Ward', '5678901234'),
+('matthew.roberts@gmail.com', SHA2(CONCAT('matthew', 'roberts', '890'), 256), 'Matthew', 'Roberts', '9012345678'),
+('karen.jenkins@yahoo.com', SHA2(CONCAT('karen', 'jenkins', '123'), 256), 'Karen', 'Jenkins', '6789012345'),
+('bradley.hughes@gmail.com', SHA2(CONCAT('bradley', 'hughes', '456'), 256), 'Bradley', 'Hughes', '3456789012'),
+('cynthia.ellis@yahoo.com', SHA2(CONCAT('cynthia', 'ellis', '789'), 256), 'Cynthia', 'Ellis', '1234567890'),
+('timothy.green@gmail.com', SHA2(CONCAT('timothy', 'green', '012'), 256), 'Timothy', 'Green', '4567890123'),
+('melissa.barnes@yahoo.com', SHA2(CONCAT('melissa', 'barnes', '345'), 256), 'Melissa', 'Barnes', '2345678901'),
+('jason.ross@gmail.com', SHA2(CONCAT('jason', 'ross', '678'), 256), 'Jason', 'Ross', '9012345678'),
+('christina.russell@yahoo.com', SHA2(CONCAT('christina', 'russell', '901'), 256), 'Christina', 'Russell', '6789012345'),
+('eric.hernandez@gmail.com', SHA2(CONCAT('eric', 'hernandez', '234'), 256), 'Eric', 'Hernandez', '3456789012'),
+('catherine.myers@yahoo.com', SHA2(CONCAT('catherine', 'myers', '567'), 256), 'Catherine', 'Myers', '1234567890'),
+('douglas.gonzalez@gmail.com', SHA2(CONCAT('douglas', 'gonzalez', '890'), 256), 'Douglas', 'Gonzalez', '4567890123'),
+('paula.wood@yahoo.com', SHA2(CONCAT('paula', 'wood', '123'), 256), 'Paula', 'Wood', '7890123456'),
+('jerry.morales@gmail.com', SHA2(CONCAT('jerry', 'morales', '456'), 256), 'Jerry', 'Morales', '2345678901'),
+('denise.gutierrez@yahoo.com', SHA2(CONCAT('denise', 'gutierrez', '789'), 256), 'Denise', 'Gutierrez', '9012345678'),
+('gary.fernandez@gmail.com', SHA2(CONCAT('gary', 'fernandez', '012'), 256), 'Gary', 'Fernandez', '6789012345'),
+('lindsay.sullivan@yahoo.com', SHA2(CONCAT('lindsay', 'sullivan', '345'), 256), 'Lindsay', 'Sullivan', '1234567890'),
+('tony.murray@gmail.com', SHA2(CONCAT('tony', 'murray', '678'), 256), 'Tony', 'Murray', '4567890123');
+
+
+Table : Retailer
+
+INSERT INTO retailer (email, password, fname, lname, contact_no) VALUES
+('smith.retail@gmail.com', SHA2(CONCAT('smith', 'retail', '123'), 256), 'Smith', 'Retail', '1234567890'),
+('miller.shop@yahoo.com', SHA2(CONCAT('miller', 'shop', '456'), 256), 'Miller', 'Shop', '0987654321'),
+('brown.mart@gmail.com', SHA2(CONCAT('brown', 'mart', '789'), 256), 'Brown', 'Mart', '4567890123'),
+('wilson.store@yahoo.com', SHA2(CONCAT('wilson', 'store', '012'), 256), 'Wilson', 'Store', '7890123456'),
+('davis.market@gmail.com', SHA2(CONCAT('davis', 'market', '345'), 256), 'Davis', 'Market', '3456789012'),
+('lee.outlet@yahoo.com', SHA2(CONCAT('lee', 'outlet', '678'), 256), 'Lee', 'Outlet', '9012345678'),
+('campbell.shop@gmail.com', SHA2(CONCAT('campbell', 'shop', '901'), 256), 'Campbell', 'Shop', '2345678901'),
+('evans.boutique@yahoo.com', SHA2(CONCAT('evans', 'boutique', '234'), 256), 'Evans', 'Boutique', '6789012345'),
+('cooper.store@gmail.com', SHA2(CONCAT('cooper', 'store', '567'), 256), 'Cooper', 'Store', '8901234567'),
+('rogers.shop@yahoo.com', SHA2(CONCAT('rogers', 'shop', '890'), 256), 'Rogers', 'Shop', '5678901234'),
+('murphy.market@gmail.com', SHA2(CONCAT('murphy', 'market', '123'), 256), 'Murphy', 'Market', '3456789012'),
+('reyes.shop@yahoo.com', SHA2(CONCAT('reyes', 'shop', '456'), 256), 'Reyes', 'Shop', '1234567890'),
+('price.store@gmail.com', SHA2(CONCAT('price', 'store', '789'), 256), 'Price', 'Store', '9012345678'),
+('hughes.boutique@yahoo.com', SHA2(CONCAT('hughes', 'boutique', '012'), 256), 'Hughes', 'Boutique', '6789012345'),
+('stewart.mart@gmail.com', SHA2(CONCAT('stewart', 'mart', '345'), 256), 'Stewart', 'Mart', '2345678901'),
+('watson.shop@yahoo.com', SHA2(CONCAT('watson', 'shop', '678'), 256), 'Watson', 'Shop', '8901234567'),
+('wood.market@gmail.com', SHA2(CONCAT('wood', 'market', '901'), 256), 'Wood', 'Market', '1234567890'),
+('jordan.store@yahoo.com', SHA2(CONCAT('jordan', 'store', '234'), 256), 'Jordan', 'Store', '4567890123'),
+('perez.boutique@gmail.com', SHA2(CONCAT('perez', 'boutique', '567'), 256), 'Perez', 'Boutique', '7890123456'),
+('fisher.shop@yahoo.com', SHA2(CONCAT('fisher', 'shop', '890'), 256), 'Fisher', 'Shop', '0123456789'),
+('mitchell.mart@gmail.com', SHA2(CONCAT('mitchell', 'mart', '123'), 256), 'Mitchell', 'Mart', '4567890123'),
+('ross.store@yahoo.com', SHA2(CONCAT('ross', 'store', '456'), 256), 'Ross', 'Store', '7890123456'),
+('ramirez.boutique@gmail.com', SHA2(CONCAT('ramirez', 'boutique', '789'), 256), 'Ramirez', 'Boutique', '0123456789'),
+('torres.shop@yahoo.com', SHA2(CONCAT('torres', 'shop', '012'), 256), 'Torres', 'Shop', '3456789012'),
+('peterson.market@gmail.com', SHA2(CONCAT('peterson', 'market', '345'), 256), 'Peterson', 'Market', '6789012345'),
+('griffin.boutique@yahoo.com', SHA2(CONCAT('griffin', 'boutique', '678'), 256), 'Griffin', 'Boutique', '9012345678'),
+('rivera.store@gmail.com', SHA2(CONCAT('rivera', 'store', '901'), 256), 'Rivera', 'Store', '2345678901'),
+('lopez.shop@yahoo.com', SHA2(CONCAT('lopez', 'shop', '234'), 256), 'Lopez', 'Shop', '5678901234'),
+('reyes.mart@gmail.com', SHA2(CONCAT('reyes', 'mart', '567'), 256), 'Reyes', 'Mart', '8901234567'),
+('mcdonald.store@yahoo.com', SHA2(CONCAT('mcdonald', 'store', '890'), 256), 'Mcdonald', 'Store', '1234567890'),
+('bailey.boutique@gmail.com', SHA2(CONCAT('bailey', 'boutique', '123'), 256), 'Bailey', 'Boutique', '4567890123'),
+('ruiz.shop@yahoo.com', SHA2(CONCAT('ruiz', 'shop', '456'), 256), 'Ruiz', 'Shop', '7890123456'),
+('foster.market@gmail.com', SHA2(CONCAT('foster', 'market', '789'), 256), 'Foster', 'Market', '0123456789'),
+('simmons.boutique@yahoo.com', SHA2(CONCAT('simmons', 'boutique', '012'), 256), 'Simmons', 'Boutique', '3456789012'),
+('gomez.store@gmail.com', SHA2(CONCAT('gomez', 'store', '345'), 256), 'Gomez', 'Store', '6789012345'),
+('warren.shop@yahoo.com', SHA2(CONCAT('warren', 'shop', '678'), 256), 'Warren', 'Shop', '9012345678'),
+('perry.mart@gmail.com', SHA2(CONCAT('perry', 'mart', '901'), 256), 'Perry', 'Mart', '2345678901'),
+('cox.boutique@yahoo.com', SHA2(CONCAT('cox', 'boutique', '234'), 256), 'Cox', 'Boutique', '5678901234'),
+('oliver.store@gmail.com', SHA2(CONCAT('oliver', 'store', '567'), 256), 'Oliver', 'Store', '8901234567'),
+('barnes.shop@yahoo.com', SHA2(CONCAT('barnes', 'shop', '890'), 256), 'Barnes', 'Shop', '1234567890'),
+('rossi.market@gmail.com', SHA2(CONCAT('rossi', 'market', '123'), 256), 'Rossi', 'Market', '4567890123'),
+('hunt.boutique@yahoo.com', SHA2(CONCAT('hunt', 'boutique', '456'), 256), 'Hunt', 'Boutique', '7890123456'),
+('kelly.store@gmail.com', SHA2(CONCAT('kelly', 'store', '789'), 256), 'Kelly', 'Store', '0123456789'),
+('cruz.shop@yahoo.com', SHA2(CONCAT('cruz', 'shop', '012'), 256), 'Cruz', 'Shop', '3456789012'),
+('hill.mart@gmail.com', SHA2(CONCAT('hill', 'mart', '345'), 256), 'Hill', 'Mart', '6789012345'),
+('garcia.boutique@yahoo.com', SHA2(CONCAT('garcia', 'boutique', '678'), 256), 'Garcia', 'Boutique', '9012345678'),
+('young.store@gmail.com', SHA2(CONCAT('young', 'store', '901'), 256), 'Young', 'Store', '2345678901'),
+('woodward.shop@yahoo.com', SHA2(CONCAT('woodward', 'shop', '234'), 256), 'Woodward', 'Shop', '5678901234');
+
+
+Table : Address
+
+INSERT INTO address (person_id, city, district, country, street, pincode,person_type) VALUES
+(01, 'New York', 'Manhattan', 'USA', '123 Main St', '10001','Customer'),
+(02, 'Los Angeles', 'Hollywood', 'USA', '456 Elm St', '90001','Customer'),
+(03, 'Chicago', 'Downtown', 'USA', '789 Oak St', '60601','Customer'),
+(04, 'Houston', 'Midtown', 'USA', '101 Pine St', '77001','Customer'),
+(05, 'Phoenix', 'Scottsdale', 'USA', '234 Maple St', '85001','Customer'),
+(06, 'Philadelphia', 'Center City', 'USA', '567 Cedar St', '19101','Customer'),
+(07, 'San Antonio', 'Riverwalk', 'USA', '890 Walnut St', '78201','Customer'),
+(08, 'San Diego', 'Gaslamp Quarter', 'USA', '111 Pineapple St', '92101','Customer'),
+(09, 'Dallas', 'Uptown', 'USA', '222 Orange St', '75201','Customer'),
+(10, 'San Jose', 'Downtown', 'USA', '333 Banana St', '95101','Customer'),
+(11, 'Austin', 'South Congress', 'USA', '444 Peach St', '78701','Customer'),
+(12, 'Jacksonville', 'Riverside', 'USA', '555 Grape St', '32201','Customer'),
+(13, 'Fort Worth', 'Sundance Square', 'USA', '666 Lemon St', '76101','Customer'),
+(14, 'Columbus', 'Short North', 'USA', '777 Lime St', '43201','Customer'),
+(15, 'Charlotte', 'Uptown', 'USA', '888 Strawberry St', '28201','Customer'),
+(16, 'San Francisco', 'Fisherman s Wharf', 'USA', '999 Blueberry St', '94101','Customer'),
+(17, 'Indianapolis', 'Downtown', 'USA', '123 Peach St', '46201','Customer'),
+(18, 'Seattle', 'Pike Place Market', 'USA', '456 Cherry St', '98101','Customer'),
+(19, 'Denver', 'LoDo', 'USA', '789 Grapefruit St', '80201','Customer'),
+(20, 'Washington', 'Dupont Circle', 'USA', '101 Pear St', '20001','Customer'),
+(21, 'Boston', 'Back Bay', 'USA', '234 Mango St', '02101','Customer'),
+(22, 'El Paso', 'Downtown', 'USA', '567 Papaya St', '79901','Customer'),
+(23, 'Nashville', 'Downtown', 'USA', '890 Plum St', '37201','Customer'),
+(24, 'Detroit', 'Downtown', 'USA', '111 Watermelon St', '48201','Customer'),
+(25, 'Oklahoma City', 'Bricktown', 'USA', '222 Kiwi St', '73101','Customer'),
+(26, 'Portland', 'Pearl District', 'USA', '333 Avocado St', '97201','Customer'),
+(27, 'Las Vegas', 'The Strip', 'USA', '444 Fig St', '89101','Customer'),
+(28, 'Memphis', 'Downtown', 'USA', '555 Tomato St', '38101','Customer'),
+(29, 'Louisville', 'Downtown', 'USA', '666 Eggplant St', '40201','Customer'),
+(30, 'Baltimore', 'Inner Harbor', 'USA', '777 Carrot St', '21201','Customer'),
+(31, 'Milwaukee', 'Third Ward', 'USA', '888 Potato St', '53201','Customer'),
+(32, 'Albuquerque', 'Nob Hill', 'USA', '999 Spinach St', '87101','Customer'),
+(33, 'Tucson', 'Downtown', 'USA', '123 Broccoli St', '85701','Customer'),
+(34, 'Fresno', 'Tower District', 'USA', '456 Cauliflower St', '93701','Customer'),
+(35, 'Sacramento', 'Midtown', 'USA', '789 Brussels Sprout St', '95814','Customer'),
+(36, 'Mesa', 'Downtown', 'USA', '101 Asparagus St', '85201','Customer'),
+(37, 'Kansas City', 'Plaza', 'USA', '234 Artichoke St', '64101','Customer'),
+(38, 'Atlanta', 'Midtown', 'USA', '567 Radish St', '30301','Customer'),
+(39, 'Colorado Springs', 'Downtown', 'USA', '890 Turnip St', '80901','Customer'),
+(40, 'Miami', 'South Beach', 'USA', '111 Rutabaga St', '33101','Customer'),
+(41, 'Raleigh', 'Downtown', 'USA', '222 Rut St', '27601','Customer'),
+(42, 'Omaha', 'Old Market', 'USA', '333 Rutabaga St', '68101','Customer'),
+(43, 'Long Beach', 'Downtown', 'USA', '444 Rutabaga St', '90802','Customer'),
+(44, 'Virginia Beach', 'Oceanfront', 'USA', '555 Rutabaga St', '23451','Customer'),
+(45, 'Oakland', 'Downtown', 'USA', '666 Rutabaga St', '94601','Customer'),
+(46, 'Minneapolis', 'Downtown', 'USA', '777 Rutabaga St', '55401','Customer'),
+(47, 'Tulsa', 'Downtown', 'USA', '888 Rutabaga St', '74101','Customer'),
+(48, 'Arlington', 'Ballston', 'USA', '999 Rutabaga St', '22201','Customer'),
+(49, 'New Orleans', 'French Quarter', 'USA', '123 Rutabaga St', '70112','Customer'),
+(50, 'Wichita', 'Downtown', 'USA', '456 Rutabaga St', '67202','Customer'),
+(01, 'New York City', 'Manhattan', 'USA', '123 Broadway', '10001','Retailer'),
+(02, 'Los Angeles', 'Hollywood', 'USA', '456 Sunset Blvd', '90001','Retailer'),
+(03, 'Chicago', 'Downtown', 'USA', '789 Michigan Ave', '60601','Retailer'),
+(04, 'Houston', 'Midtown', 'USA', '101 Main St', '77001','Retailer'),
+(05, 'Phoenix', 'Scottsdale', 'USA', '234 Camelback Rd', '85001','Retailer'),
+(06, 'Philadelphia', 'Center City', 'USA', '567 Market St', '19101','Retailer'),
+(07, 'San Antonio', 'Riverwalk', 'USA', '890 Riverwalk', '78201','Retailer'),
+(08, 'San Diego', 'Gaslamp Quarter', 'USA', '111 Gaslamp St', '92101','Retailer'),
+(09, 'Dallas', 'Uptown', 'USA', '222 McKinney Ave', '75201','Retailer'),
+(10, 'San Jose', 'Downtown', 'USA', '333 Santa Clara St', '95101','Retailer'),
+(11, 'Austin', 'South Congress', 'USA', '444 Congress Ave', '78701','Retailer'),
+(12, 'Jacksonville', 'Riverside', 'USA', '555 Riverside Ave', '32201','Retailer'),
+(13, 'Fort Worth', 'Sundance Square', 'USA', '666 Main St', '76101','Retailer'),
+(14, 'Columbus', 'Short North', 'USA', '777 High St', '43201','Retailer'),
+(15, 'Charlotte', 'Uptown', 'USA', '888 Tryon St', '28201','Retailer'),
+(16, 'San Francisco', 'Fisherman s Wharf', 'USA', '999 Fisherman s Wharf', '94101','Retailer'),
+(17, 'Indianapolis', 'Downtown', 'USA', '123 Monument Cir', '46201','Retailer'),
+(18, 'Seattle', 'Pike Place Market', 'USA', '456 Pike St', '98101','Retailer'),
+(19, 'Denver', 'LoDo', 'USA', '789 Larimer St', '80201','Retailer'),
+(20, 'Washington', 'Dupont Circle', 'USA', '101 Connecticut Ave', '20001','Retailer'),
+(21, 'Boston', 'Back Bay', 'USA', '234 Boylston St', '02101','Retailer'),
+(22, 'El Paso', 'Downtown', 'USA', '567 E San Antonio Ave', '79901','Retailer'),
+(23, 'Nashville', 'Downtown', 'USA', '890 Broadway', '37201','Retailer'),
+(24, 'Detroit', 'Downtown', 'USA', '111 Woodward Ave', '48201','Retailer'),
+(25, 'Oklahoma City', 'Bricktown', 'USA', '222 Mickey Mantle Dr', '73101','Retailer'),
+(26, 'Portland', 'Pearl District', 'USA', '333 NW 13th Ave', '97201','Retailer'),
+(27, 'Las Vegas', 'The Strip', 'USA', '444 Las Vegas Blvd', '89101','Retailer'),
+(28, 'Memphis', 'Downtown', 'USA', '555 Beale St', '38101','Retailer'),
+(29, 'Louisville', 'Downtown', 'USA', '666 S 4th St', '40201','Retailer'),
+(30, 'Baltimore', 'Inner Harbor', 'USA', '777 E Pratt St', '21201','Retailer'),
+(31, 'Milwaukee', 'Third Ward', 'USA', '888 N Milwaukee St', '53201','Retailer'),
+(32, 'Albuquerque', 'Nob Hill', 'USA', '999 Central Ave NE', '87101','Retailer'),
+(33, 'Tucson', 'Downtown', 'USA', '123 W Broadway Blvd', '85701','Retailer'),
+(34, 'Fresno', 'Tower District', 'USA', '456 E Olive Ave', '93701','Retailer'),
+(35, 'Sacramento', 'Midtown', 'USA', '789 J St', '95814','Retailer'),
+(36, 'Mesa', 'Downtown', 'USA', '101 W Main St', '85201','Retailer'),
+(37, 'Kansas City', 'Plaza', 'USA', '234 Nichols Rd', '64101','Retailer'),
+(38, 'Atlanta', 'Midtown', 'USA', '567 Peachtree St NE', '30301','Retailer'),
+(39, 'Colorado Springs', 'Downtown', 'USA', '890 N Nevada Ave', '80901','Retailer'),
+(40, 'Miami', 'South Beach', 'USA', '111 Ocean Dr', '33101','Retailer'),
+(41, 'Raleigh', 'Downtown', 'USA', '222 Fayetteville St', '27601','Retailer'),
+(42, 'Omaha', 'Old Market', 'USA', '333 S 13th St', '68101','Retailer'),
+(43, 'Long Beach', 'Downtown', 'USA', '444 W Ocean Blvd', '90802','Retailer'),
+(44, 'Virginia Beach', 'Oceanfront', 'USA', '555 Atlantic Ave', '23451','Retailer'),
+(45, 'Oakland', 'Downtown', 'USA', '666 Broadway', '94601','Retailer'),
+(46, 'Minneapolis', 'Downtown', 'USA', '777 Hennepin Ave', '55401','Retailer'),
+(47, 'Tulsa', 'Downtown', 'USA', '888 S Detroit Ave', '74101','Retailer'),
+(48, 'Arlington', 'Ballston', 'USA', '999 N Randolph St', '22201','Retailer'),
+(49, 'New Orleans', 'French Quarter', 'USA', '123 Decatur St', '70112','Retailer'),
+(50, 'Wichita', 'Downtown', 'USA', '456 E Douglas Ave', '67202','Retailer');
+
+Trigger Of Cart Table
+
+DELIMITER //
+CREATE TRIGGER calculate_amount BEFORE INSERT ON cart
+FOR EACH ROW
+BEGIN
+    DECLARE product_price DECIMAL(10, 2);
+    SELECT price INTO product_price FROM product A WHERE A.product_id = NEW.product_id;
+    SET NEW.amount = NEW.quantity * product_price;
+END//
+DELIMITER ;
+
+
+Table : Cart
+
+INSERT INTO cart (product_id, customer_id, payment_method, quantity) VALUES
+(105, 19, 'Cash', 410),
+(37, 31, 'Net Banking', 190),
+(182, 8, 'Net Banking', 750),
+(71, 12, 'Cash', 320),
+(201, 47, 'Cash', 560),
+(68, 36, 'Net Banking', 730),
+(149, 18, 'Net Banking', 970),
+(124, 5, 'Net Banking', 540),
+(56, 39, 'Cash', 960),
+(92, 14, 'Cash', 710),
+(113, 22, 'Cash', 170),
+(86, 2, 'Net Banking', 740),
+(131, 46, 'Net Banking', 240),
+(28, 10, 'Net Banking', 410),
+(7, 40, 'Net Banking', 730),
+(84, 27, 'Cash', 870),
+(211, 16, 'Cash', 860),
+(104, 49, 'Net Banking', 480),
+(148, 37, 'Net Banking', 500),
+(186, 45, 'Cash', 370),
+(99, 13, 'Cash', 460),
+(49, 28, 'Cash', 940),
+(159, 21, 'Cash', 480),
+(69, 32, 'Net Banking', 340),
+(198, 3, 'Net Banking', 410),
+(46, 44, 'Net Banking', 910),
+(57, 42, 'Cash', 950),
+(177, 26, 'Cash', 170),
+(153, 7, 'Net Banking', 960),
+(94, 33, 'Cash', 750),
+(28, 15, 'Net Banking', 610),
+(202, 1, 'Cash', 670),
+(186, 11, 'Cash', 740),
+(172, 34, 'Net Banking', 210),
+(41, 43, 'Cash', 380),
+(33, 9, 'Cash', 290),
+(66, 4, 'Cash', 660),
+(143, 38, 'Net Banking', 890),
+(80, 30, 'Net Banking', 870),
+(124, 23, 'Net Banking', 580),
+(156, 48, 'Cash', 510),
+(128, 6, 'Net Banking', 280),
+(99, 25, 'Cash', 930),
+(142, 41, 'Net Banking', 790),
+(71, 17, 'Net Banking', 560),
+(13, 35, 'Net Banking', 970),
+(53, 20, 'Net Banking', 880),
+(108, 24, 'Cash', 930),
+(168, 50, 'Cash', 740),
+(159, 29, 'Net Banking', 760),
+(113, 16, 'Net Banking', 660);
