@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <!-- set the viewport width and initial-scale on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schön. | eCommerce HTML5 Template</title>
+    <title>Product</title>
     <!-- include the site stylesheet -->
     <link
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
@@ -42,7 +42,8 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="#"><img src="../images/logo/final.png" alt="Rentac"></a>
+                                <div class="mt-logo"><a href="../pages/home.html"><img src="../images/logo/final.png"
+                                            alt="Rentac"></a>
                                 </div>
                                 <!-- mt icon list start here -->
                                 <ul class="mt-icon-list">
@@ -63,9 +64,9 @@
                                             <span class="bar"></span>
                                         </a>
                                     </li>
-                                    <li><a href="#" class="icon-magnifier"></a></li>
+                                    <li><a href="search.php" class="icon-magnifier"></a></li>
                                     <li class="drop">
-                                        <a href="#" class="cart-opener">
+                                        <a href="cart.php" class="cart-opener">
                                             <span class="icon-handbag"></span>
                                         </a>
                                     </li>
@@ -105,10 +106,14 @@
                                                                     Events</a></strong>
                                                             <div class="sub-drop">
                                                                 <ul>
-                                                                    <li><a href="#">Birthday</a></li>
-                                                                    <li><a href="#">Seminar</a></li>
-                                                                    <li><a href="#">Party</a></li>
-                                                                    <li><a href="#">Wedding</a></li>
+                                                                    <li><a
+                                                                            href="product.php?event=birthday">Birthday</a>
+                                                                    </li>
+                                                                    <li><a href="product.php?event=seminar">Seminar</a>
+                                                                    </li>
+                                                                    <li><a href="product.php?event=party">Party</a></li>
+                                                                    <li><a href="product.php?event=wedding">Wedding</a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -212,7 +217,7 @@
                 <div class="mt-holder">
                     <a href="#" class="search-close"><span></span><span></span></a>
                     <div class="mt-frame">
-                        <form action="#">
+                        <form action="search.php">
                             <fieldset>
                                 <input type="text" placeholder="Search...">
                                 <span class="icon-microphone"></span>
@@ -343,19 +348,19 @@
                                 <!-- category list start here -->
                                 <ul class="list-unstyled category-list">
                                     <li>
-                                        <a href="#">
+                                        <a href="product.php?category=chair">
                                             <span class="name">CHAIRS</span>
                                             <span class="num">12</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="product.php?category=sofa">
                                             <span class="name">SOFAS</span>
                                             <span class="num">24</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="product.php?category=table">
                                             <span class="name">TABLES</span>
                                             <span class="num">9</span>
                                         </a>
@@ -375,10 +380,10 @@
                                             </a>
                                             <div class="drop">
                                                 <ul class="list-unstyled">
-                                                    <li><a href="#">Ascending</a></li>
-                                                    <li><a href="#">Descending</a></li>
-                                                    <li><a href="#">Price</a></li>
-                                                    <li><a href="#">Relevance</a></li>
+                                                    <li><a href="filter.php?type=asc">Ascending</a></li>
+                                                    <li><a href="filter.php?type=desc">Descending</a></li>
+                                                    <li><a href="filter.php?type=price">Price</a></li>
+                                                    <li><a href="filter.php?type=relevance">Relevance</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -407,7 +412,7 @@
                                             incididunt ut <br>labore <br>magna aliqua.</p>
                                         <!-- links start here -->
                                         <ul class="links">
-                                            <li><a href="#"><i class="icon-handbag"></i></a></li>
+                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
                                             <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                             </li>
                                         </ul>
@@ -431,7 +436,7 @@
                                             incididunt ut <br>labore <br>magna aliqua.</p>
                                         <!-- links start here -->
                                         <ul class="links">
-                                            <li><a href="#"><i class="icon-handbag"></i></a></li>
+                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
 
                                             <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                             </li>
@@ -454,7 +459,7 @@
                                             incididunt ut <br>labore <br>magna aliqua.</p>
                                         <!-- links start here -->
                                         <ul class="links">
-                                            <li><a href="#"><i class="icon-handbag"></i></a></li>
+                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
 
                                             <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                             </li>
@@ -479,7 +484,7 @@
                                             incididunt ut <br>labore <br>magna aliqua.</p>
                                         <!-- links start here -->
                                         <ul class="links">
-                                            <li><a href="#"><i class="icon-handbag"></i></a></li>
+                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
 
                                             <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                             </li>
@@ -502,7 +507,7 @@
                                             incididunt ut <br>labore <br>magna aliqua.</p>
                                         <!-- links start here -->
                                         <ul class="links">
-                                            <li><a href="#"><i class="icon-handbag"></i></a></li>
+                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
 
                                             <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                             </li>
@@ -525,7 +530,7 @@
                                             incididunt ut <br>labore <br>magna aliqua.</p>
                                         <!-- links start here -->
                                         <ul class="links">
-                                            <li><a href="#"><i class="icon-handbag"></i></a></li>
+                                            <li><a href="addincart.php?"><i class="icon-handbag"></i></a></li>
 
                                             <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                             </li>
@@ -533,15 +538,6 @@
                                     </div><!-- mt product 3 end here -->
                                 </li>
                             </ul><!-- mt productlisthold end here -->
-                            <!-- mt pagination start here -->
-                            <nav class="mt-pagination">
-                                <ul class="list-inline">
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                </ul>
-                            </nav><!-- mt pagination end here -->
                         </div>
                     </div>
                 </div>
@@ -569,14 +565,14 @@
                                 <div class="f-widget-tabs">
                                     <h3 class="f-widget-heading">Product Tags</h3>
                                     <ul class="list-unstyled tabs">
-                                        <li><a href="#">Sofas</a></li>
-                                        <li><a href="#">Chairs</a></li>
-                                        <li><a href="#">Tables</a></li>
-                                        <li><a href="#">Birthday</a></li>
-                                        <li><a href="#">Seminar</a></li>
-                                        <li><a href="#">Wedding</a></li>
-                                        <li><a href="#">Marriage</a></li>
-                                        <li><a href="#">Party</a></li>
+                                        <li><a href="product.php?category=sofa">Sofas</a></li>
+                                        <li><a href="product.php?category=chair">Chairs</a></li>
+                                        <li><a href="product.php?category=table">Tables</a></li>
+                                        <li><a href="product.php?event=birthday">Birthday</a></li>
+                                        <li><a href="product.php?event=seminar">Seminar</a></li>
+                                        <li><a href="product.php?event=wedding">Wedding</a></li>
+                                        <li><a href="product.php?event=marriage">Marriage</a></li>
+                                        <li><a href="product.php?event=party">Party</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Tabs of the Page -->
@@ -591,7 +587,8 @@
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 1%;"></i><a
                                                 href="tel:15553332211">+1 XX XX XX XX</a>
-                                        <li><i class="fa fa-envelope-o"></i><a href="#">rentac01@gmail.com</a></li>
+                                        <li><i class="fa fa-envelope-o"></i><a
+                                                href="../pages/home.html">rentac01@gmail.com</a></li>
                                     </ul>
                                 </div>
                                 <!-- F Widget About of the Page end -->
@@ -605,7 +602,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <p>© <a href="index.html">Rentac</a> - All rights Reserved</p>
+                                <p>© <a href="home.html">Rentac</a> - All rights Reserved</p>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+<?php   session_start();    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,43 +12,112 @@
 </body>
 <?php
 
-    require_once("connection.php");
+        if(
+            isset( $_POST["luemail"] )      &&
+            isset( $_POST["lupass"] )       &&
+            isset( $_POST["lusubmit"] )     
+        ){
+            
+            try{
 
-    if(
-        isset( $_POST["luemail"] )      &&
-        isset( $_POST["lupass"] )       &&
-        isset( $_POST["lusubmit"] )     
-    ){
+                $_SESSION["user"] = "guest";
 
-        echo "<div class='conatiner mx-5 my-5'>";
+                require_once("connection.php");
+                
+                echo "<div class='conatiner mx-5 my-5 text-center'>";
 
-        $email = $_POST["luemail"];
-        $pass = $_POST["lupass"];
+                $email = $_POST["luemail"];
+                $pass = $_POST["lupass"];
 
-        $pattern = "/^([A-Za-z0-9_\-\.])+\@([A-Za-z_\-\.])+\.([A-Za-z]{2,4})$/";
+                $pattern = "/^([A-Za-z0-9_\-\.])+\@([A-Za-z_\-\.])+\.([A-Za-z]{2,4})$/";
 
-        if( preg_match($pattern,$email) ){
-            echo "<div class='alert alert-success' role=alert>Email Validated Successfully</div>";
+                if( preg_match($pattern,$email) ){
+                    // echo "<div class='alert alert-success' role=alert>Email Validated Successfully</div>";
+                }else{
+                    
+                    echo "<div class='alert alert-danger' role=alert>Invalid Email</div>";
+                    echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+                    
+                }
+
+                $pattern = "/^([A-Za-z0-9_\-\.])/";
+
+                if( preg_match($pattern,$pass) ){
+                    
+                    // echo "<div class='alert alert-success' role=alert>Password Validated Successfully</div>";
+
+                    $query = "select count(*) as 'count' from customer where email='$email'";
+
+                    $result = mysqli_query($conn,$query);
+
+                    $record = mysqli_fetch_assoc($result);
+
+                    if( $record["count"] < 1 ){
+                        
+                        echo "<div class='alert alert-info' role='alert'>Record Not Found </div>";
+                        echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
+                    
+                    }else{
+
+                        $query = "select customer_id,fname,email,password from customer where email='$email'";
+ 
+                        $result = mysqli_query($conn,$query);
+
+                        $flag = 0;
+                        
+                        while( $record = mysqli_fetch_assoc($result) ){
+
+                            if( password_verify( $pass,$record["password"]) ){
+                                $_SESSION["user"] = $record["customer_id"];
+                                echo "<div class='alert alert-success' role='alert'> Hello ".  $record['fname'] .", Redirecting to Product Page </div>";
+                                echo "<script> setTimeout(() => { window.location.href = '../pages/product.html'; }, 3000);  </script>";
+                                $flag = 1;
+                                break;
+                            }
+
+                        }
+
+                        if( $flag == 0 ){
+
+                            echo "<div class='alert alert-success' role='alert'> Misleading Information </div>";
+                            echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+                        
+                        }
+
+                    }
+                    
+                }else{
+
+                    echo "<div class='alert alert-danger' role='alert'>Invalid Password Format</div>";
+                    echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+
+                }
+
+                echo "</div> ";
+                
+            }catch(Exception $e){
+
+                echo "<div class='conatiner'>";
+                echo "<div class='alert alert-warning text-center' role='alert'>Something Went Wrong</div>";
+                echo "</div>";
+                
+                echo "<script> setTimeout(() => { window.location.href = '../pages/home.html'; }, 3000);  </script>";
+
+            }
+            
         }else{
-            echo "<div class='alert alert-danger' role=alert>Invalid Email</div>";
+            
+            $_SESSION["user"] = "guest";
+
+            echo "<div class='conatiner'>";
+            echo "<div class='alert alert-warning text-center' role='alert'> Unable To Fetch Information </div>";
+            echo "</div>";
+
+            echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+
         }
 
-        $pattern = "/^([A-Za-z0-9_\-\.])/";
-
-        if( preg_match($pattern,$pass) ){
-            echo "<div class='alert alert-success' role=alert>Password Validated Successfully</div>";
-
-            // query 
-
-        }else{
-            echo "<div class='alert alert-danger' role=alert>Invalid Password Format</div>";
-        }
-
-        echo "</div> ";
-
-        echo "<script> setTimeout(() => { window.location.href = '../pages/product.html'; }, 1500);  </script>";
-
-    }
+    
 
 ?>
 </html>

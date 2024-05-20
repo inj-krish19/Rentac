@@ -28,7 +28,7 @@
     $serverName = "localhost";
     $userName = "root";
     $password = "";
-    $databaseName = "Rentac";
+    $databaseName = "rentac";
     $portNumber = "3000";
 
     $conn = mysqli_connect($serverName,$userName,$password,$databaseName);
