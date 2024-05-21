@@ -24,7 +24,7 @@
 
                 require_once("connection.php");
                 
-                echo "<div class='conatiner mx-5 my-5 text-center'>";
+                echo "<div class='container mx-5 my-5 text-center'>";
 
                 $email = $_POST["luemail"];
                 $pass = $_POST["lupass"];

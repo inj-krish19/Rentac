@@ -31,65 +31,16 @@
     $query = "select productid,product_name,price,description,image_path from product limit 30";
 
     if( isset($_REQUEST["category"]) ){
+        
         $tableName = "product_".$_REQUEST["category"]."s";
         $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
         inner join $tableName on P.productid = product_id limit 30 ";
+    
     }
 
     if( isset($_REQUEST["event"]) ){
 
-        /*
-
-SELECT P.productid,P.product_name, P.price, P.image_path 
-FROM product P 
-INNER JOIN (
-    SELECT A.product_id 
-    FROM product_chairs A 
-    INNER JOIN product P ON P.productid = A.product_id 
-    WHERE A.event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
-    
-    UNION ALL 
-    
-    SELECT B.product_id 
-    FROM product_sofas B 
-    INNER JOIN product P ON P.productid = B.product_id 
-    WHERE B.event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
-    
-    UNION ALL 
-    
-    SELECT C.product_id 
-    FROM product_tables C 
-    INNER JOIN product P ON P.productid = C.product_id 
-    WHERE C.event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
-) AS A ON P.productid = A.product_id;
-        */
-
-        /*
-
-        SELECT COUNT(P.productid) AS total_products
-FROM product P
-INNER JOIN (
-    SELECT product_id
-    FROM product_chairs
-    WHERE event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
-    
-    UNION ALL
-    
-    SELECT product_id
-    FROM product_sofas
-    WHERE event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
-    
-    UNION ALL
-    
-    SELECT product_id
-    FROM product_tables
-    WHERE event_id = (SELECT event_id FROM event WHERE event_name = 'Party')
-) AS A ON P.productid = A.product_id;
-
-*/
-
         $eventName = $_REQUEST["event"];
-
         $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P inner join (
                     
                     select A.product_id from product_chairs A 
@@ -112,6 +63,18 @@ INNER JOIN (
 
     }
 
+    if(
+        isset($_REQUEST["category"])       &&
+        isset($_REQUEST["event"])    
+    ){
+
+        $tableName = "product_".$_REQUEST["category"]."s";
+        $eventName = $_REQUEST["event"];
+        $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
+                inner join $tableName on P.productid = product_id where 
+                event_id = (select event_id from event where event_name = '$eventName') limit 15 ";
+    }
+
     $result = mysqli_query($conn,$query);
 
 ?>
@@ -120,11 +83,11 @@ INNER JOIN (
     <!-- main container of all the page elements -->
     <div id="wrapper">
         <!-- Page Loader -->
-        <div id="pre-loader" class="loader-container">
+        <!-- <div id="pre-loader" class="loader-container">
             <div class="loader">
                 <img src="../images/svg/rings.svg" alt="loader">
             </div>
-        </div>
+        </div> -->
         <!-- W1 start here -->
         <div class="w1">
             <!-- mt header style4 start here -->
@@ -338,38 +301,50 @@ INNER JOIN (
                                 <span class="sub-title">Filter by Events</span>
                                 <!-- nice-form start here -->
                                 <ul class="list-unstyled nice-form">
-                                    <li>
-                                        <label for="check-1">
-                                            <input id="check-1" checked="checked" type="checkbox">
-                                            <span class="fake-input"></span>
-                                            <span class="fake-label">Birthday</span>
-                                        </label>
-                                        <span class="num">2</span>
-                                    </li>
-                                    <li>
-                                        <label for="check-2">
-                                            <input id="check-2" checked="checked" type="checkbox">
-                                            <span class="fake-input"></span>
-                                            <span class="fake-label">Seminar</span>
-                                        </label>
-                                        <span class="num">12</span>
-                                    </li>
-                                    <li>
-                                        <label for="check-3">
-                                            <input id="check-3" checked="checked" type="checkbox">
-                                            <span class="fake-input"></span>
-                                            <span class="fake-label">Party</span>
-                                        </label>
-                                        <span class="num">4</span>
-                                    </li>
-                                    <li>
-                                        <label for="check-4">
-                                            <input id="check-4" checked="checked" type="checkbox">
-                                            <span class="fake-input"></span>
-                                            <span class="fake-label">Wedding</span>
-                                        </label>
-                                        <span class="num">4</span>
-                                    </li>
+                                    <?php 
+
+                                        $events = array("Birthday","Seminar","Party","Wedding");
+                                    
+                                        foreach ($events as $key => $event) {
+                                    
+                                            $eventQuery = "select COUNT(P.productid) as '$event'
+                                                        from product P
+                                                        inner join (
+                                                            select product_id
+                                                            from product_chairs
+                                                            where event_id = (select event_id from event where event_name = '$event')
+                                                            
+                                                            union all
+                                                            
+                                                            select product_id
+                                                            from product_sofas
+                                                            where event_id = (select event_id from event where event_name = '$event')
+                                                            
+                                                            union all
+                                                            
+                                                            select product_id
+                                                            from product_tables
+                                                            where event_id = (select event_id from event where event_name = '$event')
+                                                        ) as Event ON P.productid = Event.product_id";
+
+                                                $eventResult = mysqli_query($conn,$eventQuery);
+
+                                                $eventRecord = mysqli_fetch_assoc($eventResult);
+
+                                                $eventRecord = $eventRecord[$event];
+
+                                    ?>
+                                        <li>
+                                            <label for="check-<?php echo $key+1;    ?>">
+                                                <input id="check-<?php echo $key+1;    ?>" checked="checked" type="checkbox">
+                                                <span class="fake-input"></span>
+                                                <span class="fake-label"> <?php    echo $event;   ?> </span>
+                                            </label>
+                                            <span class="num"> <?php echo $eventRecord;    ?> </span>
+                                        </li>
+                                    <?php 
+                                            } 
+                                    ?>
                                 </ul><!-- nice-form end here -->
                                 <span class="sub-title">Filter by Price</span>
                                 <div class="price-range">
@@ -438,24 +413,34 @@ INNER JOIN (
                                 <h2>CATEGORIES</h2>
                                 <!-- category list start here -->
                                 <ul class="list-unstyled category-list">
+                                <?php 
+
+                                    $categories = array("CHAIRS","SOFAS","TABLES");
+                                
+                                    foreach ($categories as $key => $category) {
+                                    
+                                        $categoryTable = "product_".$category;
+
+                                        $categoryQuery = "select COUNT(*) as '$category'
+                                                          from $categoryTable";
+
+                                                $categoryResult = mysqli_query($conn,$categoryQuery);
+
+                                                $categoryRecord = mysqli_fetch_assoc($categoryResult);
+
+                                                $categoryRecord = $categoryRecord[$category];
+                                ?>
+                                
                                     <li>
                                         <a href="product.php?category=chair">
-                                            <span class="name">CHAIRS</span>
-                                            <span class="num">12</span>
+                                            <span class="name"> <?php   echo $category;  ?> </span>
+                                            <span class="num"> <?php    echo $categoryRecord;   ?></span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="product.php?category=sofa">
-                                            <span class="name">SOFAS</span>
-                                            <span class="num">24</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="product.php?category=table">
-                                            <span class="name">TABLES</span>
-                                            <span class="num">9</span>
-                                        </a>
-                                    </li>
+
+                                <?php
+                                    }
+                                ?> 
                                 </ul><!-- category list end here -->
                             </section><!-- shop-widget of the Page end here -->
                         </aside><!-- sidebar of the Page end here -->
@@ -593,3 +578,54 @@ INNER JOIN (
 </body>
 
 </html>
+<?php
+/*
+
+select P.productid,P.product_name, P.price, P.image_path 
+from product P 
+inner join (
+    select A.product_id 
+    from product_chairs A 
+    inner join product P ON P.productid = A.product_id 
+    where A.event_id = (select event_id from event where event_name = 'Party')
+    
+    union all 
+    
+    select B.product_id 
+    from product_sofas B 
+    inner join product P ON P.productid = B.product_id 
+    where B.event_id = (select event_id from event where event_name = 'Party')
+    
+    union all 
+    
+    select C.product_id 
+    from product_tables C 
+    inner join product P ON P.productid = C.product_id 
+    where C.event_id = (select event_id from event where event_name = 'Party')
+) as A ON P.productid = A.product_id;
+        */
+
+        /*
+
+        select COUNT(P.productid) as total_products
+from product P
+inner join (
+    select product_id
+    from product_chairs
+    where event_id = (select event_id from event where event_name = 'Party')
+    
+    union all
+    
+    select product_id
+    from product_sofas
+    where event_id = (select event_id from event where event_name = 'Party')
+    
+    union all
+    
+    select product_id
+    from product_tables
+    where event_id = (select event_id from event where event_name = 'Party')
+) as A ON P.productid = A.product_id;
+
+*/
+?>
