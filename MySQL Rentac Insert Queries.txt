@@ -3,6 +3,17 @@ Creation Query
 
 ----------------------------------------------------------------------------------------------------------------------------
 
+Table : Event
+
+CREATE TABLE feedback (
+    feedback_id int
+    primary key auto_increment,
+    name text(50) not null,
+    email text(75) not null,
+    subject text(50) not null,
+    message text(250) not null
+);
+
 Table : Product
 
 CREATE TABLE product (
@@ -122,6 +133,36 @@ CREATE TABLE cart (
 Insert Query 
 
 ----------------------------------------------------------------------------------------------------------------------------
+
+Table : Feedback
+
+insert into feedback (name, email, subject, message) values
+('John Smith', 'john.smith@example.com', 'Great Service', 'I was very pleased with the furniture and service.'),
+('Mary Johnson', 'mary.johnson@example.com', 'Highly Recommend', 'The event went smoothly thanks to Rentac.'),
+('Robert Brown', 'robert.brown@example.com', 'Good Experience', 'Furniture was in excellent condition and delivery was prompt.'),
+('Linda Davis', 'linda.davis@example.com', 'Excellent Quality', 'Loved the quality of the sofas and chairs.'),
+('James Wilson', 'james.wilson@example.com', 'Satisfactory', 'Overall a good experience, but the delivery was slightly late.'),
+('Patricia Moore', 'patricia.moore@example.com', 'Fantastic Support', 'Customer support was very helpful and responsive.'),
+('Michael Taylor', 'michael.taylor@example.com', 'Will Use Again', 'Will definitely use Rentac for my next event.'),
+('Barbara Anderson', 'barbara.anderson@example.com', 'Great Selection', 'Impressed by the wide selection of furniture.'),
+('William Thomas', 'william.thomas@example.com', 'Very Pleased', 'The event was a success, thank you!'),
+('Elizabeth Jackson', 'elizabeth.jackson@example.com', 'Good Value', 'Great value for the price.'),
+('David White', 'david.white@example.com', 'Excellent Service', 'Service was excellent from start to finish.'),
+('Jennifer Harris', 'jennifer.harris@example.com', 'Highly Satisfied', 'Highly satisfied with the rental experience.'),
+('Richard Martin', 'richard.martin@example.com', 'Smooth Process', 'The rental process was smooth and easy.'),
+('Susan Thompson', 'susan.thompson@example.com', 'Will Recommend', 'Will recommend Rentac to my friends.'),
+('Charles Garcia', 'charles.garcia@example.com', 'Professional Service', 'Professional and reliable service.'),
+('Jessica Martinez', 'jessica.martinez@example.com', 'Loved the Furniture', 'Furniture was beautiful and well-maintained.'),
+('Joseph Robinson', 'joseph.robinson@example.com', 'Very Helpful', 'Staff was very helpful throughout the process.'),
+('Sarah Clark', 'sarah.clark@example.com', 'Exceptional Quality', 'The quality of the furniture exceeded my expectations.'),
+('Thomas Lewis', 'thomas.lewis@example.com', 'Great Experience', 'Had a great experience with Rentac.'),
+('Karen Walker', 'karen.walker@example.com', 'Affordable', 'Affordable prices and great service.'),
+('Christopher Hall', 'christopher.hall@example.com', 'Very Impressed', 'Very impressed with the overall service.'),
+('Nancy Allen', 'nancy.allen@example.com', 'Easy to Work With', 'Company was easy to work with and very accommodating.'),
+('Daniel Young', 'daniel.young@example.com', 'Prompt Delivery', 'Delivery was prompt and on time.'),
+('Lisa King', 'lisa.king@example.com', 'Amazing Support', 'Support team was amazing and very responsive.'),
+('Mark Wright', 'mark.wright@example.com', 'Great Company', 'Great company with excellent service.');
+
 
 Table : Product
 

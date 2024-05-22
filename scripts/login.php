@@ -37,6 +37,7 @@
                     
                     echo "<div class='alert alert-danger' role=alert>Invalid Email</div>";
                     echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+                    exit;
                     
                 }
 
@@ -56,6 +57,7 @@
                         
                         echo "<div class='alert alert-info' role='alert'>Record Not Found </div>";
                         echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
+                        exit;
                     
                     }else{
 

@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- set the encoding of your site -->
-    <meta charset="utf-8">
-    <!-- set the viewport width and initial-scale on mobile devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="shortcut icon" href="../Images/logos/contact.jpg" type="image/x-icon">
-    <!-- include the site stylesheet -->
-    <link
-        href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
-        rel='stylesheet' type='text/css'>
-    <!-- include the site stylesheet -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <!-- include the site stylesheet -->
-    <link rel="stylesheet" href="../css/animate.css">
-    <!-- include the site stylesheet -->
-    <link rel="stylesheet" href="../css/icon-fonts.css">
-    <!-- include the site stylesheet -->
-    <link rel="stylesheet" href="../css/main.css">
-    <!-- include the site stylesheet -->
-    <link rel="stylesheet" href="../css/responsive.css">
+  <!-- set the encoding of your site -->
+  <meta charset="utf-8">
+  <!-- set the viewport width and initial-scale on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schön. | eCommerce HTML5 Template</title>
+  <!-- include the site stylesheet -->
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700' rel='stylesheet' type='text/css'>
+  <!-- include the site stylesheet -->
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <!-- include the site stylesheet -->
+  <link rel="stylesheet" href="../css/animate.css">
+  <!-- include the site stylesheet -->
+  <link rel="stylesheet" href="../css/icon-fonts.css">
+  <!-- include the site stylesheet -->
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- include the site stylesheet -->
+  <link rel="stylesheet" href="../css/responsive.css">
 </head>
-
 <body>
-    <!-- main container of all the page elements -->
-    <div id="wrapper">
-        <!-- Page Loader -->
-        <div id="pre-loader" class="loader-container">
-            <div class="loader">
-                <img src="../images/svg/rings.svg" alt="loader">
-            </div>
-        </div>
-        <div class="w1">
-            <!-- mt header style4 start here -->
-            <header id="mt-header" class="style4">
+  <!-- main container of all the page elements -->  
+  <div id="wrapper">
+    <!-- Page Loader -->
+    <div id="pre-loader" class="loader-container">
+      <div class="loader">
+        <img src="../images/svg/rings.svg" alt="loader">
+      </div>
+    </div>
+    <div class="w1">
+      <!-- mt -header style14 start from here -->
+      <header id="mt-header" class="style4">
                 <!-- mt bottom bar start here -->
                 <div class="mt-bottom-bar">
                     <div class="container-fluid">
@@ -122,80 +117,73 @@
                 </div>
                 <!-- mt bottom bar end here -->
                 <span class="mt-side-over"></span>
-            </header>
-            <main id="mt-main">
-                <!-- Mt Contact Banner of the Page -->
-                <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 text-center">
-                                <h1>CONTACT</h1>
-                                <nav class="breadcrumbs">
-                                    <ul class="list-unstyled">
-                                        <li><a href="home.html">Home <i class="fa fa-angle-right"></i></a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </section><!-- Mt Contact Banner of the Page -->
-                <!-- Mt Contact Detail of the Page -->
-                <section class="mt-contact-detail content-info wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-8">
-                                <div class="txt-wrap">
-                                    <h2>Rentac</h2>
-                                    <p>At Rentac, we are here to help make your event truly special. Whether you have a
-                                        question about our furniture rental
-                                        services, need assistance with your order, or want to discuss your specific
-                                        event requirements, our team is ready to
-                                        assist you. </p>
-                                    <p>Whether you're planning for special event, we look forward to providing the
-                                        perfect furniture solutions to meet your needs.
-
-                                        Thank you for choosing Rentac where quality meets convenience.
-
-                                    </p>
-                                </div>
-                                <ul class="list-unstyled contact-txt">
-                                    <li>
-                                        <strong>Address</strong>
-                                        <address>Department of Computer Science, Gujarat University <br>Ahmedabad -
-                                            384002
-                                        </address>
-                                    </li>
-                                    <li>
-                                        <strong>Phone</strong>
-                                        <a href="#">+1 XX XX XX XX</a>
-                                    </li>
-                                    <li>
-                                        <strong>E_mail</strong>
-                                        <a href="#">rentac01@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-12 col-sm-4">
-                                <h2>Have a question?</h2>
-                                <!-- Contact Form of the Page -->
-                                <form method="post" action="../scripts/contactus.php" class="contact-form">
-                                    <fieldset>
-                                        <input type="text" class="form-control" name="uname" placeholder="Name">
-                                        <input type="email" class="form-control" name="uemail" placeholder="E-Mail">
-                                        <input type="text" class="form-control" name="usub" placeholder="Subject">
-                                        <textarea class="form-control" name="umessage" placeholder="Message"></textarea>
-                                        <button class="btn-type3" type="submit">Send</button>
-                                    </fieldset>
-                                </form>
-                                <!-- Contact Form of the Page end -->
-                            </div>
-                        </div>
-                    </div>
-                </section><!-- Mt Contact Detail of the Page end -->
-            </main>
-            <!-- footer of the Page -->
-            <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
+            </header><!-- mt header style4 end here -->
+      <!-- mt search popup start here -->
+      <div class="mt-search-popup">
+        <div class="mt-holder">
+          <a href="#" class="search-close"><span></span><span></span></a>
+          <div class="mt-frame">
+            <form action="#">
+              <fieldset>
+                <input type="text" placeholder="Search...">
+                <span class="icon-microphone"></span>
+                <button class="icon-magnifier" type="submit"></button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div><!-- mt search popup end here -->
+      <!-- Main of the Page -->
+      <main id="mt-main">
+        <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s" >
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <h1 class="text-center">SHOPPING CART</h1>
+                <!-- Breadcrumbs of the Page -->
+                <nav class="breadcrumbs">
+                  <ul class="list-unstyled text-center">
+                    <li><a href="../pages/home.html">Home <i class="fa fa-angle-right"></i></a></li>
+                    <li>Order Placed</li>
+                  </ul>
+                </nav>
+                <!-- Breadcrumbs of the Page end -->
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Mt Process Section of the Page -->
+        <div class="mt-process-sec wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <ul class="list-unstyled process-list">
+                <li>
+                    <span class="counter">01</span>
+                    <strong class="title">Shopping Cart</strong>
+                </li>
+                <li>
+                    <span class="counter">02</span>
+                    <strong class="title">Check Out</strong>
+                </li>
+                <li class="active">
+                    <span class="counter">03</span>
+                    <strong class="title">Order Complete</strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div><!-- Mt Process Section of the Page end -->
+        <!-- Mt Product Table of the Page -->
+        <div class="mt-product-table wow fadeInUp" data-wow-delay="0.4s">
+          <div class="container">
+                <div id="orderMessageWrapper" style="padding: 15px; border: 2px solid #4CAF50; background-color: #DFF2BF; color: #4CAF50; font-size: 18px; text-align: center; margin: 20px auto; width: 80%; border-radius: 5px; opacity: 0; transform: translateY(-20px); transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+                    <h1 class="text-center">Order Placed Successfully</h1>
+                </div>
+          </div>
+        </div><!-- Mt Product Table of the Page end -->
+      <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
                     <div class="container">
                         <div class="row">
@@ -236,8 +224,8 @@
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="aboutus.html">About Us</a></li>
-                                        <li><a href="contactus.html">Contact Us</a></li>
+                                        <li><a href="../pages/aboutus.html">About Us</a></li>
+                                        <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Nav of the Page end -->
@@ -266,16 +254,30 @@
                     </div>
                     <!-- Footer Area of the Page end -->
             </footer><!-- footer of the Page end -->
-        </div>
-        <span id="back-top" class="fa fa-arrow-up"></span>
+      <!-- footer of the Page end -->
     </div>
-    <!-- include jQuery -->
-    <script src="../js/jquery.js"></script>
-    <!-- include jQuery -->
-    <script src="../js/plugins.js"></script>
-    <!-- include jQuery -->
-    <script src="../js/jquery.main.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-</body>
+    <span id="back-top" class="fa fa-arrow-up"></span>
+  </div>
+  <!-- include jQuery -->
+  <script src="../js/jquery.js"></script>
+  <!-- include jQuery -->
+  <script src="../js/plugins.js"></script>
+  <!-- include jQuery -->
+  <script src="../js/jquery.main.js"></script>
+  <script>  
+  window.onload = function() {
+        var message = document.getElementById('orderMessageWrapper');
+        // Add inline styles to trigger the transition
+        setTimeout(function() {
+            message.style.opacity = '1';
+            message.style.transform = 'translateY(0)';
 
+            setTimeout(function() {
+                window.location.href="../scripts/product.php";
+            }, 3000);
+
+        }, 1500); // Delay to ensure the transition applies
+    };
+    </script>
+</body>
 </html>

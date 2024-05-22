@@ -137,12 +137,12 @@
                                 <nav id="nav">
                                     <ul>
                                         <li>
-                                            <a href="../pages/home.html">HOME <i
+                                            <a class="drop-link" href="home.html">HOME <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
                                         <li>
-                                            <a href="../scripts/product.php">PRODUCTS <i
+                                            <a class="drop-link" href="../scripts/product.php">PRODUCTS <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -181,9 +181,9 @@
                                             <!-- mt dropmenu end here -->
                                             <span class="mt-mdropover"></span>
                                         </li>
-                                        <li><a href="../pages/aboutus.html">About</a></li>
+                                        <li><a href="about-us.html">About</a></li>
                                         <li>
-                                            <a href="../pages/contactus.html">Contact <i
+                                            <a href="contact-us.html">Contact <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -336,8 +336,8 @@
 
                                     ?>
                                         <li>
-                                            <label for="check-category-<?php echo $key+1;    ?>">
-                                                <input id="check-category-<?php echo $key+1;    ?>" checked="checked" type="checkbox">
+                                            <label for="check-<?php echo $key+1;    ?>">
+                                                <input id="check-<?php echo $key+1;    ?>" checked="checked" type="checkbox">
                                                 <span class="fake-input"></span>
                                                 <span class="fake-label"> <?php    echo $event;   ?> </span>
                                             </label>
