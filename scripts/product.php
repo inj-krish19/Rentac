@@ -29,13 +29,13 @@
 
     require_once("connection.php");
 
-    $query = "select productid,product_name,price,description,image_path from product limit 30";
+    $query = "select productid,product_name,price,description,image_path from product ";
 
     if( isset($_REQUEST["category"]) ){
         
         $tableName = "product_".$_REQUEST["category"]."s";
         $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
-        inner join $tableName on P.productid = product_id limit 30 ";
+        inner join $tableName on P.productid = product_id ";
     
     }
 
@@ -73,10 +73,27 @@
         $eventName = $_REQUEST["event"];
         $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
                 inner join $tableName on P.productid = product_id where 
-                event_id = (select event_id from event where event_name = '$eventName') limit 15 ";
+                event_id = (select event_id from event where event_name = '$eventName') ";
     }
 
     $result = mysqli_query($conn,$query);
+
+    if( isset($_REQUEST["type"]) ){
+
+        if( $_REQUEST["type"] == "asc" ){
+            $query = $query . " order by price";
+        }
+
+        
+        if( $_REQUEST["type"] == "desc" ){
+            $query = $query . " order by price desc";
+        }
+        
+    }
+
+    $query = $query . " limit 30";
+
+    echo $query;
 
 ?>
 
@@ -306,7 +323,7 @@
 
                                         $events = array("Birthday","Seminar","Party","Wedding");
                                     
-                                        foreach ($events as $key => $event) {
+                                        foreach ($events as $keyE => $event) {
                                     
                                             $eventQuery = "select COUNT(P.productid) as '$event'
                                                         from product P
@@ -336,76 +353,46 @@
 
                                     ?>
                                         <li>
-                                            <label for="check-category-<?php echo $key+1;    ?>">
-                                                <input id="check-category-<?php echo $key+1;    ?>" checked="checked" type="checkbox">
+                                            <label for="check-category-<?php echo $keyE+1;    ?>">
+                                                <input id="check-category-<?php echo $keyE+1;    ?>" checked="checked" type="checkbox">
                                                 <span class="fake-input"></span>
                                                 <span class="fake-label"> <?php    echo $event;   ?> </span>
                                             </label>
                                             <span class="num"> <?php echo $eventRecord;    ?> </span>
                                         </li>
                                     <?php 
-                                            } 
+                                        } 
                                     ?>
                                 </ul><!-- nice-form end here -->
                                 <span class="sub-title">Filter by Price</span>
                                 <div class="price-range">
                                     <ul class="list-unstyled nice-form">
+                                        <?php 
+                                            $lower = array(10,50,100,200,350,750,1250);
+                                            $upper = array(50,100,200,350,750,1250,2000);
+
+                                            for ($keyR=0; $keyR < count($lower); $keyR++) {
+
+                                                $rangeQuery = "select COUNT(P.productid) as 'rangeCount'
+                                                        from product P where price between  $lower[$keyR] and $upper[$keyR] ";
+
+                                                $rangeResult = mysqli_query($conn,$rangeQuery);
+
+                                                $rangeRecord = mysqli_fetch_assoc($rangeResult);
+
+                                                $rangeCount = $rangeRecord["rangeCount"];
+                                        ?>
                                         <li>
-                                            <label for="check-1">
-                                                <input id="check-1" type="checkbox">
+                                            <label for="check-<?php echo $keyR+1;    ?>">
+                                                <input id="check-<?php echo $keyR+1; ?>" checked="checked" type="checkbox">
                                                 <span class="fake-input"></span>
-                                                <span class="fake-label">10 - 50</span>
+                                                <span class="fake-label"> <?php echo $lower[$keyR] ?> - <?php echo $upper[$keyR] ?> </span>
                                             </label>
-                                            <span class="num">2</span>
+                                            <span class="num"> <?php echo $rangeCount;  ?> </span>
                                         </li>
-                                        <li>
-                                            <label for="check-2">
-                                                <input id="check-2" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label">50 - 100</span>
-                                            </label>
-                                            <span class="num">12</span>
-                                        </li>
-                                        <li>
-                                            <label for="check-3">
-                                                <input id="check-3" checked="checked" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label">100 - 200</span>
-                                            </label>
-                                            <span class="num">4</span>
-                                        </li>
-                                        <li>
-                                            <label for="check-4">
-                                                <input id="check-4" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label">200 - 350</span>
-                                            </label>
-                                            <span class="num">4</span>
-                                        </li>
-                                        <li>
-                                            <label for="check-5">
-                                                <input id="check-5" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label">350 - 750</span>
-                                            </label>
-                                            <span class="num">6</span>
-                                        </li>
-                                        <li>
-                                            <label for="check-6">
-                                                <input id="check-6" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label">750 - 1250</span>
-                                            </label>
-                                            <span class="num">10</span>
-                                        </li>
-                                        <li>
-                                            <label for="check-7">
-                                                <input id="check-7" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label">1250 - 2000</span>
-                                            </label>
-                                            <span class="num">3</span>
-                                        </li>
+                                        <?php
+                                            }
+                                        ?>
                                     </ul>
                                 </div>
                             </section><!-- shop-widget filter-widget of the Page end here -->
@@ -433,7 +420,7 @@
                                 ?>
                                 
                                     <li>
-                                        <a href="product.php?category=chair">
+                                        <a href="product.php?category=<?php echo strtolower(substr($category,0,strlen($category)-1)); ?>">
                                             <span class="name"> <?php   echo $category;  ?> </span>
                                             <span class="num"> <?php    echo $categoryRecord;   ?></span>
                                         </a>
@@ -457,17 +444,13 @@
                                             </a>
                                             <div class="drop">
                                                 <ul class="list-unstyled">
-                                                    <li><a href="filter.php?type=asc">Ascending</a></li>
-                                                    <li><a href="filter.php?type=desc">Descending</a></li>
-                                                    <li><a href="filter.php?type=price">Price</a></li>
-                                                    <li><a href="filter.php?type=relevance">Relevance</a></li>
+                                                    <li><a href="?type=asc">Ascending </a></li>
+                                                    <li><a href="?type=desc">Descending </a></li>
+                                                    <!-- <li><a href="?type=price">Name</a></li>
+                                                    <li><a href="?type=relevance">Relevance</a></li> -->
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a class="mt-viewswitcher" href="#"><i class="fa fa-th-large"
-                                                    aria-hidden="true"></i></a></li>
-                                        <li><a class="mt-viewswitcher" href="#"><i class="fa fa-th-list"
-                                                    aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div><!-- mt-textbox end here -->
                             </header><!-- mt shoplist header end here -->
@@ -541,7 +524,7 @@
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled address-list align-right">
                                         <li><i class="fa fa-map-marker"></i>
-                                            <address>Connaugt Road Central Suite 18B, 148 <br>New Yankee</address>
+                                            <address>Department of Computer Science, Gujarat University, Ahmedabad - 384002</address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 1%;"></i><a
                                                 href="tel:15553332211">+1 XX XX XX XX</a>

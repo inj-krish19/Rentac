@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <!-- set the viewport width and initial-scale on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schön. | eCommerce HTML5 Template</title>
+  <title>Cart</title>
   <!-- include the site stylesheet -->
+  <link rel="shortcut icon" href="../Images/logos/cart.jpg" type="image/x-icon">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700' rel='stylesheet' type='text/css'>
   <!-- include the site stylesheet -->
   <link rel="stylesheet" href="../css/bootstrap.css">

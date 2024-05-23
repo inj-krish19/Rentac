@@ -7,7 +7,7 @@
     <!-- set the viewport width and initial-scale on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
-    <link rel="shortcut icon" href="../Images/logos/about.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="../Images/logos/detail.jpg" type="image/x-icon">
     <!-- include the site stylesheet -->
     <link
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
