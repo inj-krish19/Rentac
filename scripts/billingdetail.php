@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <!-- set the viewport width and initial-scale on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Details</title>
+  <title>Billing Details</title>
   <!-- include the site stylesheet -->
   <link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700' rel='stylesheet' type='text/css'>
@@ -136,16 +136,16 @@
       </div><!-- mt search popup end here -->
       <!-- Main of the Page -->
       <main id="mt-main">
-        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(http://placehold.it/1920x325);">
+        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" >
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
-                <h1 class="text-center">CHECK OUT</h1>
+                <h1 class="text-center" style="color:black;">BILLING DETAILS</h1>
                 <!-- Breadcrumbs of the Page -->
                 <nav class="breadcrumbs">
                   <ul class="list-unstyled">
-                    <li><a href="index.html">Home <i class="fa fa-angle-right"></i></a></li>
-                    <li>Check Out</li>
+                    <li><a href="index.html" style="color:black;">Home <i class="fa fa-angle-right"></i></a></li>
+                    <li style="color:black;">Billing Details</li>
                   </ul>
                 </nav>
                 <!-- Breadcrumbs of the Page end -->
@@ -166,7 +166,7 @@
                   </li>
                   <li class="active">
                     <span class="counter">02</span>
-                    <strong class="title">Check Out</strong>
+                    <strong class="title">Billing Details</strong>
                   </li>
                   <li>
                     <span class="counter">03</span>
@@ -190,6 +190,8 @@
                     <div class="form-group">
                       <select class="form-control">
                         <option value="1">Select Country</option>
+                        <option value="2">India</option>
+                        <option value="3">Others</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -201,19 +203,16 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Company Name">
-                    </div>
-                    <div class="form-group">
                       <textarea class="form-control" placeholder="Address"></textarea>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Town / City">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="State / Country">
+                      <input type="text" class="form-control" placeholder="State ">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Postcode / Zip">
+                      <input type="text" class="form-control" placeholder="Postal Code ">
                     </div>
                     <div class="form-group">
                       <div class="col">

@@ -76,24 +76,37 @@
                 event_id = (select event_id from event where event_name = '$eventName') ";
     }
 
-    $result = mysqli_query($conn,$query);
-
     if( isset($_REQUEST["type"]) ){
-
-        if( $_REQUEST["type"] == "asc" ){
+        
+        if( $_REQUEST["type"] == "ecn" ){
             $query = $query . " order by price";
         }
 
         
-        if( $_REQUEST["type"] == "desc" ){
+        if( $_REQUEST["type"] == "pre" ){
             $query = $query . " order by price desc";
         }
         
     }
+    
+    $result = mysqli_query($conn,$query);
 
-    $query = $query . " limit 30";
+?>
 
-    echo $query;
+<?php
+
+    function makeUrl($phrase){
+
+
+        if ( !strcmp($_SERVER["QUERY_STRING"],"") ){
+            echo $_SERVER["PHP_SELF"] . "?" . $phrase; 
+        }else{
+            echo $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"] . "&" . $phrase; 
+        }
+
+    }
+
+    // makeUrl("");
 
 ?>
 
@@ -444,8 +457,8 @@
                                             </a>
                                             <div class="drop">
                                                 <ul class="list-unstyled">
-                                                    <li><a href="?type=asc">Ascending </a></li>
-                                                    <li><a href="?type=desc">Descending </a></li>
+                                                    <li><a href= <?php makeUrl("type="."ecn"); ?> > Economical </a></li>
+                                                    <li><a href= <?php makeUrl("type="."pre"); ?> > Premium </a></li>
                                                     <!-- <li><a href="?type=price">Name</a></li>
                                                     <li><a href="?type=relevance">Relevance</a></li> -->
                                                 </ul>

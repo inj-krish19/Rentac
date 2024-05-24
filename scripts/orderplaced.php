@@ -165,11 +165,11 @@
                 </li>
                 <li>
                     <span class="counter">02</span>
-                    <strong class="title">Check Out</strong>
+                    <strong class="title">Billing Details</strong>
                 </li>
                 <li class="active">
                     <span class="counter">03</span>
-                    <strong class="title">Order Complete</strong>
+                    <strong class="title">Order Placed</strong>
                   </li>
                 </ul>
               </div>
@@ -180,79 +180,79 @@
         <div class="mt-product-table wow fadeInUp" data-wow-delay="0.4s">
           <div class="container">
                 <div id="orderMessageWrapper" style="padding: 15px; border: 2px solid #4CAF50; background-color: #DFF2BF; color: #4CAF50; font-size: 18px; text-align: center; margin: 20px auto; width: 80%; border-radius: 5px; opacity: 0; transform: translateY(-20px); transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
-                    <h1 class="text-center">Order Placed Successfully</h1>
+                    <h1 class="text-center">✔ Order Placed Successfully</h1>
                 </div>
           </div>
         </div><!-- Mt Product Table of the Page end -->
-      <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="footer-holder bg-grey">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
-                                <!-- F Widget About of the Page -->
-                                <div class="f-widget-about">
-                                    <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
-                                    </div>
-                                    <ul class="list-unstyled address-list">
-                                        <li><i class="fa fa-map-marker"></i>
-                                            <address>Department of Computer Science, Gujarat University <br>Ahmedabad -
-                                                384002
-                                            </address>
-                                        </li>
-                                        <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX
-                                                XX XX
-                                                XX</a></li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="home.html">rentac01@gmail.com</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- F Widget About of the Page end -->
-                            </div>
-                            <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
-                                <!-- Footer Nav of the Page -->
-                                <div class="nav-widget-1">
-                                    <h3 class="f-widget-heading">Categories</h3>
-                                    <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="../scripts/product.php?category=chair">Chairs</a></li>
-                                        <li><a href="../scripts/product.php?category=sofa">Sofas</a></li>
-                                        <li><a href="../scripts/product.php?category=table">Tables</a></li>
-                                    </ul>
-                                </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
-                                <div class="nav-widget-1">
-                                    <h3 class="f-widget-heading">Information</h3>
-                                    <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="../pages/aboutus.html">About Us</a></li>
-                                        <li><a href="../pages/contactus.html">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
-                                <div class="nav-widget-1">
-                                    <h3 class="f-widget-heading">Account</h3>
-                                    <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
-                                        <li><a href="../scripts/cart.php">Shopping Cart</a></li>
-                                    </ul>
-                                </div>
-                                <!-- Footer Nav of the Page end -->
-                            </nav>
-                        </div>
-                    </div>
-                    <!-- Footer Area of the Page -->
-                    <div class="footer-area">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="footer-holder bg-grey">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
+                          <!-- F Widget About of the Page -->
+                          <div class="f-widget-about">
+                              <div class="logo">
+                                  <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                              </div>
+                              <ul class="list-unstyled address-list">
+                                  <li><i class="fa fa-map-marker"></i>
+                                      <address>Department of Computer Science, Gujarat University <br>Ahmedabad -
+                                          384002
+                                      </address>
+                                  </li>
+                                  <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
+                                          href="tel:15553332211">+1 XX
+                                          XX XX
+                                          XX</a></li>
+                                  <li><i class="fa fa-envelope-o"></i><a href="home.html">rentac01@gmail.com</a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <!-- F Widget About of the Page end -->
+                      </div>
+                      <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
+                          <!-- Footer Nav of the Page -->
+                          <div class="nav-widget-1">
+                              <h3 class="f-widget-heading">Categories</h3>
+                              <ul class="list-unstyled f-widget-nav">
+                                  <li><a href="../scripts/product.php?category=chair">Chairs</a></li>
+                                  <li><a href="../scripts/product.php?category=sofa">Sofas</a></li>
+                                  <li><a href="../scripts/product.php?category=table">Tables</a></li>
+                              </ul>
+                          </div>
+                          <!-- Footer Nav of the Page end -->
+                          <!-- Footer Nav of the Page -->
+                          <div class="nav-widget-1">
+                              <h3 class="f-widget-heading">Information</h3>
+                              <ul class="list-unstyled f-widget-nav">
+                                  <li><a href="../pages/aboutus.html">About Us</a></li>
+                                  <li><a href="../pages/contactus.html">Contact Us</a></li>
+                              </ul>
+                          </div>
+                          <!-- Footer Nav of the Page end -->
+                          <!-- Footer Nav of the Page -->
+                          <div class="nav-widget-1">
+                              <h3 class="f-widget-heading">Account</h3>
+                              <ul class="list-unstyled f-widget-nav">
+                                  <li><a href="../scripts/userprofile.php">My Account</a></li>
+                                  <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
+                                  <li><a href="../scripts/cart.php">Shopping Cart</a></li>
+                              </ul>
+                          </div>
+                          <!-- Footer Nav of the Page end -->
+                      </nav>
+                  </div>
+              </div>
+              <!-- Footer Area of the Page -->
+              <div class="footer-area">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-xs-12 col-sm-6">
+                              <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
                     <!-- Footer Area of the Page end -->
             </footer><!-- footer of the Page end -->
       <!-- footer of the Page end -->
@@ -265,20 +265,7 @@
   <script src="../js/plugins.js"></script>
   <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
-  <script>  
-  window.onload = function() {
-        var message = document.getElementById('orderMessageWrapper');
-        // Add inline styles to trigger the transition
-        setTimeout(function() {
-            message.style.opacity = '1';
-            message.style.transform = 'translateY(0)';
-
-            setTimeout(function() {
-                window.location.href="../scripts/product.php";
-            }, 3000);
-
-        }, 1500); // Delay to ensure the transition applies
-    };
-    </script>
+  <script src="../js/orderplaced.js"></script>
+  
 </body>
 </html>

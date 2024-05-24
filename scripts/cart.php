@@ -136,21 +136,17 @@
       </div><!-- mt search popup end here -->
       <!-- Main of the Page -->
       <main id="mt-main">
-        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(http://placehold.it/1920x325);">
+        <section class="mt-contact-banner mt-banner-22 wow fadeInUp" data-wow-delay="0.4s" style="padding-top:10%; " >
           <div class="container">
-            <div class="row">
-              <div class="col-xs-12">
-                <h1 class="text-center">SHOPPING CART</h1>
+                <h1 class="text-center" style="color:black;">SHOPPING CART</h1>
                 <!-- Breadcrumbs of the Page -->
                 <nav class="breadcrumbs">
                   <ul class="list-unstyled">
-                    <li><a href="index.html">Home <i class="fa fa-angle-right"></i></a></li>
-                    <li>Shopping Cart</li>
+                    <li><a href="index.html" style="color:black;">Home <i class="fa fa-angle-right"></i></a></li>
+                    <li style="color:black;">Shopping Cart</li>
                   </ul>
                 </nav>
                 <!-- Breadcrumbs of the Page end -->
-              </div>
-            </div>
           </div>
         </section>
         <!-- Mt Process Section of the Page -->
@@ -165,7 +161,7 @@
                   </li>
                   <li>
                     <span class="counter">02</span>
-                    <strong class="title">Check Out</strong>
+                    <strong class="title">Billing Details</strong>
                   </li>
                   <li>
                     <span class="counter">03</span>
@@ -277,18 +273,6 @@
                 <a href="#"><i class="fa fa-close"></i></a>
               </div>
             </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <form action="#" class="coupon-form">
-                  <fieldset>
-                    <div class="mt-holder">
-                      <input type="text" class="form-control" placeholder="Your Coupon Code">
-                      <button type="submit">APPLY</button>
-                    </div>
-                  </fieldset>
-                </form>
-              </div>
-            </div>
           </div>
         </div><!-- Mt Product Table of the Page end -->
         <!-- Mt Detail Section of the Page -->
@@ -302,16 +286,22 @@
                     <div class="form-group">
                       <select class="form-control">
                         <option value="1">Select Country</option>
+                        <option value="2">India</option>
+                        <option value="3">Others</option>
                       </select>
                     </div>
                     <div class="form-group">
                       <select class="form-control">
                         <option value="1">State / Country</option>
+                        <option value="2">Gujarat</option>
+                        <option value="3">Others</option>
                       </select>
                     </div>
                     <div class="form-group">
                       <select class="form-control">
-                        <option value="1">Zip / Postal Code</option>
+                        <option value="1">Postal Code / City</option>
+                        <option value="2">Ahmedabad</option>
+                        <option value="3">Others</option>
                       </select>
                     </div>
                     <div class="form-group">
