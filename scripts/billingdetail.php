@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="home.html"><img src="../Images/logos/Rentac.jpg"
+                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
                                 <!-- mt icon list start here -->
@@ -56,7 +56,7 @@
                                 <nav id="nav">
                                     <ul>
                                         <li>
-                                            <a href="home.html">HOME <i class="fa fa-angle-down hidden-lg hidden-md"
+                                            <a href="../scripts/home.php">HOME <i class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
                                         <li>
@@ -329,7 +329,7 @@
                                                 href="tel:15553332211">+1 XX
                                                 XX XX
                                                 XX</a></li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="home.html">rentac01@gmail.com</a>
+                                        <li><i class="fa fa-envelope-o"></i><a href="../scripts/home.php">rentac01@gmail.com</a>
                                         </li>
                                     </ul>
                                 </div>

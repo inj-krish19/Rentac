@@ -24,7 +24,6 @@
     <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
-
 <?php
 
     require_once("connection.php");
@@ -98,13 +97,25 @@
     function makeUrl($phrase){
 
 
-        if ( !strcmp($_SERVER["QUERY_STRING"],"") ){
-            echo $_SERVER["PHP_SELF"] . "?" . $phrase; 
-        }else{
-            echo $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"] . "&" . $phrase; 
-        }
+        parse_str($phrase, $newParams);
+
+        // Parse the existing query string into an associative array
+        parse_str($_SERVER["QUERY_STRING"], $currentParams);
+
+        // Merge the current query parameters with the new one(s)
+        $mergedParams = array_merge($currentParams, $newParams);
+
+        // Build the new query string
+        $newQueryString = http_build_query($mergedParams);
+
+        // Construct the new URL
+        $newUrl = $_SERVER["PHP_SELF"] . "?" . $newQueryString;
+
+        echo $newUrl;
 
     }
+
+    // print_r($_SERVER);
 
     // makeUrl("");
 
@@ -114,11 +125,11 @@
     <!-- main container of all the page elements -->
     <div id="wrapper">
         <!-- Page Loader -->
-        <!-- <div id="pre-loader" class="loader-container">
+        <div id="pre-loader" class="loader-container">
             <div class="loader">
                 <img src="../images/svg/rings.svg" alt="loader">
             </div>
-        </div> -->
+        </div>
         <!-- W1 start here -->
         <div class="w1">
             <!-- mt header style4 start here -->
@@ -129,7 +140,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="home.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a></div>
+                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a></div>
                                 <!-- mt icon list start here -->
                                 <ul class="mt-icon-list">
                                     <li class="hidden-lg hidden-md">
@@ -167,7 +178,7 @@
                                 <nav id="nav">
                                     <ul>
                                         <li>
-                                            <a href="../pages/home.html">HOME <i
+                                            <a href="../pages/../scripts/home.php">HOME <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -192,12 +203,12 @@
                                                             <div class="sub-drop">
                                                                 <ul>
                                                                     <li><a
-                                                                            href="product.php?event=birthday">Birthday</a>
+                                                                            href=<?php  makeUrl("event=birthday");  ?> >Birthday</a>
                                                                     </li>
-                                                                    <li><a href="product.php?event=seminar">Seminar</a>
+                                                                    <li><a href=<?php  makeUrl("event=seminar");  ?> >Seminar</a>
                                                                     </li>
-                                                                    <li><a href="product.php?event=party">Party</a></li>
-                                                                    <li><a href="product.php?event=wedding">Wedding</a>
+                                                                    <li><a href=<?php  makeUrl("event=party");  ?> >Party</a></li>
+                                                                    <li><a href=<?php  makeUrl("event=wedding");  ?> >Wedding</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -433,7 +444,7 @@
                                 ?>
                                 
                                     <li>
-                                        <a href="product.php?category=<?php echo strtolower(substr($category,0,strlen($category)-1)); ?>">
+                                        <a href="<?php  echo makeUrl("category=". strtolower(substr($category,0,strlen($category)-1))); ?>">
                                             <span class="name"> <?php   echo $category;  ?> </span>
                                             <span class="num"> <?php    echo $categoryRecord;   ?></span>
                                         </a>
@@ -470,8 +481,8 @@
                             <!-- mt productlisthold start here -->
                             <ul class="mt-productlisthold list-inline">
                                 <?php   while($record = mysqli_fetch_assoc($result) ){    ?>
-                                    <li>
-                                        <div class="product-3 mx-2">
+                                    <li class="mx-5 my-5">
+                                        <div class="product-3">
                                             <!-- img start here -->
                                             <div class="img" style="height:300px; width:300px;">
                                                 <img alt="Preview Unavailable" src="<?php echo "../" . $record["image_path"]; ?>">
@@ -519,14 +530,14 @@
                                 <div class="f-widget-tabs">
                                     <h3 class="f-widget-heading">Product Tags</h3>
                                     <ul class="list-unstyled tabs">
-                                        <li><a href="product.php?category=sofa">Sofas</a></li>
-                                        <li><a href="product.php?category=chair">Chairs</a></li>
-                                        <li><a href="product.php?category=table">Tables</a></li>
-                                        <li><a href="product.php?event=birthday">Birthday</a></li>
-                                        <li><a href="product.php?event=seminar">Seminar</a></li>
-                                        <li><a href="product.php?event=wedding">Wedding</a></li>
-                                        <li><a href="product.php?event=marriage">Marriage</a></li>
-                                        <li><a href="product.php?event=party">Party</a></li>
+                                        <li><a href=<?php  makeUrl("category=sofa");  ?> >Sofas</a></li>
+                                        <li><a href=<?php  makeUrl("category=chair");  ?> >Chairs</a></li>
+                                        <li><a href=<?php  makeUrl("category=table");  ?> >Tables</a></li>
+                                        <li><a href=<?php  makeUrl("event=birthday");  ?> >Birthday</a></li>
+                                        <li><a href=<?php  makeUrl("event=seminar");  ?> >Seminar</a></li>
+                                        <li><a href=<?php  makeUrl("event=wedding");  ?> >Wedding</a></li>
+                                        <li><a href=<?php  makeUrl("event=wedding");  ?> >Marriage</a></li>
+                                        <li><a href=<?php  makeUrl("event=party");  ?> >Party</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Tabs of the Page -->
@@ -542,7 +553,7 @@
                                         <li><i class="fa fa-phone" style="margin-bottom: 1%;"></i><a
                                                 href="tel:15553332211">+1 XX XX XX XX</a>
                                         <li><i class="fa fa-envelope-o"></i><a
-                                                href="../pages/home.html">rentac01@gmail.com</a></li>
+                                                href="../pages/../scripts/home.php">rentac01@gmail.com</a></li>
                                     </ul>
                                 </div>
                                 <!-- F Widget About of the Page end -->
@@ -556,7 +567,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <p>© <a href="home.html">Rentac</a> - All rights Reserved</p>
+                                <p>© <a href="../scripts/home.php">Rentac</a> - All rights Reserved</p>
                             </div>
                         </div>
                     </div>
@@ -573,7 +584,6 @@
     <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
 </body>
-
 </html>
 <?php
 /*

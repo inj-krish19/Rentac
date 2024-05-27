@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="home.html"><img src="../Images/logos/Rentac.jpg"
+                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
                                 <!-- mt icon list start here -->
@@ -60,7 +60,7 @@
                                 <nav id="nav">
                                     <ul>
                                         <li>
-                                            <a href="home.html">HOME <i class="fa fa-angle-down hidden-lg hidden-md"
+                                            <a href="../scripts/home.php">HOME <i class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
                                         <li>
@@ -107,9 +107,9 @@
                                             <!-- mt dropmenu end here -->
                                             <span class="mt-mdropover"></span>
                                         </li>
-                                        <li><a href="aboutus.html">About</a></li>
+                                        <li><a href="../pages/aboutus.html">About</a></li>
                                         <li>
-                                            <a href="contactus.html">Contact <i
+                                            <a href="../pages/contactus.html">Contact <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -143,32 +143,33 @@
             <main id="mt-main">
                 <!-- mt bottom bar start here -->
                 <div class="container">
-                    <h1 class="text-center" style="color:black; margin-bottom:35px;">Welcome to Rentac - Your Ultimate Furniture Rental Solution! </h1>
-                    <h4 >At Rentac, we believe that furnishing your space should be easy, flexible, and affordable. 
+                    <h1 class="text-center" style="color:black; margin-bottom:35px; text-transform: uppercase;font-family: 'Montserrat', sans-serif;">
+                    Welcome to Rentac - Your Ultimate Furniture Rental Solution! </h1>
+                    <h4 style="line-height : 150%;">At Rentac, we believe that furnishing your space should be easy, flexible, and affordable. 
                         Whether you're looking to furnish your home, office, or event, we have a wide selection of high-quality 
                         furniture to meet your needs. From stylish chairs and tables to comfortable sofas, Rentac offers a convenient 
                         way to transform any space with minimal hassle. </h4>
 
-                <h2  style="color:black">Our Services </h2>
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;">Our Services </h2>
 
                 <h4> Chairs: From dining chairs to office chairs, we have a variety to suit every style and need.  </h4>
                 <h4> Tables: Choose from our selection of coffee tables, dining tables, and desks. </h4>
                 <h4> Sofas: Our range includes everything from cozy loveseats to spacious sectional sofas. </h4>
                 
-                <h2  style="color:black" >Event Furniture Rentals:</h2>
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >Event Furniture Rentals:</h2>
 
                 <h4> Parties: Create the perfect party atmosphere with our stylish and comfortable furniture. </h4>
                 <h4> Birthdays: Make birthdays memorable with furniture that adds to the celebration. </h4>
                 <h4> Seminars: Ensure your attendees are comfortable with our professional seminar setups. </h4>
                 <h4> Weddings: Design your dream wedding with our elegant and sophisticated furniture options. </h4>
                 
-                <h2  style="color:black" >Why Choose Rentac?</h2>          
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >Why Choose Rentac?</h2>          
                 <h4> Quality and Style: We offer a curated selection of furniture that is both high-quality and stylish, ensuring your space looks great. </h4>
                 <h4> Flexibility: Rent our furniture for as long as you need, with easy options for extending or returning your rental. </h4>
                 <h4> Affordability: Enjoy beautiful furniture without the commitment of buying, saving you money and hassle. </h4>
                 <h4> Convenience: With our simple online ordering process, getting the furniture you need is just a few clicks away. We also offer delivery and setup services to make your experience seamless. </h4>
                 
-                <h2  style="color:black" >How It Works</h2>    
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >How It Works</h2>    
                 <h4> Browse: Explore our wide range of furniture online. </h4>
                 <h4> Select: Choose the items that best suit your needs. </h4>
                 <h4> Schedule: Pick your delivery date and duration of the rental. </h4>
@@ -288,7 +289,7 @@
                                                 href="tel:15553332211">+1 XX
                                                 XX XX
                                                 XX</a></li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="home.html">rentac01@gmail.com</a>
+                                        <li><i class="fa fa-envelope-o"></i><a href="../scripts/home.php">rentac01@gmail.com</a>
                                         </li>
                                     </ul>
                                 </div>

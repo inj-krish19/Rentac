@@ -58,7 +58,7 @@
                 echo "<div class='alert alert-warning text-center' role='alert'>Something Went Wrong</div>";
                 echo "</div>";
                 
-                echo "<script> setTimeout(() => { window.location.href = '../pages/home.html'; }, 3000);  </script>";
+                echo "<script> setTimeout(() => { window.location.href = '../pages/../scripts/home.php'; }, 3000);  </script>";
 
             }
             
