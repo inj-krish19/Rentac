@@ -14,7 +14,7 @@
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
         rel='stylesheet' type='text/css'>
     <!-- include the site stylesheet -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="../css/bootstrap.css">    from connection.php -->
     <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/animate.css">
     <!-- include the site stylesheet -->
@@ -26,6 +26,8 @@
 </head>
 <?php
 
+    $notFound = true;
+
     require_once("connection.php");
 
     $query = "select productid,product_name,price,description,image_path from product ";
@@ -33,7 +35,7 @@
     if( isset($_REQUEST["category"]) ){
         
         $tableName = "product_".$_REQUEST["category"]."s";
-        $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
+        $query = "select P.productid,P.product_name,P.price as 'price',P.description,P.image_path from product P 
         inner join $tableName on P.productid = product_id ";
     
     }
@@ -41,7 +43,7 @@
     if( isset($_REQUEST["event"]) ){
 
         $eventName = $_REQUEST["event"];
-        $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P inner join (
+        $query = "select P.productid,P.product_name,P.price as 'price',P.description,P.image_path from product P inner join (
                     
                     select A.product_id from product_chairs A 
                     inner join product P ON P.productid = A.product_id 
@@ -70,11 +72,26 @@
 
         $tableName = "product_".$_REQUEST["category"]."s";
         $eventName = $_REQUEST["event"];
-        $query = "select P.productid,P.product_name,P.price,P.description,P.image_path from product P 
+        $query = "select P.productid,P.product_name,P.price as 'price',P.description,P.image_path from product P 
                 inner join $tableName on P.productid = product_id where 
                 event_id = (select event_id from event where event_name = '$eventName') ";
     }
 
+    if( isset($_REQUEST["range"]) ){
+        
+        if(
+            empty($_REQUEST["category"])    &&    
+            empty($_REQUEST["event"])       &&
+            empty($_REQUEST["type"])       
+        ){
+            $query = $query . " where price between " . $_REQUEST["range"];
+        }
+        else{
+            $query = $query . " and price between " . $_REQUEST["range"];
+        }
+        // echo $query;
+    }
+    
     if( isset($_REQUEST["type"]) ){
         
         if( $_REQUEST["type"] == "ecn" ){
@@ -250,7 +267,7 @@
                             <span class="mt-side-subtitle">SIGN IN</span>
                             <p>Welcome back! Sign in to Your Account</p>
                         </header>
-                        <form action="#">
+                        <form action="../scripts/login.php">
                             <fieldset>
                                 <input type="text" placeholder="Username or email address" class="input">
                                 <input type="password" placeholder="Password" class="input">
@@ -266,7 +283,7 @@
                             <span class="mt-side-subtitle">CREATE NEW ACCOUNT</span>
                             <p>Create your very own account</p>
                         </header>
-                        <form action="#">
+                        <form action="../scripts/signup.php">
                             <fieldset>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
@@ -377,11 +394,7 @@
 
                                     ?>
                                         <li>
-                                            <label for="check-category-<?php echo $keyE+1;    ?>">
-                                                <input id="check-category-<?php echo $keyE+1;    ?>" checked="checked" type="checkbox">
-                                                <span class="fake-input"></span>
-                                                <span class="fake-label"> <?php    echo $event;   ?> </span>
-                                            </label>
+                                            <span class="fake-label"><a href = <?php makeUrl("event=".strtolower($event)); ?> > <?php    echo $event;   ?> </a></span>
                                             <span class="num"> <?php echo $eventRecord;    ?> </span>
                                         </li>
                                     <?php 
@@ -406,14 +419,16 @@
 
                                                 $rangeCount = $rangeRecord["rangeCount"];
                                         ?>
-                                        <li>
-                                            <label for="check-<?php echo $keyR+1;    ?>">
+                                            <!-- <label for="check-<?php /*echo $keyR+1;    ?>">
                                                 <input id="check-<?php echo $keyR+1; ?>" checked="checked" type="checkbox">
                                                 <span class="fake-input"></span>
                                                 <span class="fake-label"> <?php echo $lower[$keyR] ?> - <?php echo $upper[$keyR] ?> </span>
                                             </label>
-                                            <span class="num"> <?php echo $rangeCount;  ?> </span>
-                                        </li>
+                                            <span class="num"> <?php echo $rangeCount;  */ ?> </span> -->
+                                            <li>
+                                                <span class="fake-label"><a href = <?php makeUrl("range="."$lower[$keyR] and $upper[$keyR]"); ?> > <?php    echo $lower[$keyR] ?> - <?php echo $upper[$keyR]   ?> </a></span>
+                                                <span class="num"> <?php echo $rangeCount;    ?> </span>
+                                            </li>
                                         <?php
                                             }
                                         ?>
@@ -470,18 +485,22 @@
                                                 <ul class="list-unstyled">
                                                     <li><a href= <?php makeUrl("type="."ecn"); ?> > Economical </a></li>
                                                     <li><a href= <?php makeUrl("type="."pre"); ?> > Premium </a></li>
+                                                    <li><a href= "../scripts/product.php" > Reset Filter </a></li>
                                                     <!-- <li><a href="?type=price">Name</a></li>
                                                     <li><a href="?type=relevance">Relevance</a></li> -->
                                                 </ul>
                                             </div>
                                         </li>
                                     </ul>
-                                </div><!-- mt-textbox end here -->
+                                </div>
                             </header><!-- mt shoplist header end here -->
+                        </div><!-- mt-textbox end here -->
                             <!-- mt productlisthold start here -->
-                            <ul class="mt-productlisthold list-inline">
-                                <?php   while($record = mysqli_fetch_assoc($result) ){    ?>
-                                    <li class="mx-5 my-5">
+                            <ul class="mt-holder" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center;">
+                            <!-- <ul class="productlist list-inline"> -->
+                                <?php   while($record = mysqli_fetch_assoc($result) ){  $notFound = false;  ?>
+                                    <li>
+                                        <!-- <div class="mt-product1"> -->
                                         <div class="product-3">
                                             <!-- img start here -->
                                             <div class="img" style="height:300px; width:300px;">
@@ -496,11 +515,14 @@
                                             <!-- links start here -->
                                             <ul class="links">
                                                 <li><a href="addincart.php?pid=<?php echo $record['productid']; ?>"><i class="icon-handbag"></i></a></li>
-                                                <li><a href="#popup1" class="lightbox"><i class="icomoon icon-eye"></i></a>
+                                                <li><a href="productdetail.php?pid=<?php echo $record['productid']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                                 </li>
                                             </ul>
                                         </div><!-- mt product 3 end here -->
                                     </li>
+                                <?php   }   ?>
+                                <?php   if($notFound){  ?>
+                                    <div class="mx-3 my-3" style="color:#17d49c;"><h1 style=" font-weight : 900;"> Record Not Found </h1></div>
                                 <?php   }   ?>
                             </ul><!-- mt productlisthold end here -->
                         </div>
@@ -551,7 +573,7 @@
                                             <address>Department of Computer Science, Gujarat University, Ahmedabad - 384002</address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 1%;"></i><a
-                                                href="tel:15553332211">+1 XX XX XX XX</a>
+                                                href="tel: 1 XX XX XX XX">+1 XX XX XX XX</a>
                                         <li><i class="fa fa-envelope-o"></i><a
                                                 href="../pages/../scripts/home.php">rentac01@gmail.com</a></li>
                                     </ul>
@@ -588,7 +610,7 @@
 <?php
 /*
 
-select P.productid,P.product_name, P.price, P.image_path 
+select P.productid,P.product_name, P.price as 'price', P.image_path 
 from product P 
 inner join (
     select A.product_id 

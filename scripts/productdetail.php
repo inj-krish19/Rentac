@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <!-- set the viewport width and initial-scale on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>Prodcut Details</title>
     <link rel="shortcut icon" href="../Images/logos/detail.jpg" type="image/x-icon">
     <!-- include the site stylesheet -->
     <link
@@ -23,7 +23,25 @@
     <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
+<?php
+    if(
+        empty($_REQUEST["pid"])
+    ){
+        header("Location:../scripts/product.php");
+    }else{
+        
+        require_once("connection.php");
 
+        $query = "select productid,product_name,price,description,image_path from product where productid = ".$_REQUEST["pid"]." ";
+
+        $result = mysqli_query($conn,$query);
+
+        $record = mysqli_fetch_assoc($result);
+
+    }
+
+
+?>
 <body>
     <!-- main container of all the page elements -->
     <div id="wrapper">
@@ -154,16 +172,7 @@
                                     <!-- Product Slider of the Page -->
                                     <div class="product-slider">
                                         <div class="slide">
-                                            <img src="http://placehold.it/500x450" alt="image descrption">
-                                        </div>
-                                        <div class="slide">
-                                            <img src="http://placehold.it/500x450" alt="image descrption">
-                                        </div>
-                                        <div class="slide">
-                                            <img src="http://placehold.it/500x450" alt="image descrption">
-                                        </div>
-                                        <div class="slide">
-                                            <img src="http://placehold.it/500x450" alt="image descrption">
+                                            <img src="<?php  echo "../".$record["image_path"]; ?>" style="margin-top: 50px;width:500px; height:450px;" alt="image descrption">
                                         </div>
                                     </div><!-- Product Slider of the Page end -->
                                 </div><!-- Slider of the Page end -->
@@ -171,26 +180,17 @@
                                 <div class="detial-holder">
                                     <!-- Breadcrumbs of the Page -->
                                     <ul class="list-unstyled breadcrumbs">
-                                        <li><a href="#">Product <i class="fa fa-angle-right"></i></a></li>
-                                        <li><a href="#">Category <i class="fa fa-angle-right"></i></a></li>
-                                        <li><a href="#">Event <i class="fa fa-angle-right"></i></a></li>
+                                        <li><a href="product.php">Product <i class="fa fa-angle-right"></i></a></li>
+                                        <li><a href="product.php?category=abc">Category <i class="fa fa-angle-right"></i></a></li>
+                                        <li><a href="product.php?event=abc">Event <i class="fa fa-angle-right"></i></a></li>
                                     </ul>
                                     <!-- Breadcrumbs of the Page end -->
-                                    <h2>KAILA FABRIC CHAIR</h2>
+                                    <h2> <?php  echo $record["product_name"]  ?> </h2>
                                     <div class="txt-wrap">
-                                        <p>Koila is a chair designed for restaurants and food lovers in general.
-                                            Designed in
-                                            collaboration with restaurant professionals, it ensures comfort and an ideal
-                                            posture, as there are armrests on both sides of the chair.</p>
-                                        <p>Koila is a seat designed for restaurants and gastronomic places in general.
-                                            Designed in collaboration with professional of restaurants and hotels field,
-                                            this armchair is composed of a curved shell with a base in oak who has
-                                            pinched
-                                            the back upholstered in fabric or leather. It provides comfort and holds for
-                                            ideal sitting position,the arms may rest on the sides ofthe armchair.</p>
+                                        <p> <?php  echo $record["description"]  ?> </p>
                                     </div>
                                     <div class="text-holder">
-                                        <span class="price"><i class="fa fa-rupee"></i> 79.00 </span>
+                                        <span class="price"><i class="fa fa-rupee"></i>  <?php  echo $record["price"]  ?>  </span>
                                     </div><!-- Product Form of the Page -->
                                     <form action="#" class="product-form">
                                         <fieldset>
@@ -228,11 +228,9 @@
                                                                 src="http://placehold.it/215x215"
                                                                 alt="image description"></a>
                                                         <ul class="links">
-                                                            <li><a href="#"><i class="icon-handbag"></i><span>Add to
-                                                                        Cart</span></a></li>
-                                                            <li><a href="#"><i class="icomoon icon-heart-empty"></i></a>
-                                                            </li>
-                                                            <li><a href="#"><i class="icomoon icon-exchange"></i></a>
+                                                            <li><a href="addincart.php?pid="><i class="icon-handbag"></i><span>Add to
+                                                                        Cart</span></a></li> 
+                                                            <li><a href="product.php?pid="><i class="icomoon icon-exchange"></i></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -254,9 +252,7 @@
                                                                 alt="image description"></a>
                                                         <ul class="links">
                                                             <li><a href="#"><i class="icon-handbag"></i><span>Add to
-                                                                        Cart</span></a></li>
-                                                            <li><a href="#"><i class="icomoon icon-heart-empty"></i></a>
-                                                            </li>
+                                                                        Cart</span></a></li> 
                                                             <li><a href="#"><i class="icomoon icon-exchange"></i></a>
                                                             </li>
                                                         </ul>
@@ -279,9 +275,7 @@
                                                                 alt="image description"></a>
                                                         <ul class="links">
                                                             <li><a href="#"><i class="icon-handbag"></i><span>Add to
-                                                                        Cart</span></a></li>
-                                                            <li><a href="#"><i class="icomoon icon-heart-empty"></i></a>
-                                                            </li>
+                                                                        Cart</span></a></li> 
                                                             <li><a href="#"><i class="icomoon icon-exchange"></i></a>
                                                             </li>
                                                         </ul>
@@ -304,9 +298,7 @@
                                                                 alt="image description"></a>
                                                         <ul class="links">
                                                             <li><a href="#"><i class="icon-handbag"></i><span>Add to
-                                                                        Cart</span></a></li>
-                                                            <li><a href="#"><i class="icomoon icon-heart-empty"></i></a>
-                                                            </li>
+                                                                        Cart</span></a></li> 
                                                             <li><a href="#"><i class="icomoon icon-exchange"></i></a>
                                                             </li>
                                                         </ul>
@@ -329,9 +321,7 @@
                                                                 alt="image description"></a>
                                                         <ul class="links">
                                                             <li><a href="#"><i class="icon-handbag"></i><span>Add to
-                                                                        Cart</span></a></li>
-                                                            <li><a href="#"><i class="icomoon icon-heart-empty"></i></a>
-                                                            </li>
+                                                                        Cart</span></a></li> 
                                                             <li><a href="#"><i class="icomoon icon-exchange"></i></a>
                                                             </li>
                                                         </ul>
