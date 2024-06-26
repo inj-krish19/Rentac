@@ -338,7 +338,7 @@
                     </div>
                   </li>
                 </ul>
-                <a href="personaldetail.php" class="process-btn">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a>
+                <a href="billingdetail.php" class="process-btn">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a>
               </div>
             </div>
           </div>

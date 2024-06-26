@@ -265,7 +265,7 @@
   <script src="../js/plugins.js"></script>
   <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
-  <script src="../js/orderplaced.js"></script>
+  <!-- <script src="../js/orderplaced.js"></script> -->
   
 </body>
 </html>

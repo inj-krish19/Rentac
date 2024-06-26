@@ -57,7 +57,7 @@
                     if( $record["count"] < 1 ){
                         
                         echo "<div class='alert alert-info' role='alert'>Record Not Found </div>";
-                        echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
+                        // echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
                         exit;
                     
                     }else{
@@ -73,7 +73,7 @@
                             if( password_verify( $pass,$record["password"]) ){
                                 $_SESSION["user"] = $record["customer_id"];
                                 echo "<div class='alert alert-success' role='alert'> Hello ".  $record['fname'] .", Redirecting to Product Page </div>";
-                                echo "<script> setTimeout(() => { window.location.href = '../pages/product.html'; }, 3000);  </script>";
+                                // echo "<script> setTimeout(() => { window.location.href = '../pages/product.html'; }, 3000);  </script>";
                                 $flag = 1;
                                 break;
                             }
@@ -83,7 +83,7 @@
                         if( $flag == 0 ){
 
                             echo "<div class='alert alert-success' role='alert'> Misleading Information </div>";
-                            echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+                            // echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
                         
                         }
 
@@ -92,7 +92,7 @@
                 }else{
 
                     echo "<div class='alert alert-danger' role='alert'>Invalid Password Format</div>";
-                    echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+                    // echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
 
                 }
 
@@ -104,7 +104,7 @@
                 echo "<div class='alert alert-warning text-center' role='alert'>Something Went Wrong</div>";
                 echo "</div>";
                 
-                echo "<script> setTimeout(() => { window.location.href = '../pages/../scripts/home.php'; }, 3000);  </script>";
+                // echo "<script> setTimeout(() => { window.location.href = '../pages/../scripts/home.php'; }, 3000);  </script>";
 
             }
             
@@ -116,7 +116,7 @@
             echo "<div class='alert alert-warning text-center' role='alert'> Unable To Fetch Information </div>";
             echo "</div>";
 
-            echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+            // echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
 
         }
 

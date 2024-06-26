@@ -1,0 +1,7 @@
+{
+    "emmet.preferences": {
+        "workbench.activityBar.visible": false
+    },
+    "zenMode.hideActivityBar": true,
+    "workbench.activityBar.iconClickBehavior": "toggle"
+}

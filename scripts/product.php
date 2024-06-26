@@ -522,7 +522,7 @@
                                     </li>
                                 <?php   }   ?>
                                 <?php   if($notFound){  ?>
-                                    <div class="mx-3 my-3" style="color:#17d49c;"><h1 style=" font-weight : 900;"> Record Not Found </h1></div>
+                                    <div class="mx-3 my-3" style="color:#868686;"><h1 style=" font-weight : 900;"> Record Not Found </h1></div>
                                 <?php   }   ?>
                             </ul><!-- mt productlisthold end here -->
                         </div>
