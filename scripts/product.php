@@ -144,7 +144,7 @@
         <!-- Page Loader -->
         <div id="pre-loader" class="loader-container">
             <div class="loader">
-                <img src="../images/svg/rings.svg" alt="loader">
+                <img src="../Images/rings.svg" alt="loader">
             </div>
         </div>
         <!-- W1 start here -->
@@ -295,18 +295,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
-                                        <input type="text" placeholder="Username" class="input">
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6">
                                         <input type="text" placeholder="Your Email" class="input">
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-xs-12 col-sm-6">
                                         <input type="text" placeholder="Your Phone" class="input">
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <textarea placeholder="Address" class="input"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -314,10 +306,9 @@
                                         <input type="password" placeholder="Password" class="input">
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <input type="password" placeholder="Re-type Password" class="input">
+                                        <button type="submit" class="btn-type1" style="margin-right: 70%;">Sign Up</button>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn-type1" style="margin-right: 70%;">Sign Up</button>
                             </fieldset>
                         </form>
                     </div>
@@ -330,11 +321,11 @@
                 <div class="mt-holder">
                     <a href="#" class="search-close"><span></span><span></span></a>
                     <div class="mt-frame">
-                        <form action="search.php">
+                        <form method="GET">
                             <fieldset>
-                                <input type="text" placeholder="Search...">
+                                <input type="text" name="q" placeholder="Search...">
                                 <span class="icon-microphone"></span>
-                                <button class="icon-magnifier" type="submit"></button>
+                                <button type="submit" class="icon-magnifier"></button>
                             </fieldset>
                         </form>
                     </div>

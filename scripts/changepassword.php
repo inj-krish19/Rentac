@@ -1,15 +1,32 @@
+<title>Profile</title>
+<link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon">
+<?php   
+    
+    session_start();    
+
+    require_once("../scripts/connection.php");
+
+    if(
+        $_SESSION["user"] == "guest"
+    ){
+        echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000 ); </script>";
+    }
+
+    $query = "select * from customer where customer_id = ". $_SESSION["user"] ." ";
+
+    $result = mysqli_query($conn,$query);
+
+    $personal = mysqli_fetch_assoc($result);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from htmlbeans.com/html/schon/registerpage.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Apr 2023 13:56:47 GMT -->
 
 <head>
     <!-- set the encoding of your site -->
     <meta charset="utf-8">
     <!-- set the viewport width and initial-scale on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="shortcut icon" href="../Images/logos/signup.jpg" type="image/x-icon">
     <!-- include the site stylesheet -->
     <link
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
@@ -44,7 +61,8 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="#"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                            alt="Rentac"></a>
                                 </div>
                                 <!-- mt icon list start here -->
                                 <ul class="mt-icon-list">
@@ -56,6 +74,8 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <!-- mt icon list end here -->
+                                <!-- navigation start here -->
                                 <nav id="nav">
                                     <ul>
                                         <li>
@@ -84,7 +104,7 @@
                                                             <div class="sub-drop">
                                                                 <ul>
                                                                     <li><a
-                                                                            href="../scripts/product.php?event=birthday">Birthday</a>
+                                                                            href="../scripts/product.php?event=birthday"></a>Birthday</a>
                                                                     </li>
                                                                     <li><a
                                                                             href="../scripts/product.php?event=seminar">Seminar</a>
@@ -123,86 +143,75 @@
                 <!-- mt bottom bar end here -->
                 <span class="mt-side-over"></span>
             </header>
-            <!-- Main of the Page -->
             <main id="mt-main">
-                <!-- Mt Content Banner of the Page end -->
-                <!-- Mt About Section of the Page -->
-                <section class="mt-about-sec" style="margin: 1%; padding: 1%; ">
+                <!-- Mt Contact Banner of the Page -->
+                <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="txt wow fadeInUp" data-wow-delay="0.4s">
-                                    <h2>SIGN UP</h2>
-                                    <p style="margin-bottom: 0%;"> <strong>Elevate Your Shopping Experience: Sign up for
-                                            Exclusive
-                                            Deals!</strong>
-                                        Ready to unlock a world of possibilities? Don't miss out on exclusive perks and
-                                        exciting updates!
-                                        Join our community today by hitting that "Sign up" button and embark on a
-                                        journey filled with
-                                        endless opportunities. Whether you're looking to connect, learn, or simply
-                                        explore, your
-                                        registration opens the door to a vibrant network of like-minded individuals.
-                                        Seize the moment and
-                                        sign up now to be part of something extraordinary! Let's make magic happen
-                                        together</p>
-                                </div>
+                            <div class="col-xs-12 text-center">
+                                <h1>CHANGE PASSWORD</h1>
+                                <nav class="breadcrumbs">
+                                    <ul class="list-unstyled">
+                                        <li><a href="../scripts/home.php">Home <i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                        <li><a href="#">Change Password</a></li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
-                </section>
-                <!-- Mt About Section of the Page -->
-                <!-- Mt Detail Section of the Page -->
-                <section class="mt-detail-sec" style="padding : 1% 0 1% 0">
-                    <div class="container">
+                </section><!-- Mt Contact Banner of the Page -->
+                <!-- Mt Contact Detail of the Page -->
+                <section class="mt-contact-detail content-info wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-10 col-sm-push-1">
-                                <div class="holder" style="margin: 0;">
-                                    <div class="mt-side-widget">
-                                        <header>
-                                            <h2 style="margin: 0 0 5px;">SIGN UP</h2>
-                                            <p>Don't have an account?</p>
-                                        </header>
-                                        <form action="#" style="margin: 0 0 80px;">
-                                            <fieldset>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <input type="text" placeholder="First Name" class="input">
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <input type="text" placeholder="Last Name" class="input">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <input type="text" placeholder="Username" class="input">
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <input type="text" placeholder="Your Email" class="input">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <input type="text" placeholder="Your Phone" class="input">
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <input type="password" placeholder="Password" class="input">
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn-type1" style="margin-right: 70%;">Sign
-                                                    Up</button>
-                                                <button type="button" class="btn-type1"
-                                                    onclick="window.location.href='login.html'">Login</button>
-                                            </fieldset>
-                                        </form>
+                            <div class="col-xs-6 col-sm-12 col-sm-offset-2">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="holder" style="margin: 0;">
+                                            <div class="mt-side-widget">
+                                                <header>
+                                                    <h2>Personal Information</h2>
+                                                </header>
+                                                <form method="post" >
+                                                    <fieldset>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                <input type="text" placeholder="First Name" class="input" name="ufname" value= <?php echo $personal["fname"];   ?> >
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                <input type="text" placeholder="Last Name" class="input" name="ulname" value= <?php echo $personal["lname"]; ?>>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                <input type="text" placeholder="Verify Email" class="input" name="uemail" >
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                <input type="text" placeholder="Verify Phone" class="input" name="ucont" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                <input type="password" placeholder="Enter New Password" class="input" name="upass" >
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                <button type="submit" class="btn-type1 text-center" name="upersonal">Change Password</button>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- Mt Detail Section of the Page end -->
-            </main><!-- Main of the Page end -->
+                <!-- Mt Contact Detail of the Page end -->
+
+            </main>
             <!-- footer of the Page -->
             <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
@@ -217,12 +226,16 @@
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
                                             <address>Department of Computer Science, Gujarat University <br>Ahmedabad -
-                                                384002</address>
+                                                384002
+                                            </address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX XX XX
+                                                href="tel:15553332211">+1 XX
+                                                XX XX
                                                 XX</a></li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="#">rentac01@gmail.com</a></li>
+                                        <li><i class="fa fa-envelope-o"></i><a
+                                                href="../scripts/home.php">rentac01@gmail.com</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <!-- F Widget About of the Page end -->
@@ -265,7 +278,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
+                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
                                 </div>
                             </div>
                         </div>
@@ -281,8 +294,40 @@
     <script src="../js/plugins.js"></script>
     <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 </body>
+<?php
+    
+    if (
+    isset($_POST["ufname"]) &&
+    isset($_POST["ulname"]) &&
+    isset($_POST["uemail"]) &&
+    isset($_POST["ucont"]) &&
+    isset($_POST["upass"])
+) {
+    if (
+        $_POST["uemail"] == $personal["email"] &&
+        $_POST["ucont"] == $personal["contact_no"]
+    ) {
+        $hashed_password = password_hash($_POST["upass"], PASSWORD_DEFAULT);
+        $email = mysqli_real_escape_string($conn, $_POST["uemail"]);
+        $contact_no = mysqli_real_escape_string($conn, $_POST["ucont"]);
+        $customer_id = $_SESSION["user"];
+        
+        $query = "update customer set password = '$hashed_password',email = '$email',contact_no = '$contact_no' where customer_id = $customer_id";
 
-<!-- Mirrored from htmlbeans.com/html/schon/registerpage.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Apr 2023 13:56:47 GMT -->
+        echo $query;
 
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            echo "<script> setTimeout(() => { window.location.href = '../scripts/changepassword.php'; }, 3000); </script>";
+        } else {
+            // echo "Error updating record: " . mysqli_error($conn);
+        }
+    }
+}
+
+
+?>
 </html>
