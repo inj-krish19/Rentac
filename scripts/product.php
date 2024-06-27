@@ -596,7 +596,7 @@
                                             <!-- <p class="text-left pd-3" style="margin-bottom:auto;"><?php echo $record["description"]; ?></p> -->
                                             <!-- links start here -->
                                             <ul class="links">
-                                                <li><a href="addincart.php?pid=<?php echo $record['productid']; ?>"><i class="icon-handbag"></i></a></li>
+                                                <li><a href="cart.php?pid=<?php echo $record['productid']; ?>"><i class="icon-handbag"></i></a></li>
                                                 <li><a href="productdetail.php?pid=<?php echo $record['productid']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                                 </li>
                                             </ul>
