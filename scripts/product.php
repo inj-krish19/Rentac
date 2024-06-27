@@ -30,7 +30,80 @@
 
     require_once("connection.php");
 
-    $query = "select productid,product_name,price,description,image_path from product ";
+    $query = "SELECT P.productid, P.product_name, P.price AS 'price', P.description, P.image_path FROM product P";
+
+    // Join conditions array
+    $joins = [];
+
+    // Where conditions array
+    $conditions = [];
+
+    // Handling category
+    if (isset($_REQUEST["category"])) {
+        $tableName = "product_" . $_REQUEST["category"] . "s";
+        $joins[] = "INNER JOIN $tableName ON P.productid = product_id";
+    }
+
+    // Handling event
+    if (isset($_REQUEST["event"])) {
+        $eventName = $_REQUEST["event"];
+        $joins[] = "INNER JOIN (
+                    SELECT A.product_id FROM product_chairs A 
+                    WHERE A.event_id = (SELECT event_id FROM event WHERE event_name = '$eventName')
+                UNION ALL 
+                    SELECT B.product_id FROM product_sofas B
+                    WHERE B.event_id = (SELECT event_id FROM event WHERE event_name = '$eventName')
+                UNION ALL 
+                    SELECT C.product_id FROM product_tables C 
+                    WHERE C.event_id = (SELECT event_id FROM event WHERE event_name = '$eventName')
+                ) AS Events ON P.productid = Events.product_id";
+    }
+
+    // Handling category and event together
+    if (isset($_REQUEST["category"]) && isset($_REQUEST["event"])) {
+        $tableName = "product_" . $_REQUEST["category"] . "s";
+        $eventName = $_REQUEST["event"];
+        $joins = [
+            "INNER JOIN $tableName ON P.productid = product_id"
+        ];
+        $conditions[] = "event_id = (SELECT event_id FROM event WHERE event_name = '$eventName')";
+    }
+
+    // Handling search
+    if (isset($_REQUEST["search"])) {
+        $search = $_REQUEST["search"];
+        $conditions[] = "(P.product_name LIKE '%$search%' OR P.description LIKE '%$search%')";
+    }
+
+    // Handling range
+    if (isset($_REQUEST["range"])) {
+        $range = $_REQUEST["range"];
+        $conditions[] = "P.price BETWEEN $range";
+    }
+
+    // Build the query with joins
+    if (!empty($joins)) {
+        $query .= " " . implode(" ", $joins);
+    }
+
+    // Add conditions to the query
+    if (!empty($conditions)) {
+        $query .= " WHERE " . implode(" AND ", $conditions);
+    }
+
+    // Handling type for ordering
+    if (isset($_REQUEST["type"])) {
+        if ($_REQUEST["type"] == "ecn") {
+            $query .= " ORDER BY P.price";
+        } elseif ($_REQUEST["type"] == "pre") {
+            $query .= " ORDER BY P.price DESC";
+        }
+    }
+
+    // echo $query;
+
+
+    /*$query = "select productid,product_name,price,description,image_path from product ";
 
     if( isset($_REQUEST["category"]) ){
         
@@ -77,19 +150,38 @@
                 event_id = (select event_id from event where event_name = '$eventName') ";
     }
 
+    if(
+        isset($_REQUEST["search"])   
+    ){
+        if(
+            empty($_REQUEST["category"])    &&    
+            empty($_REQUEST["event"])       &&
+            empty($_REQUEST["type"])        &&
+            empty($_REQUEST["range"])        
+        ){
+            $query = $query . " where product_name like '%" . $_REQUEST["search"] ."%' or description like '%" . $_REQUEST["search"] ."%'";
+        }
+        else{
+            $query = $query . " and price between " . $_REQUEST["search"];
+        }
+
+        echo $query;
+    }
+
     if( isset($_REQUEST["range"]) ){
         
         if(
             empty($_REQUEST["category"])    &&    
             empty($_REQUEST["event"])       &&
-            empty($_REQUEST["type"])       
+            empty($_REQUEST["type"])        && 
+            empty($_REQUEST["search"])       
         ){
             $query = $query . " where price between " . $_REQUEST["range"];
         }
         else{
             $query = $query . " and price between " . $_REQUEST["range"];
         }
-        // echo $query;
+        echo $query;
     }
     
     if( isset($_REQUEST["type"]) ){
@@ -103,7 +195,7 @@
             $query = $query . " order by price desc";
         }
         
-    }
+    }   */
     
     $result = mysqli_query($conn,$query);
 
@@ -177,7 +269,7 @@
                                             <span class="bar"></span>
                                         </a>
                                     </li>
-                                    <li><a href="search.php" class="icon-magnifier"></a></li>
+                                    <li><a onclick="window.location.href='search.php'" class="icon-magnifier"></a></li>
                                     <li class="drop">
                                         <a href="cart.php" class="cart-opener">
                                             <span class="icon-handbag"></span>
@@ -245,6 +337,20 @@
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
+                                        <li>
+                                            <?php 
+                                                if( (!isset($_SESSION["user"]) || $_SESSION["user"] == "guest" ) ){
+                                            ?>
+                                              <a href="../pages/login.html">Login <i
+                                                      class="fa fa-angle-down hidden-lg hidden-md"
+                                                      aria-hidden="true"></i></a>
+                                            <?php   }else{   ?>
+                                              <a href="../scripts/userprofile.php">User Profile <i
+                                                      class="fa fa-angle-down hidden-lg hidden-md"
+                                                      aria-hidden="true"></i></a>
+                                            <?php   }   ?>
+
+                                        </li>
                                     </ul>
                                 </nav>
                                 <!-- mt icon list end here -->
@@ -269,7 +375,7 @@
                         </header>
                         <form action="../scripts/login.php">
                             <fieldset>
-                                <input type="text" placeholder="Username or email address" class="input">
+                                <input type="text" placeholder="Email Address" class="input">
                                 <input type="password" placeholder="Password" class="input">
                                 <button type="submit" class="btn-type1">Login</button>
                             </fieldset>
@@ -316,21 +422,6 @@
                 </div>
                 <!-- mt holder end here -->
             </div><!-- mt side menu end here -->
-            <!-- mt search popup start here -->
-            <div class="mt-search-popup">
-                <div class="mt-holder">
-                    <a href="#" class="search-close"><span></span><span></span></a>
-                    <div class="mt-frame">
-                        <form method="GET">
-                            <fieldset>
-                                <input type="text" name="q" placeholder="Search...">
-                                <span class="icon-microphone"></span>
-                                <button type="submit" class="icon-magnifier"></button>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div><!-- mt search popup end here -->
             <!-- mt main start here -->
             <main id="mt-main">
                 <!-- Mt Contact Banner of the Page -->

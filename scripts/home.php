@@ -1,3 +1,4 @@
+<?php session_start();  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,9 +110,23 @@
                                         </li>
                                         <li><a href="../pages/aboutus.html">About</a></li>
                                         <li>
-                                            <a href="../pages/contactus.html">Contact <i
+                                            <a href="contactus.html">Contact <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
+                                        </li>
+                                        <li>
+                                            <?php 
+                                                if( (!isset($_SESSION["user"]) || $_SESSION["user"] == "guest" ) ){
+                                            ?>
+                                              <a href="../pages/login.html">Login <i
+                                                      class="fa fa-angle-down hidden-lg hidden-md"
+                                                      aria-hidden="true"></i></a>
+                                            <?php   }else{   ?>
+                                              <a href="../scripts/userprofile.php">User Profile <i
+                                                      class="fa fa-angle-down hidden-lg hidden-md"
+                                                      aria-hidden="true"></i></a>
+                                            <?php   }   ?>
+
                                         </li>
                                     </ul>
                                 </nav>
