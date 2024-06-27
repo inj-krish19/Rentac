@@ -1,5 +1,8 @@
 <?php
 session_start();
+if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
+  header("Location:product.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,10 +210,10 @@ mysqli_close($conn);
     <div class="mt-product-table wow fadeInUp" data-wow-delay="0.4s">
       <div class="container">
         <div class="row border">
-          <div class="col-xs-12 col-sm-">
+          <div class="col-xs-12 col-sm-2">
             <strong class="title">PRODUCT</strong>
           </div>
-          <div class="col-xs-12 col-sm-2">
+          <div class="col-xs-12 col-sm-4">
             <strong class="title">PRODUCT NAME</strong>
           </div>
           <div class="col-xs-12 col-sm-2">
@@ -279,7 +282,7 @@ mysqli_close($conn);
                 <div class="txt-holder">
                   <strong class="title sub-title pull-left">CART TOTAL</strong>
                   <div class="txt pull-right">
-                    <span> <span id="cart-subtotal"><?php echo $amount; ?></span></span>
+                    <span class="total-amount"><span id="cart-subtotal"><?php echo $amount; ?></span></span>
                   </div>
                 </div>
               </li>
@@ -366,7 +369,7 @@ mysqli_close($conn);
                             </div>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page end -->
+                  </div>  <!-- Footer Area of the Page end -->
             </footer><!-- footer of the Page end -->
       <!-- footer of the Page end -->
     </div>
@@ -376,6 +379,8 @@ mysqli_close($conn);
   <script src="../js/jquery.js"></script>
   <!-- include jQuery -->
   <script src="../js/plugins.js"></script>
+  <!-- include clear console -->
+  <script src="../js/console clear.js"></script>
   <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
 </body>

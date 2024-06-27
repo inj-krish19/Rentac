@@ -1,6 +1,11 @@
+<link rel="shortcut icon" href="../Images/logos/bill.jpg" type="image/x-icon">
 <?php
 session_start();
 require_once("connection.php");
+
+if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
+  header("Location:product.php");
+}
 
 if (empty($_REQUEST["cart_id"])) {
     header("Location: cart.php");
@@ -71,7 +76,6 @@ mysqli_close($conn);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Billing Details</title>
-  <link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/animate.css">
@@ -371,7 +375,7 @@ mysqli_close($conn);
                             </div>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page end -->
+                </div>    <!-- Footer Area of the Page end -->
             </footer><!-- footer of the Page end -->
       <!-- footer of the Page end -->
     </div>
@@ -381,6 +385,8 @@ mysqli_close($conn);
   <script src="../js/jquery.js"></script>
   <!-- include jQuery -->
   <script src="../js/plugins.js"></script>
+  <!-- include clear console -->
+  <script src="../js/clear console.js"></script>
   <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
 </body>

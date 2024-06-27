@@ -312,6 +312,8 @@
     <script src="../js/jquery.js"></script>
     <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
+    <!-- include clear console -->
+    <script src="../js/clear console.js"></script>
     <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script></body>
 

@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
+  header("Location:product.php");
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['res_id']) && isset($_POST['res_level'])) {
         // Sanitize the input

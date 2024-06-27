@@ -1,4 +1,9 @@
-<?php   session_start();    ?>
+<?php   
+session_start();    
+if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
+  header("Location:product.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

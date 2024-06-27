@@ -14,9 +14,12 @@
 <?php
 
         if(
-            isset( $_POST["luemail"] )      &&
-            isset( $_POST["lupass"] )       &&
-            isset( $_POST["lusubmit"] )     
+            isset( $_POST["sfname"] )      &&
+            isset( $_POST["slname"] )      &&
+            isset( $_POST["semail"] )      &&
+            isset( $_POST["scont"] )       &&
+            isset( $_POST["spass"] )       &&
+            isset( $_POST["signup"] )     
         ){
             
             try{
@@ -27,8 +30,11 @@
                 
                 echo "<div class='container mx-5 my-5 text-center'>";
 
-                $email = $_POST["luemail"];
-                $pass = $_POST["lupass"];
+                $email = $_POST["semail"];
+                $fname = $_POST["semail"];
+                $lname = $_POST["semail"];
+                $contact = $_POST["scont"];
+                $pass = $_POST["spass"];
 
                 $pattern = "/^([A-Za-z0-9_\-\.])+\@([A-Za-z_\-\.])+\.([A-Za-z]{2,4})$/";
 
@@ -42,22 +48,42 @@
                     
                 }
 
-                $pattern = "/^([A-Za-z0-9_\-\.])/";
+                if( strlen($contact) != 10  ){
+                    // echo "<div class='alert alert-danger' role='alert'>Invalid Contact Number</div>";
+                    echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
+                    exit;
+                }
 
-                if( preg_match($pattern,$pass) ){
-                    
+                $pattern = "/^([A-Za-z])/";
 
-                    
-                    
+                if( preg_match($pattern,$fname) && preg_match($pattern,$lname)){
+                    // echo "<div class='alert alert-success' role=alert>Name Validated Successfully</div>";
                 }else{
 
                     echo "<div class='alert alert-danger' role='alert'>Invalid Password Format</div>";
                     echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
+                    exit;
 
                 }
 
+                $query = "select count(*) as 'count' from customer";
+
+                $result = mysqli_query($conn,$query);
+
+                $record = mysqli_fetch_assoc($result);
+
+                $_SESSION["user"] = (int)$record["count"];
+
+                $query = "insert into customer(fname,lname,email,password,contact_no) values('". $fname ."','". $lname ."','". $email ."','". password_hash($pass,1) ."','". $contact ."')";
+
+                $result = mysqli_query($conn,$query);
+
+                echo "<div class='alert alert-success' role=alert>Details Validated Successfully</div>";
+
+                echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
+
                 echo "</div> ";
-                
+
             }catch(Exception $e){
 
                 echo "<div class='conatiner'>";

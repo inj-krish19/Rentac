@@ -524,7 +524,7 @@
                                 <ul class="list-unstyled category-list">
                                 <?php 
 
-                                    $categories = array("CHAIRS","SOFAS","TABLES");
+                                    $categories = array("chairs","sofas","tables");
                                 
                                     foreach ($categories as $key => $category) {
                                     
@@ -685,6 +685,8 @@
     <script src="../js/jquery.js"></script>
     <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
+    <!-- include clear console -->
+    <script src="../js/clear console.js"></script>
     <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
 </body>

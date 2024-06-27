@@ -353,7 +353,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page end -->
+                </div> <!-- Footer Area of the Page end -->
             </footer>
             <!-- footer of the Page end -->
         </div><!-- W1 end here -->
@@ -363,6 +363,8 @@
     <script src="../js/jquery.js"></script>
     <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
+    <!-- include clear console -->
+    <script src="../js/clear console.js"></script>
     <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
 </body>

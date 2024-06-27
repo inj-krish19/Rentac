@@ -113,6 +113,7 @@
     </div>
 
     <script src="../js/search.js"></script>
+    <script src="../js/clear console.js"></script>
 </body>
 
 </html>

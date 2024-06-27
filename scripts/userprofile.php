@@ -134,9 +134,9 @@
                                             <!-- mt dropmenu end here -->
                                             <span class="mt-mdropover"></span>
                                         </li>
-                                        <li><a href="aboutus.html">About</a></li>
+                                        <li><a href="../pages/aboutus.html">About</a></li>
                                         <li>
-                                            <a href="contactus.html">Contact <i
+                                            <a href="../pages/contactus.html">Contact <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -240,18 +240,18 @@
                                                     <fieldset>
                                                         <div class="row">
                                                             <div class="col-xs-12 col-sm-6">
-                                                                <input type="text" placeholder="City" class="input" name="ucity" value = <?php echo $location["city"];  ?> >
+                                                                <input type="text" placeholder="City" class="input" name="ucity" value = <?php if( isset( $location["city"] ) ){ echo $location["city"]; }else{ echo ""; } ?> >
                                                             </div>
                                                             <div class="col-xs-12 col-sm-6">
-                                                                <input type="text" placeholder="District" class="input" name="udistrict" value = <?php echo $location["district"];  ?> >
+                                                                <input type="text" placeholder="District" class="input" name="udistrict" value = <?php if( isset( $location["district"] ) ){ echo $location["district"]; }else{ echo ""; }  ?> >
                                                             </div>
                                                         </div>
                                                         <div class="row">   
                                                             <div class="col-xs-12 col-sm-6">
-                                                                <input type="text" placeholder="Country" class="input" name="ucountry" value = <?php echo $location["country"];    ?> >
+                                                                <input type="text" placeholder="Country" class="input" name="ucountry" value = <?php if( isset( $location["county"] ) ){ echo $location["country"]; }else{ echo ""; }   ?> >
                                                             </div>
                                                             <div class="col-xs-12 col-sm-6">
-                                                                <input type="text" placeholder="Street" class="input" name="ustreet" value = <?php echo $location["street"];  ?> >
+                                                                <input type="text" placeholder="Street" class="input" name="ustreet" value = <?php if( isset( $location["street"] ) ){ echo $location["street"]; }else{ echo ""; }  ?> >
                                                             </div>
                                                         </div>
                                                         <div class="container">
@@ -350,6 +350,8 @@
     <script src="../js/jquery.js"></script>
     <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
+    <!-- include clear console -->
+    <script src="../js/clear console.js"></script>
     <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>

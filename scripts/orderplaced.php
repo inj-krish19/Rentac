@@ -1,4 +1,9 @@
-<?php session_start();  ?>
+<?php 
+session_start();  
+if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
+  header("Location:product.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,6 +283,8 @@
   <script src="../js/jquery.js"></script>
   <!-- include jQuery -->
   <script src="../js/plugins.js"></script>
+  <!-- include clear console -->
+  <script src="../js/clear console.js"></script>
   <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
   <script src="../js/orderplaced.js"></script>
