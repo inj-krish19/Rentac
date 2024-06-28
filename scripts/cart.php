@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insert into cart table
         $insert_query = "INSERT INTO cart (product_id, customer_id, payment_method, quantity, amount) 
-                         VALUES ('$pid', '$customer_id', '$payment_method', '$quantity', '$amount')";
+                         VALUES ('$pid', '$customer_id', '$Cash', '$quantity', '$amount')";
 
         if (mysqli_query($conn, $insert_query)) {
           $cart_id = mysqli_insert_id($conn);
