@@ -208,16 +208,12 @@
 
         parse_str($phrase, $newParams);
 
-        // Parse the existing query string into an associative array
         parse_str($_SERVER["QUERY_STRING"], $currentParams);
 
-        // Merge the current query parameters with the new one(s)
         $mergedParams = array_merge($currentParams, $newParams);
 
-        // Build the new query string
         $newQueryString = http_build_query($mergedParams);
 
-        // Construct the new URL
         $newUrl = $_SERVER["PHP_SELF"] . "?" . $newQueryString;
 
         echo $newUrl;
@@ -225,8 +221,6 @@
     }
 
     // print_r($_SERVER);
-
-    // makeUrl("");
 
 ?>
 
@@ -250,16 +244,6 @@
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
                                 <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a></div>
-                                <!-- mt icon list start here -->
-                                <ul class="mt-icon-list">
-                                    <li class="hidden-lg hidden-md">
-                                        <a href="#" class="bar-opener mobile-toggle">
-                                            <span class="bar"></span>
-                                            <span class="bar small"></span>
-                                            <span class="bar"></span>
-                                        </a>
-                                    </li>
-                                </ul>
                                 <!-- mt icon list end here -->
                                 <ul class="mt-icon-list">
                                     <li class="hidden-lg hidden-md">
@@ -585,7 +569,7 @@
                                         <!-- <div class="mt-product1"> -->
                                         <div class="product-3">
                                             <!-- img start here -->
-                                            <div class="img" style="height:300px; width:300px;">
+                                            <div class="img" style="height:250px; width:250px;">
                                                 <img alt="Preview Unavailable" src="<?php echo "../" . $record["image_path"]; ?>">
                                             </div>
                                             <!-- txt start here -->

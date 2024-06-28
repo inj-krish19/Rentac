@@ -32,6 +32,14 @@ if (mysqli_num_rows($result) > 0) {
     exit;
 }
 
+$addressQuery = "select * from address where person_id = ". $_SESSION["user"] ." ";
+
+$addressResult = mysqli_query($conn,$addressQuery);
+
+$addressRecord = mysqli_fetch_assoc($addressResult);
+
+// print_r($addressRecord);
+
 // Handle form submission for address details
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate form inputs
@@ -53,18 +61,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errors)) {
         // Insert into address table
         $insert_query = "INSERT INTO address (person_id, city, district, country, street, pincode)
-                        VALUES ('$person_id', '$city', '$district', '$country', '$street', '$pincode')";
+                        VALUES (". $_SESSION['user'] .", '$city', '$district', '$country', '$street', '$pincode')";
         
+        echo $insert_query;
+
         if (mysqli_query($conn, $insert_query)) {
             // Redirect to another page after successful insertion
-            header("Location: another_page.php");
+            header("Location: orderplaced.php");
             exit;
         } else {
             echo "Error: " . mysqli_error($conn);
         }
     } else {
         foreach ($errors as $error) {
-            echo "<p>$error</p>";
+            // echo "<p>$error</p>";
         }
     }
 }
@@ -145,7 +155,7 @@ mysqli_close($conn);
       <div class="mt-holder">
         <a href="#" class="search-close"><span></span><span></span></a>
         <div class="mt-frame">
-          <form action="#">
+          <form >
             <fieldset>
               <input type="text" placeholder="Search...">
               <span class="icon-microphone"></span>
@@ -189,16 +199,9 @@ mysqli_close($conn);
           <div class="row">
             <div class="col-xs-12 col-sm-6">
               <h2>BILLING DETAILS</h2>
-              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="bill-detail">
-
+              <form method="post" class="bill-detail">
+                
                 <fieldset>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option value="1">Select Country</option>
-                      <option value="2">India</option>
-                      <option value="3">Others</option>
-                    </select>
-                  </div>
                   <div class="form-group">
                     <div class="col">
                       <input type="text" class="form-control" placeholder="Name" value="<?php echo $order_details['fname']; ?>">
@@ -206,18 +209,6 @@ mysqli_close($conn);
                     <div class="col">
                       <input type="text" class="form-control" placeholder="Last Name" value="<?php echo $order_details['lname']; ?>">
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <textarea class="form-control" placeholder="Address"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Town / City" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="State" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Postal Code" value="">
                   </div>
                   <div class="form-group">
                     <div class="col">
@@ -228,10 +219,44 @@ mysqli_close($conn);
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox"> Ship to a different address?
+                    <select class="form-control" name="country" >
+                      <?php if( isset(  $addressRecord['country'] ) ){ echo $addressRecord['country'];  }else{ echo ""; } ?>
+                      <option ><?php if( isset(  $addressRecord['country'] ) ){ echo strtoupper($addressRecord['country']);  }else{ echo "Select Country"; } ?></option>
+                      <option >India</option>
+                      <option >Others</option>
+                    </select>
                   </div>
                   <div class="form-group">
-                    <textarea class="form-control" placeholder="Order Notes"></textarea>
+                    <textarea class="form-control" name="street" placeholder="Street" ><?php if( isset(  $addressRecord['street'] ) ){ echo $addressRecord['street'];  }else{ echo ""; } ?></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="city" placeholder="Town / City" value="<?php if( isset(  $addressRecord['city'] ) ){ echo $addressRecord['city'];  }else{ echo ""; } ?>">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="district" placeholder="State" value="<?php if( isset(  $addressRecord['district'] ) ){ echo $addressRecord['district'];  }else{ echo ""; } ?>">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="pincode" placeholder="Postal Code" value="<?php if( isset(  $addressRecord['pincode'] ) ){ echo $addressRecord['pincode'];  }else{ echo ""; } ?>">
+                  </div>
+                  <div class="form-group">
+                    <input style=" width: 173px;
+                                        padding: 12px 10px 10px;
+                                        margin-top:30px;
+                                        text-align: center;
+                                        text-transform: uppercase;
+                                        display: block;
+                                        font-size: 14px;
+                                        line-height: 20px;
+                                        font-family: 'Montserrat', sans-serif;
+                                        font-weight: 700;
+                                        border: none;
+                                        outline: none;
+                                        border-radius: 25px;
+                                        -webkit-transition: all 0.25s linear;
+                                        -o-transition: all 0.25s linear;
+                                        transition: all 0.25s linear;
+                                        background: #ff8283;
+                                        color: #fff;" type="submit" value="PROCEED">
                   </div>
                 </fieldset>
               </form>

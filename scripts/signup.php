@@ -31,8 +31,8 @@
                 echo "<div class='container mx-5 my-5 text-center'>";
 
                 $email = $_POST["semail"];
-                $fname = $_POST["semail"];
-                $lname = $_POST["semail"];
+                $fname = $_POST["sfname"];
+                $lname = $_POST["slname"];
                 $contact = $_POST["scont"];
                 $pass = $_POST["spass"];
 
@@ -66,21 +66,36 @@
 
                 }
 
-                $query = "select count(*) as 'count' from customer";
+                $query = "select count(*) as 'count' from customer where email='". $email ."' and contact_no = '". $contact ."' ";
 
                 $result = mysqli_query($conn,$query);
 
                 $record = mysqli_fetch_assoc($result);
 
-                $_SESSION["user"] = (int)$record["count"];
+                if( (int)$record["count"] == 0 ){               
 
-                $query = "insert into customer(fname,lname,email,password,contact_no) values('". $fname ."','". $lname ."','". $email ."','". password_hash($pass,1) ."','". $contact ."')";
+                    $query = "select count(*) as 'count' from customer";
 
-                $result = mysqli_query($conn,$query);
+                    $result = mysqli_query($conn,$query);
 
-                echo "<div class='alert alert-success' role=alert>Details Validated Successfully</div>";
+                    $record = mysqli_fetch_assoc($result);
 
-                echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
+                    $_SESSION["user"] = (int)$record["count"];
+
+                    $query = "insert into customer(fname,lname,email,password,contact_no) values('". $fname ."','". $lname ."','". $email ."','". password_hash($pass,1) ."','". $contact ."')";
+
+                    $result = mysqli_query($conn,$query);
+
+                    echo "<div class='alert alert-success' role=alert>Details Validated Successfully</div>";
+
+                    echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
+
+                }else{
+
+                    echo "<div class='alert alert-danger' role=alert>User Already Exist</div>";
+                    echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000);  </script>";
+
+                }
 
                 echo "</div> ";
 
