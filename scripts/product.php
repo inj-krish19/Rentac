@@ -271,7 +271,7 @@
                                 <nav id="nav">
                                     <ul>
                                         <li>
-                                            <a href="../pages/../scripts/home.php">HOME <i
+                                            <a href="../scripts/home.php">HOME <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -290,7 +290,7 @@
                                                     <!-- mt f box start here -->
                                                     <div class="mt-col-3">
                                                         <div class="sub-dropcont">
-                                                            <strong class="title"><a href="product-grid-view.html"
+                                                            <strong class="title"><a href="product.php"
                                                                     class="mt-subopener">Social
                                                                     Events</a></strong>
                                                             <div class="sub-drop">
@@ -605,7 +605,7 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
                                     </div>
                                     <p>Exercitation ullamco laboris nisi ut aliquip ex commodo consequat. Duis aute
                                         irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
@@ -639,9 +639,9 @@
                                             <address>Department of Computer Science, Gujarat University, Ahmedabad - 384002</address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 1%;"></i><a
-                                                href="tel: 1 XX XX XX XX">+1 XX XX XX XX</a>
+                                                href="../scripts/home.php">+91 XX XX XX XX</a>
                                         <li><i class="fa fa-envelope-o"></i><a
-                                                href="../pages/../scripts/home.php">rentac01@gmail.com</a></li>
+                                                href="../scripts/home.php">rentac01@gmail.com</a></li>
                                     </ul>
                                 </div>
                                 <!-- F Widget About of the Page end -->

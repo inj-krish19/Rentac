@@ -1,5 +1,3 @@
-<title>Profile</title>
-<link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon">
 <?php   
     
     session_start();    
@@ -19,6 +17,8 @@
     $personal = mysqli_fetch_assoc($result);
 
 ?>
+<title>Profile</title>
+<link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +98,7 @@
                                                     <!-- mt f box start here -->
                                                     <div class="mt-col-3">
                                                         <div class="sub-dropcont">
-                                                            <strong class="title"><a href="product-grid-view.html"
+                                                            <strong class="title"><a href="product.php"
                                                                     class="mt-subopener">Social
                                                                     Events</a></strong>
                                                             <div class="sub-drop">
@@ -127,9 +127,9 @@
                                             <!-- mt dropmenu end here -->
                                             <span class="mt-mdropover"></span>
                                         </li>
-                                        <li><a href="aboutus.html">About</a></li>
+                                        <li><a href="../pages/aboutus.html">About</a></li>
                                         <li>
-                                            <a href="contactus.html">Contact <i
+                                            <a href="../pages/contactus.html">Contact <i
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
@@ -168,7 +168,7 @@
                                     <ul class="list-unstyled">
                                         <li><a href="../scripts/home.php">Home <i class="fa fa-angle-right"></i></a>
                                         </li>
-                                        <li><a href="#">Change Password</a></li>
+                                        <li><a href="../scripts/changepassword.php">Change Password</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -235,7 +235,7 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -244,7 +244,7 @@
                                             </address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX
+                                                href="../scripts/home.php">+91 XX
                                                 XX XX
                                                 XX</a></li>
                                         <li><i class="fa fa-envelope-o"></i><a
@@ -269,8 +269,8 @@
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="aboutus.html">About Us</a></li>
-                                        <li><a href="contactus.html">Contact Us</a></li>
+                                        <li><a href="../pages/aboutus.html">About Us</a></li>
+                                        <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Nav of the Page end -->
@@ -292,7 +292,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
+                                    <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
                                 </div>
                             </div>
                         </div>

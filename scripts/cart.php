@@ -143,7 +143,7 @@ mysqli_close($conn);
                     <div class="mt-frame" style="max-width: 500px; width: 300px; padding: 15px;">
                       <div class="mt-col-3">
                         <div class="sub-dropcont">
-                          <strong class="title"><a href="product-grid-view.html" class="mt-subopener">Social Events</a></strong>
+                          <strong class="title"><a href="product.php" class="mt-subopener">Social Events</a></strong>
                           <div class="sub-drop">
                             <ul>
                               <li><a href="../scripts/product.php?event=birthday">Birthday</a></li>
@@ -157,8 +157,8 @@ mysqli_close($conn);
                     </div>
                   </div>
                 </li>
-                <li><a href="aboutus.html">About</a></li>
-                <li><a href="contactus.html">Contact</a></li>
+                <li><a href="../pages/aboutus.html">About</a></li>
+                <li><a href="../pages/contactus.html">Contact</a></li>
               </ul>
             </nav>
           </div>
@@ -310,7 +310,7 @@ mysqli_close($conn);
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -319,7 +319,7 @@ mysqli_close($conn);
                                             </address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX
+                                                href="../scripts/home.php">+91 XX
                                                 XX XX
                                                 XX</a></li>
                                         <li><i class="fa fa-envelope-o"></i><a href="../scripts/home.php">rentac01@gmail.com</a>
@@ -366,7 +366,7 @@ mysqli_close($conn);
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
+                                    <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
                                 </div>
                             </div>
                         </div>

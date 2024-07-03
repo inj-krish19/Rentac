@@ -1,7 +1,7 @@
 <?php
 session_start();
 if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
-    $_SESSION["user"] = 1;
+    // $_SESSION["user"] = 1;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['res_id']) && isset($_POST['res_level'])) {

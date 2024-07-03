@@ -1,4 +1,3 @@
-<link rel="shortcut icon" href="../Images/logos/bill.jpg" type="image/x-icon">
 <?php
 session_start();
 require_once("connection.php");
@@ -45,7 +44,7 @@ $addressRecord = mysqli_fetch_assoc($addressResult);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate form inputs
     $errors = [];
-    $person_id = mysqli_real_escape_string($conn, $_SESSION["customer_id"]); // Assuming you have stored customer_id in session
+    $person_id = mysqli_real_escape_string($conn, $_SESSION["user"]); // Assuming you have stored customer_id in session
 
     $city = mysqli_real_escape_string($conn, $_POST["city"]);
     $district = mysqli_real_escape_string($conn, $_POST["district"]);
@@ -64,7 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_query = "INSERT INTO address (person_id, city, district, country, street, pincode)
                         VALUES (". $_SESSION['user'] .", '$city', '$district', '$country', '$street', '$pincode')";
         
-        echo $insert_query;
+        // echo $insert_query;
+        
+        mysqli_query($conn,$query);
 
         if (mysqli_query($conn, $insert_query)) {
             // Redirect to another page after successful insertion
@@ -81,7 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 mysqli_close($conn);
-?><!DOCTYPE html>
+?>
+<link rel="shortcut icon" href="../Images/logos/bill.jpg" type="image/x-icon">
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -127,7 +130,7 @@ mysqli_close($conn);
                       <div class="mt-frame" style="max-width: 500px; width: 300px; padding: 15px;">
                         <div class="mt-col-3">
                           <div class="sub-dropcont">
-                            <strong class="title"><a href="product-grid-view.html" class="mt-subopener">Social Events</a></strong>
+                            <strong class="title"><a href="product.php" class="mt-subopener">Social Events</a></strong>
                             <div class="sub-drop">
                               <ul>
                                 <li><a href="../scripts/product.php?event=birthday">Birthday</a></li>
@@ -142,8 +145,8 @@ mysqli_close($conn);
                     </div>
                     <span class="mt-mdropover"></span>
                   </li>
-                  <li><a href="aboutus.html">About</a></li>
-                  <li><a href="contactus.html">Contact <i class="fa fa-angle-down hidden-lg hidden-md" aria-hidden="true"></i></a></li>
+                  <li><a href="../pages/aboutus.html">About</a></li>
+                  <li><a href="../pages/contactus.html">Contact <i class="fa fa-angle-down hidden-lg hidden-md" aria-hidden="true"></i></a></li>
                 </ul>
               </nav>
             </div>
@@ -174,7 +177,7 @@ mysqli_close($conn);
               <h1 class="text-center" style="color:black;">BILLING DETAILS</h1>
               <nav class="breadcrumbs">
                 <ul class="list-unstyled">
-                  <li><a href="index.html" style="color:black;">Home <i class="fa fa-angle-right"></i></a></li>
+                  <li><a href="../scripts/home.php" style="color:black;">Home <i class="fa fa-angle-right"></i></a></li>
                   <li style="color:black;">Billing Details</li>
                 </ul>
               </nav>
@@ -340,7 +343,7 @@ mysqli_close($conn);
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <a href="../scripts/hpme.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -349,7 +352,7 @@ mysqli_close($conn);
                                             </address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX
+                                                href="../scripts/home.php">+91 XX
                                                 XX XX
                                                 XX</a></li>
                                         <li><i class="fa fa-envelope-o"></i><a href="../scripts/home.php">rentac01@gmail.com</a>
@@ -373,8 +376,8 @@ mysqli_close($conn);
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="aboutus.html">About Us</a></li>
-                                        <li><a href="contactus.html">Contact Us</a></li>
+                                        <li><a href="../pages/aboutus.html">About Us</a></li>
+                                        <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Nav of the Page end -->
@@ -396,8 +399,8 @@ mysqli_close($conn);
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
-                                </div>
+                                    <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
+                                </div>he
                             </div>
                         </div>
                     </div>

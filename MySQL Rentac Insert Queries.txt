@@ -1,4 +1,14 @@
 
+Redo Commit Code : 984de2a0e4c0f6ea97e2db8feecb8a962f69f3a7 
+
+Commits on Jun 28, 2024
+Commit Name : Payment Method Bug Solved
+Author : inj-krish19
+Commit Info : inj-krish19 committed 5 days ago
+
+
+------------
+
 Creation Query 
 
 ----------------------------------------------------------------------------------------------------------------------------

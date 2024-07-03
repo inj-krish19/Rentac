@@ -107,13 +107,13 @@
                                                     <!-- mt f box start here -->
                                                     <div class="mt-col-3">
                                                         <div class="sub-dropcont">
-                                                            <strong class="title"><a href="product-grid-view.html"
+                                                            <strong class="title"><a href="product.php"
                                                                     class="mt-subopener">Social
                                                                     Events</a></strong>
                                                             <div class="sub-drop">
                                                                 <ul>
                                                                     <li><a
-                                                                            href="../scripts/product.php?event=birthday"></a>Birthday</a>
+                                                                            href="../scripts/product.php?event=birthday">Birthday</a>
                                                                     </li>
                                                                     <li><a
                                                                             href="../scripts/product.php?event=seminar">Seminar</a>
@@ -169,6 +169,17 @@
                                                 </button>
                                             </form>
                                         </li>
+                                        <li>
+                                            <button name="logout" type="submit" onclick="window.location.href='../scripts/changepassword.php';" style="width: 250px;
+                                                    padding: 12px 10px 10px;margin-top: -10px;text-align: center;
+                                                    text-transform: uppercase;display: block;font-size: 14px;
+                                                    line-height: 20px;font-family: 'Montserrat', sans-serif;font-weight: 700;
+                                                    border: none;outline: none;border-radius: 25px;
+                                                    -webkit-transition: all 0.25s linear;-o-transition: all 0.25s linear;
+                                                    transition: all 0.25s linear;background: #ff8283;color: #fff;">
+                                                    CHANGE PASSWORD
+                                                </button>
+                                        </li>
                                     </ul>
                                 </nav>
                                 <!-- mt icon list end here -->
@@ -190,7 +201,7 @@
                                     <ul class="list-unstyled">
                                         <li><a href="../scripts/home.php">Home <i class="fa fa-angle-right"></i></a>
                                         </li>
-                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="..scripts/userprofile.php">Profile</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -294,7 +305,7 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -303,7 +314,7 @@
                                             </address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX
+                                                href="../scripts/home.php">+91 XX
                                                 XX XX
                                                 XX</a></li>
                                         <li><i class="fa fa-envelope-o"></i><a
@@ -328,8 +339,8 @@
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="aboutus.html">About Us</a></li>
-                                        <li><a href="contactus.html">Contact Us</a></li>
+                                        <li><a href="../pages/aboutus.html">About Us</a></li>
+                                        <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Nav of the Page end -->
@@ -351,7 +362,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
+                                    <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
                                 </div>
                             </div>
                         </div>

@@ -77,7 +77,7 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
 
         }
 
-    
+    // echo "<script> clearTimeout();  </script>";
 
 ?>
 </html>

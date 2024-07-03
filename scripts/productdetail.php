@@ -21,7 +21,9 @@
         <?php
         // Ensure productid is provided
         if (empty($_REQUEST["pid"])) {
+            // header("Location:../scripts/product.php");
             echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+
             exit; // Always exit after redirection
         }
 
@@ -40,7 +42,9 @@
             $record = mysqli_fetch_assoc($result);
         } else {
             // Redirect if product not found
-            header("Location:../scripts/product.php");
+            // header("Location:../scripts/product.php");
+                        echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+
             exit;
         }
 
@@ -90,7 +94,7 @@
                                             <div class="mt-frame" style="max-width: 500px; width: 300px; padding: 15px;">
                                                 <div class="mt-col-3">
                                                     <div class="sub-dropcont">
-                                                        <strong class="title"><a href="product-grid-view.html"
+                                                        <strong class="title"><a href="product.php"
                                                                 class="mt-subopener">Social
                                                                 Events</a></strong>
                                                         <div class="sub-drop">
@@ -107,8 +111,8 @@
                                         </div>
                                         <span class="mt-mdropover"></span>
                                     </li>
-                                    <li><a href="aboutus.html">About</a></li>
-                                    <li><a href="contactus.html">Contact <i class="fa fa-angle-down hidden-lg hidden-md"
+                                    <li><a href="../pages/aboutus.html">About</a></li>
+                                    <li><a href="../pages/contactus.html">Contact <i class="fa fa-angle-down hidden-lg hidden-md"
                                                 aria-hidden="true"></i></a></li>
                                 </ul>
                             </nav>
@@ -157,9 +161,9 @@
                             <div class="detial-holder">
                                 <ul class="list-unstyled breadcrumbs">
                                     <li><a href="product.php">Product <i class="fa fa-angle-right"></i></a></li>
-                                    <li><a href="product.php?category=abc">Category <i class="fa fa-angle-right"></i></a>
+                                    <li><a href="product.php">Category <i class="fa fa-angle-right"></i></a>
                                     </li>
-                                    <li><a href="product.php?event=abc">Event <i class="fa fa-angle-right"></i></a></li>
+                                    <li><a href="product.php">Event <i class="fa fa-angle-right"></i></a></li>
                                 </ul>
                                 <h2><?php echo $record["product_name"]; ?></h2>
                                 <div class="text-holder">
@@ -201,7 +205,7 @@
                         <div class="col-xs-12">
                             <h2>RELATED PRODUCTS</h2>
                             <div class="row">
-                            <ul class="mt-holder" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center;">    
+                            <ul class="mt-holder" style="display: flex;flex-wrap: wrap;justify-content: space-around;align-items: center;list-style: none;">    
                             <?php while ($row = mysqli_fetch_assoc($result_related)) : ?>
                                     <li>
                                         <!-- <div class="mt-product1"> -->
@@ -242,7 +246,7 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -251,7 +255,7 @@
                                             </address>
                                         </li>
                                         <li><i class="fa fa-phone" style="margin-bottom: 10px;"></i><a
-                                                href="tel:15553332211">+1 XX
+                                                href="../scripts/home.php">+1 XX
                                                 XX XX
                                                 XX</a></li>
                                         <li><i class="fa fa-envelope-o"></i><a href="../scripts/home.php">rentac01@gmail.com</a>
@@ -298,7 +302,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <p>© <a href="index.html">Rentac.</a> - All rights Reserved</p>
+                                    <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
                                 </div>
                             </div>
                         </div>
