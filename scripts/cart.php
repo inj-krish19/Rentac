@@ -1,7 +1,8 @@
 <?php
 session_start();
 if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
-  header("Location:product.php");
+  echo "<script> setTimeout(() => { window.location.href = '../scripts/home.php'; }, 3000);  </script>";
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -56,8 +57,8 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
 require_once("connection.php");
 
 if (empty($_REQUEST["pid"])) {
-    header("Location: ../scripts/product.php");
-    exit;
+  echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
+  exit;
 }
 
 $pid = mysqli_real_escape_string($conn, $_REQUEST["pid"]);
@@ -68,8 +69,8 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
     $record = mysqli_fetch_assoc($result);
 } else {
-    header("Location: ../scripts/product.php");
-    exit;
+  echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
+  exit;
 }
 
 // Initialize quantity and amount
@@ -98,12 +99,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insert into cart table
         $insert_query = "INSERT INTO cart (product_id, customer_id, payment_method, quantity, amount) 
-                         VALUES ('$pid', '$customer_id', '$Cash', '$quantity', '$amount')";
+                         VALUES ('$pid', '$customer_id', 'Cash', '$quantity', '$amount')";
 
         if (mysqli_query($conn, $insert_query)) {
           $cart_id = mysqli_insert_id($conn);
           // Redirect to order complete page with cart_id
-          header("Location: billingdetail.php?cart_id=" . $cart_id);
+          $_SESSION["cart_id"] = $cart_id;
+          echo "<script> setTimeout(() => { window.location.href = '../scripts/billingdetail.php'; }, 3000);  </script>";
           exit;
         } else {
             echo "Error: " . mysqli_error($conn); // Output MySQL error
@@ -287,7 +289,7 @@ mysqli_close($conn);
                 </div>
               </li>
             </ul>
-            <form action="cart.php" method="POST">
+            <form method="post">
               <input type="hidden" name="pid" value="<?php echo $record['productid']; ?>">
               <input type="hidden" name="quantity" value="<?php echo $quantity; ?>">
               <button type="submit" class="process-btn">PROCEED TO CHECKOUT <i class="fa fa-check"></i></button>
@@ -351,7 +353,7 @@ mysqli_close($conn);
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>

@@ -1,5 +1,3 @@
-<title>Profile</title>
-<link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon">
 <?php   
     
     session_start();    
@@ -7,9 +5,12 @@
     require_once("../scripts/connection.php");
 
     if(
+
+        (! isset($_SESSION["user"] ))   ||
         $_SESSION["user"] == "guest"
     ){
         echo "<script> setTimeout(() => { window.location.href = '../pages/login.html'; }, 3000 ); </script>";
+        exit;
     }
 
     $query = "select * from customer where customer_id = ". $_SESSION["user"] ." ";
@@ -26,7 +27,8 @@
 
 
 ?>
-<!DOCTYPE html>
+<title>Profile</title>
+<link rel="shortcut icon" href="../Images/logos/user.jpg" type="image/x-icon"><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -153,6 +155,19 @@
                                                       aria-hidden="true"></i></a>
                                             <?php   }   ?>
 
+                                        </li>
+                                        <li>
+                                            <form method="post" >
+                                                <button name="logout" type="submit" style="width: 173px;
+                                                    padding: 12px 10px 10px;margin-top: -10px;text-align: center;
+                                                    text-transform: uppercase;display: block;font-size: 14px;
+                                                    line-height: 20px;font-family: 'Montserrat', sans-serif;font-weight: 700;
+                                                    border: none;outline: none;border-radius: 25px;
+                                                    -webkit-transition: all 0.25s linear;-o-transition: all 0.25s linear;
+                                                    transition: all 0.25s linear;background: #ff8283;color: #fff;">
+                                                    LOGOUT
+                                                </button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </nav>
@@ -323,7 +338,7 @@
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
@@ -376,6 +391,12 @@
 
     }
     
+    if(
+        isset($_POST["logout"])
+    ){
+        $_SESSION["user"] = "guest";
+    }
+
     if(
         isset($_POST["ucity"]) &&
         isset($_POST["udistrict"]) &&

@@ -562,7 +562,7 @@
                             </header><!-- mt shoplist header end here -->
                         </div><!-- mt-textbox end here -->
                             <!-- mt productlisthold start here -->
-                            <ul class="mt-holder" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center;">
+                            <ul class="mt-holder" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center;list-style :none;">
                             <!-- <ul class="productlist list-inline"> -->
                                 <?php   while($record = mysqli_fetch_assoc($result) ){  $notFound = false;  ?>
                                     <li>

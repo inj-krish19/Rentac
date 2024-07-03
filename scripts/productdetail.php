@@ -21,7 +21,7 @@
         <?php
         // Ensure productid is provided
         if (empty($_REQUEST["pid"])) {
-            header("Location:../scripts/product.php");
+            echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
             exit; // Always exit after redirection
         }
 
@@ -275,8 +275,8 @@
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
-                                        <li><a href="aboutus.html">About Us</a></li>
-                                        <li><a href="contactus.html">Contact Us</a></li>
+                                        <li><a href="../pages/aboutus.html">About Us</a></li>
+                                        <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
                                 <!-- Footer Nav of the Page end -->
@@ -285,7 +285,7 @@
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>

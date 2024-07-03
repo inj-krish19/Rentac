@@ -85,7 +85,7 @@
                                                             <div class="sub-drop">
                                                                 <ul>
                                                                     <li><a
-                                                                            href="../scripts/product.php?event=birthday"></a>Birthday</a>
+                                                                            href="../scripts/product.php?event=birthday">Birthday</a>
                                                                     </li>
                                                                     <li><a
                                                                             href="../scripts/product.php?event=seminar">Seminar</a>
@@ -156,40 +156,6 @@
             </div><!-- mt search popup end here -->
 
             <main id="mt-main">
-                <!-- mt bottom bar start here -->
-                <div class="container">
-                    <h1 class="text-center" style="color:black; margin-bottom:35px; text-transform: uppercase;font-family: 'Montserrat', sans-serif;">
-                    Welcome to Rentac - Your Ultimate Furniture Rental Solution! </h1>
-                    <h4 style="line-height : 150%;">At Rentac, we believe that furnishing your space should be easy, flexible, and affordable. 
-                        Whether you're looking to furnish your home, office, or event, we have a wide selection of high-quality 
-                        furniture to meet your needs. From stylish chairs and tables to comfortable sofas, Rentac offers a convenient 
-                        way to transform any space with minimal hassle. </h4>
-
-                <h2  style="color:black; font-family: 'Montserrat', sans-serif;">Our Services </h2>
-
-                <h4> Chairs: From dining chairs to office chairs, we have a variety to suit every style and need.  </h4>
-                <h4> Tables: Choose from our selection of coffee tables, dining tables, and desks. </h4>
-                <h4> Sofas: Our range includes everything from cozy loveseats to spacious sectional sofas. </h4>
-                
-                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >Event Furniture Rentals:</h2>
-
-                <h4> Parties: Create the perfect party atmosphere with our stylish and comfortable furniture. </h4>
-                <h4> Birthdays: Make birthdays memorable with furniture that adds to the celebration. </h4>
-                <h4> Seminars: Ensure your attendees are comfortable with our professional seminar setups. </h4>
-                <h4> Weddings: Design your dream wedding with our elegant and sophisticated furniture options. </h4>
-                
-                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >Why Choose Rentac?</h2>          
-                <h4> Quality and Style: We offer a curated selection of furniture that is both high-quality and stylish, ensuring your space looks great. </h4>
-                <h4> Flexibility: Rent our furniture for as long as you need, with easy options for extending or returning your rental. </h4>
-                <h4> Affordability: Enjoy beautiful furniture without the commitment of buying, saving you money and hassle. </h4>
-                <h4> Convenience: With our simple online ordering process, getting the furniture you need is just a few clicks away. We also offer delivery and setup services to make your experience seamless. </h4>
-                
-                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >How It Works</h2>    
-                <h4> Browse: Explore our wide range of furniture online. </h4>
-                <h4> Select: Choose the items that best suit your needs. </h4>
-                <h4> Schedule: Pick your delivery date and duration of the rental. </h4>
-                <h4> Enjoy: Sit back and relax while we deliver and set up your furniture. </h4>
-                </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
@@ -223,7 +189,7 @@
                                             <div class="box">
                                                 <img alt="image description" src="<?php  echo "../" . $recordA["image_path"] ?>" style="height:290px;   width:275px;">
                                                 <ul class="links">
-                                                    <li><a href="addincart.php?id=<?php echo $recordA["productid"];  ?>"><i class="icon-handbag"></i></a></li>
+                                                    <li><a href="cart.php?pid=<?php echo $recordA["productid"];  ?>"><i class="icon-handbag"></i></a></li>
                                                     <li><a href="productdetail.php?id=<?php echo $recordA["productid"];  ?>"><i class="fa fa-eye"></i></a></li>
                                                 </ul>
                                             </div><!-- box end here -->
@@ -282,6 +248,40 @@
                         </div>
                     </div>
                 </div>
+                <!-- mt bottom bar start here -->
+                <div class="container">
+                    <h1 class="text-center" style="color:black; margin-bottom:35px; text-transform: uppercase;font-family: 'Montserrat', sans-serif;">
+                    Welcome to Rentac  </h1>
+                    <h4 style="line-height : 150%;">At Rentac, we believe that furnishing your space should be easy, flexible, and affordable. 
+                        Whether you're looking to furnish your home, office, or event, we have a wide selection of high-quality 
+                        furniture to meet your needs. From stylish chairs and tables to comfortable sofas, Rentac offers a convenient 
+                        way to transform any space with minimal hassle. </h4>
+
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;">Our Services </h2>
+
+                <h4> Chairs: From dining chairs to office chairs, we have a variety to suit every style and need.  </h4>
+                <h4> Tables: Choose from our selection of coffee tables, dining tables, and desks. </h4>
+                <h4> Sofas: Our range includes everything from cozy loveseats to spacious sectional sofas. </h4>
+                
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >Event Furniture Rentals:</h2>
+
+                <h4> Parties: Create the perfect party atmosphere with our stylish and comfortable furniture. </h4>
+                <h4> Birthdays: Make birthdays memorable with furniture that adds to the celebration. </h4>
+                <h4> Seminars: Ensure your attendees are comfortable with our professional seminar setups. </h4>
+                <h4> Weddings: Design your dream wedding with our elegant and sophisticated furniture options. </h4>
+                
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >Why Choose Rentac?</h2>          
+                <h4> Quality and Style: We offer a curated selection of furniture that is both high-quality and stylish, ensuring your space looks great. </h4>
+                <h4> Flexibility: Rent our furniture for as long as you need, with easy options for extending or returning your rental. </h4>
+                <h4> Affordability: Enjoy beautiful furniture without the commitment of buying, saving you money and hassle. </h4>
+                <h4> Convenience: With our simple online ordering process, getting the furniture you need is just a few clicks away. We also offer delivery and setup services to make your experience seamless. </h4>
+                
+                <h2  style="color:black; font-family: 'Montserrat', sans-serif;" >How It Works</h2>    
+                <h4> Browse: Explore our wide range of furniture online. </h4>
+                <h4> Select: Choose the items that best suit your needs. </h4>
+                <h4> Schedule: Pick your delivery date and duration of the rental. </h4>
+                <h4> Enjoy: Sit back and relax while we deliver and set up your furniture. </h4>
+                </div>
             </main>
             <!-- footer of the Page -->
             <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
@@ -335,7 +335,7 @@
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>

@@ -4,15 +4,16 @@ session_start();
 require_once("connection.php");
 
 if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
-  header("Location:product.php");
+  echo "<script> setTimeout(() => { window.location.href = '../scripts/home.php'; }, 3000);  </script>";
+  exit;
 }
 
-if (empty($_REQUEST["cart_id"])) {
-    header("Location: cart.php");
+if (empty($_SESSION["cart_id"])) {
+    echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
     exit;
 }
 
-$cart_id = mysqli_real_escape_string($conn, $_REQUEST["cart_id"]);
+$cart_id = mysqli_real_escape_string($conn, $_SESSION["cart_id"]);
 
 $query = "
     SELECT cart.quantity, cart.amount, 
@@ -67,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($conn, $insert_query)) {
             // Redirect to another page after successful insertion
-            header("Location: orderplaced.php");
+            echo "<script> setTimeout(() => { window.location.href = '../scripts/orderplaced.php'; }, 3000);  </script>";
             exit;
         } else {
             echo "Error: " . mysqli_error($conn);
@@ -382,7 +383,7 @@ mysqli_close($conn);
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
