@@ -82,10 +82,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pid = mysqli_real_escape_string($conn, $_POST["pid"]);
     
     // Generate a random customer ID (1 to 10)
-    $customer_id = mt_rand(1, 10);
+    $customer_id = $_SESSION["user"];
 
     // Assuming payment method is null initially
-    $payment_method = null;
+    $payment_method = "Cash";
 
     // Query to fetch product details
     $query = "SELECT productid, product_name, price FROM product WHERE productid = '$pid'";
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insert into cart table
         $insert_query = "INSERT INTO cart (product_id, customer_id, payment_method, quantity, amount) 
-                         VALUES ('$pid', '$customer_id', 'Cash', '$quantity', '$amount')";
+                         VALUES ($pid, $customer_id, 'Cash', '$quantity', '$amount')";
 
         if (mysqli_query($conn, $insert_query)) {
           $cart_id = mysqli_insert_id($conn);
@@ -123,7 +123,10 @@ mysqli_close($conn);
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12">
-            <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a></div>
+            <div class="mt-logo" style="height:50px;    width:50px;">
+                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                        alt="Rentac"></a>
+            </div>
             <ul class="mt-icon-list">
               <li class="hidden-lg hidden-md">
                 <a href="#" class="bar-opener mobile-toggle">
@@ -310,7 +313,15 @@ mysqli_close($conn);
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                                        alt="Rentac"></a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 text-center">
+                                                <h3 style="margin : 19px 0 0 0"> Rentac </h3>
+                                            </div>
+                                        </div>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>

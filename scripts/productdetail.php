@@ -50,7 +50,7 @@
 
         // Fetch RELATED PRODUCTS based on price limit query
         $reco = (float) $record["price"];
-        $sql_related = "SELECT productid, product_name, price, image_path FROM product WHERE productid != '$pid' AND price > '$reco' LIMIT 6";
+        $sql_related = "SELECT productid, product_name, price, image_path FROM product WHERE productid != $pid AND ( productid > $pid or productid > 207) LIMIT 6";
         $result_related = mysqli_query($conn, $sql_related);
 
         // Check for results
@@ -69,8 +69,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="mt-logo">
-                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                            <div class="mt-logo" style="height:50px;    width:50px;">
+                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                        alt="Rentac"></a>
                             </div>
                             <ul class="mt-icon-list">
                                 <li class="hidden-lg hidden-md">
@@ -246,7 +247,15 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                                        alt="Rentac"></a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 text-center">
+                                                <h3 style="margin : 19px 0 0 0"> Rentac </h3>
+                                            </div>
+                                        </div>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>

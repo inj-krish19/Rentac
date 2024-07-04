@@ -49,7 +49,7 @@
                 }
 
                 if( strlen($contact) != 10  ){
-                    // echo "<div class='alert alert-danger' role='alert'>Invalid Contact Number</div>";
+                    echo "<div class='alert alert-danger' role='alert'>Invalid Contact Number</div>";
                     echo "<script> setTimeout(() => { window.location.href = '../pages/signup.html'; }, 3000);  </script>";
                     exit;
                 }
@@ -80,7 +80,7 @@
 
                     $record = mysqli_fetch_assoc($result);
 
-                    $_SESSION["user"] = (int)$record["count"];
+                    $_SESSION["user"] = (int)$record["count"] + 1;
 
                     $query = "insert into customer(fname,lname,email,password,contact_no) values('". $fname ."','". $lname ."','". $email ."','". password_hash($pass,1) ."','". $contact ."')";
 

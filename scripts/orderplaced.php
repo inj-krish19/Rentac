@@ -45,7 +45,8 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                <div class="mt-logo" style="height:50px;    width:50px;">
+                                    <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
                                 <!-- mt icon list start here -->
@@ -213,8 +214,16 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
                           <!-- F Widget About of the Page -->
                           <div class="f-widget-about">
                               <div class="logo">
-                                  <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
-                              </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-8">
+                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                                alt="Rentac"></a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 text-center">
+                                        <h3 style="margin : 19px 0 0 0"> Rentac </h3>
+                                    </div>
+                                </div>
+                            </div>
                               <ul class="list-unstyled address-list">
                                   <li><i class="fa fa-map-marker"></i>
                                       <address>Department of Computer Science, Gujarat University <br>Ahmedabad -

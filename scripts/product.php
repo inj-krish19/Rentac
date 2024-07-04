@@ -243,7 +243,10 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a></div>
+                                <div class="mt-logo" style="height:50px;    width:50px;">
+                                    <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                            alt="Rentac"></a>
+                                </div>
                                 <!-- mt icon list end here -->
                                 <ul class="mt-icon-list">
                                     <li class="hidden-lg hidden-md">
@@ -605,11 +608,20 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                                        alt="Rentac"></a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 text-center">
+                                                <h3 style="margin : 19px 0 0 0"> Rentac </h3>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p>Exercitation ullamco laboris nisi ut aliquip ex commodo consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                        nulla pariatur.</p>
+                                    <p>At Rentac, we believe that furnishing your space should be easy, flexible, and affordable. 
+                        Whether you're looking to furnish your home, office, or event, we have a wide selection of high-quality 
+                        furniture to meet your needs. From stylish chairs and tables to comfortable sofas, Rentac offers a convenient 
+                        way to transform any space with minimal hassle</p>
                                 </div>
                                 <!-- F Widget About of the Page end -->
                             </div>

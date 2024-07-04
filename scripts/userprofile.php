@@ -70,7 +70,8 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <!-- mt logo start here -->
-                                <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                <div class="mt-logo" style="height:50px;    width:50px;">
+                                    <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
                                 <!-- mt icon list start here -->
@@ -157,6 +158,17 @@
 
                                         </li>
                                         <li>
+                                            <button onclick="window.location.href='../scripts/changepassword.php';" style="width: 250px;
+                                                    padding: 12px 10px 10px;margin-top: -10px;text-align: center;
+                                                    text-transform: uppercase;display: block;font-size: 14px;
+                                                    line-height: 20px;font-family: 'Montserrat', sans-serif;font-weight: 700;
+                                                    border: none;outline: none;border-radius: 25px;
+                                                    -webkit-transition: all 0.25s linear;-o-transition: all 0.25s linear;
+                                                    transition: all 0.25s linear;background: #0000ff;color: #fff;">
+                                                    CHANGE PASSWORD
+                                                </button>
+                                        </li>
+                                        <li>
                                             <form method="post" >
                                                 <button name="logout" type="submit" style="width: 173px;
                                                     padding: 12px 10px 10px;margin-top: -10px;text-align: center;
@@ -168,17 +180,6 @@
                                                     LOGOUT
                                                 </button>
                                             </form>
-                                        </li>
-                                        <li>
-                                            <button name="logout" type="submit" onclick="window.location.href='../scripts/changepassword.php';" style="width: 250px;
-                                                    padding: 12px 10px 10px;margin-top: -10px;text-align: center;
-                                                    text-transform: uppercase;display: block;font-size: 14px;
-                                                    line-height: 20px;font-family: 'Montserrat', sans-serif;font-weight: 700;
-                                                    border: none;outline: none;border-radius: 25px;
-                                                    -webkit-transition: all 0.25s linear;-o-transition: all 0.25s linear;
-                                                    transition: all 0.25s linear;background: #ff8283;color: #fff;">
-                                                    CHANGE PASSWORD
-                                                </button>
                                         </li>
                                     </ul>
                                 </nav>
@@ -305,7 +306,15 @@
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                                        alt="Rentac"></a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 text-center">
+                                                <h3 style="margin : 19px 0 0 0"> Rentac </h3>
+                                            </div>
+                                        </div>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -406,6 +415,7 @@
         isset($_POST["logout"])
     ){
         $_SESSION["user"] = "guest";
+        echo "<script> setTimeout(() => { window.location.href = '../scripts/home.php'; }, 1000);  </script>";   
     }
 
     if(

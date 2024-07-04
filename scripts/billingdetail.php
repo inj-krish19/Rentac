@@ -15,14 +15,21 @@ if (empty($_SESSION["cart_id"])) {
 $cart_id = mysqli_real_escape_string($conn, $_SESSION["cart_id"]);
 
 $query = "
-    SELECT cart.quantity, cart.amount, 
-           customer.fname, customer.lname, customer.email, customer.contact_no,  
-           product.product_name, product.price
-    FROM cart
-    JOIN customer ON cart.customer_id = customer.customer_id
-    JOIN product ON cart.product_id = product.productid
-    WHERE cart.cart_id = '$cart_id'
+    SELECT C.fname,C.lname,C.email,C.contact_no from customer C where C.customer_id = ". $_SESSION["user"] ."
 ";
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) > 0) {
+    $details = mysqli_fetch_assoc($result);
+} else {
+    echo "No order details found.";
+    exit;
+}
+
+$query = "
+  select * from cart C,product P where C.product_id =  P.productid and C.cart_id = ". $_SESSION["cart_id"] .";
+";
+
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
@@ -32,7 +39,7 @@ if (mysqli_num_rows($result) > 0) {
     exit;
 }
 
-$addressQuery = "select * from address where person_id = ". $_SESSION["user"] ." ";
+$addressQuery = "select * from address where person_id = ". $_SESSION["user"] ." and person_type = 'Customer' ";
 
 $addressResult = mysqli_query($conn,$addressQuery);
 
@@ -110,7 +117,9 @@ mysqli_close($conn);
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-12">
-              <div class="mt-logo"><a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a></div>
+              <div class="mt-logo" style="height:50px;    width:50px;">
+                    <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                </div>
               <ul class="mt-icon-list">
                 <li class="hidden-lg hidden-md">
                   <a href="#" class="bar-opener mobile-toggle">
@@ -161,7 +170,7 @@ mysqli_close($conn);
         <div class="mt-frame">
           <form >
             <fieldset>
-              <input type="text" placeholder="Search...">
+              <input type="text" required placeholder="Search...">
               <span class="icon-microphone"></span>
               <button class="icon-magnifier" type="submit"></button>
             </fieldset>
@@ -208,22 +217,22 @@ mysqli_close($conn);
                 <fieldset>
                   <div class="form-group">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Name" value="<?php echo $order_details['fname']; ?>">
+                      <input type="text" class="form-control" required placeholder="Name" value="<?php echo $details['fname']; ?>">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Last Name" value="<?php echo $order_details['lname']; ?>">
+                      <input type="text" class="form-control" required placeholder="Last Name" value="<?php echo $details['lname']; ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col">
-                      <input type="email" class="form-control" placeholder="Email Address" value="<?php echo $order_details['email']; ?>">
+                      <input type="email" class="form-control" required placeholder="Email Address" value="<?php echo $details['email']; ?>">
                     </div>
                     <div class="col">
-                      <input type="tel" class="form-control" placeholder="Phone Number" value="<?php echo $order_details['contact_no']; ?>">
+                      <input type="tel" class="form-control" required placeholder="Phone Number" value="<?php echo $details['contact_no']; ?>">
                     </div>
                   </div>
                   <div class="form-group">
-                    <select class="form-control" name="country" >
+                    <select class="form-control" required name="country" >
                       <?php if( isset(  $addressRecord['country'] ) ){ echo $addressRecord['country'];  }else{ echo ""; } ?>
                       <option ><?php if( isset(  $addressRecord['country'] ) ){ echo strtoupper($addressRecord['country']);  }else{ echo "Select Country"; } ?></option>
                       <option >India</option>
@@ -231,16 +240,16 @@ mysqli_close($conn);
                     </select>
                   </div>
                   <div class="form-group">
-                    <textarea class="form-control" name="street" placeholder="Street" ><?php if( isset(  $addressRecord['street'] ) ){ echo $addressRecord['street'];  }else{ echo ""; } ?></textarea>
+                    <textarea class="form-control" name="street" required placeholder="Street" ><?php if( isset(  $addressRecord['street'] ) ){ echo $addressRecord['street'];  }else{ echo ""; } ?></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="city" placeholder="Town / City" value="<?php if( isset(  $addressRecord['city'] ) ){ echo $addressRecord['city'];  }else{ echo ""; } ?>">
+                    <input type="text" class="form-control" name="city" required placeholder="Town / City" value="<?php if( isset(  $addressRecord['city'] ) ){ echo $addressRecord['city'];  }else{ echo ""; } ?>">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="district" placeholder="State" value="<?php if( isset(  $addressRecord['district'] ) ){ echo $addressRecord['district'];  }else{ echo ""; } ?>">
+                    <input type="text" class="form-control" name="district" required placeholder="State" value="<?php if( isset(  $addressRecord['district'] ) ){ echo $addressRecord['district'];  }else{ echo ""; } ?>">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="pincode" placeholder="Postal Code" value="<?php if( isset(  $addressRecord['pincode'] ) ){ echo $addressRecord['pincode'];  }else{ echo ""; } ?>">
+                    <input type="text" class="form-control" name="pincode" required placeholder="Postal Code" value="<?php if( isset(  $addressRecord['pincode'] ) ){ echo $addressRecord['pincode'];  }else{ echo ""; } ?>">
                   </div>
                   <div class="form-group">
                     <input style=" width: 173px;
@@ -343,7 +352,15 @@ mysqli_close($conn);
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
-                                        <a href="../scripts/hpme.php"><img src="../Images/logos/Rentac.jpg" alt="Rentac"></a>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
+                                                        alt="Rentac"></a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 text-center">
+                                                <h3 style="margin : 19px 0 0 0"> Rentac </h3>
+                                            </div>
+                                        </div>
                                     </div>
                                     <ul class="list-unstyled address-list">
                                         <li><i class="fa fa-map-marker"></i>
@@ -400,7 +417,7 @@ mysqli_close($conn);
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
                                     <p>© <a href="../scripts/home.php">Rentac.</a> - All rights Reserved</p>
-                                </div>he
+                                </div>
                             </div>
                         </div>
                     </div>

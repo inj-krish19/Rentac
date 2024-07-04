@@ -73,7 +73,7 @@
                             if( password_verify( $pass,$record["password"]) ){
                                 $_SESSION["user"] = $record["customer_id"];
                                 echo "<div class='alert alert-success' role='alert'> Hello ".  $record['fname'] .", Redirecting to Product Page </div>";
-                                echo "<script> setTimeout(() => { window.location.href = '../pages/product.html'; }, 3000);  </script>";
+                                echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
                                 $flag = 1;
                                 break;
                             }
