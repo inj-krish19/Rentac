@@ -258,7 +258,7 @@
                                     </li>
                                     <li><a onclick="window.location.href='search.php'" class="icon-magnifier"></a></li>
                                     <li class="drop">
-                                        <a href="cart.php" class="cart-opener">
+                                        <a href="../scripts/trackorder.php">
                                             <span class="icon-handbag"></span>
                                         </a>
                                     </li>
@@ -286,7 +286,7 @@
                                         <li class="drop">
                                             <a href="#">Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                             <!-- mt dropmenu start here -->
-                                            <div class="mt-dropmenu text-left" style="left:60%; right:0%;">
+                                            <div class="mt-dropmenu text-left" style="left:30%; right:0%;">
                                                 <!-- mt frame start here -->
                                                 <div class="mt-frame"
                                                     style="max-width: 500px; width: 300px; padding: 15px;">
@@ -640,8 +640,10 @@
                                         <li><a href=<?php  makeUrl("event=party");  ?> >Party</a></li>
                                     </ul>
                                 </div>
+                                
                                 <!-- Footer Tabs of the Page -->
                             </div>
+                            
                             <div class="col-xs-12 col-sm-6 col-md-3 text-right">
                                 <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">

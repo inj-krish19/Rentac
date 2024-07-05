@@ -56,6 +56,8 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
 <?php
 require_once("connection.php");
 
+try{
+
 if (empty($_REQUEST["pid"])) {
   echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000);  </script>";
   exit;
@@ -94,8 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         $record = mysqli_fetch_assoc($result);
         $price = $record['price'];
-        $quantity = $_SESSION["udQ"];
-        $amount = $_SESSION["udV"];
+        $quantity = isset($_SESSION["udQ"]) ? $_SESSION["udQ"] : 1;
+        $amount = isset($_SESSION["udV"]) ? $_SESSION["udV"] : $quantity * $price;
 
         // Insert into cart table
         $insert_query = "INSERT INTO cart (product_id, customer_id, payment_method, quantity, amount) 
@@ -113,6 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "No product found.";
     }
+}
+
+}catch( Exception ){
+    echo "<div class='container text-center' style='color:#868686;'> Wait a Minute </div>";
 }
 
 mysqli_close($conn);
@@ -162,6 +168,8 @@ mysqli_close($conn);
                 </li>
                 <li><a href="../pages/aboutus.html">About</a></li>
                 <li><a href="../pages/contactus.html">Contact</a></li>
+                <li><a href="../scripts/trackorder.php"><i class="icon-handbag"></i></a></li>
+
               </ul>
             </nav>
           </div>
@@ -364,7 +372,7 @@ mysqli_close($conn);
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>

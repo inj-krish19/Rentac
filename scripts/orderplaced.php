@@ -75,7 +75,7 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
                                         <li class="drop">
                                             <a href="#">Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                             <!-- mt dropmenu start here -->
-                                            <div class="mt-dropmenu text-left" style="left:60%; right:0%;">
+                                            <div class="mt-dropmenu text-left" style="left:30%; right:0%;">
                                                 <!-- mt frame start here -->
                                                 <div class="mt-frame"
                                                     style="max-width: 500px; width: 300px; padding: 15px;">
@@ -118,7 +118,7 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
                                                     aria-hidden="true"></i></a>
                                         </li>
                                         <li>
-                                            <?php 
+                                          <?php 
                                                 if( (!isset($_SESSION["user"]) || $_SESSION["user"] == "guest" ) ){
                                             ?>
                                               <a href="../pages/login.html">Login <i
@@ -129,8 +129,9 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
                                                       class="fa fa-angle-down hidden-lg hidden-md"
                                                       aria-hidden="true"></i></a>
                                             <?php   }   ?>
-
-                                        </li>
+                                            
+                                          </li>
+                                          <li><a href="../scripts/trackorder.php"><i class="icon-handbag"></i></a></li>
                                     </ul>
                                 </nav>
                                 <!-- mt icon list end here -->

@@ -32,22 +32,23 @@
 
         // Sanitize productid
         $pid = mysqli_real_escape_string($conn, $_REQUEST["pid"]);
-
+        
         // Query to fetch the main product details
         $query = "SELECT productid, product_name, price, description, image_path FROM product WHERE productid = '$pid'";
         $result = mysqli_query($conn, $query);
-
+        
         // Check if product exists
         if (mysqli_num_rows($result) > 0) {
             $record = mysqli_fetch_assoc($result);
+            echo "<script> document.title = '". $record["product_name"] ."' </script>";
         } else {
             // Redirect if product not found
             // header("Location:../scripts/product.php");
-                        echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
-
+            echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+            
             exit;
         }
-
+        
         // Fetch RELATED PRODUCTS based on price limit query
         $reco = (float) $record["price"];
         $sql_related = "SELECT productid, product_name, price, image_path FROM product WHERE productid != $pid AND ( productid > $pid or productid > 207) LIMIT 6";
@@ -115,6 +116,7 @@
                                     <li><a href="../pages/aboutus.html">About</a></li>
                                     <li><a href="../pages/contactus.html">Contact <i class="fa fa-angle-down hidden-lg hidden-md"
                                                 aria-hidden="true"></i></a></li>
+                                    <li><a href="../scripts/trackorder.php"><i class="icon-handbag"></i></a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -298,7 +300,7 @@
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>

@@ -101,7 +101,7 @@
                                         <li class="drop">
                                             <a href="#">Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                             <!-- mt dropmenu start here -->
-                                            <div class="mt-dropmenu text-left" style="left:60%; right:0%;">
+                                            <div class="mt-dropmenu text-left" style="left:-30%; right:0%;">
                                                 <!-- mt frame start here -->
                                                 <div class="mt-frame"
                                                     style="max-width: 500px; width: 300px; padding: 15px;">
@@ -143,6 +143,7 @@
                                                     class="fa fa-angle-down hidden-lg hidden-md"
                                                     aria-hidden="true"></i></a>
                                         </li>
+                                        <li><a href="../scripts/trackorder.php"><i class="icon-handbag"></i></a></li>
                                         <li>
                                             <?php 
                                                 if( (!isset($_SESSION["user"]) || $_SESSION["user"] == "guest" ) ){
@@ -358,7 +359,7 @@
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>

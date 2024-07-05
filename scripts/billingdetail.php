@@ -156,6 +156,7 @@ mysqli_close($conn);
                   </li>
                   <li><a href="../pages/aboutus.html">About</a></li>
                   <li><a href="../pages/contactus.html">Contact <i class="fa fa-angle-down hidden-lg hidden-md" aria-hidden="true"></i></a></li>
+                  <li><a href="../scripts/trackorder.php"><i class="icon-handbag"></i></a></li>
                 </ul>
               </nav>
             </div>
@@ -403,7 +404,7 @@ mysqli_close($conn);
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
                                         <li><a href="../scripts/userprofile.php">My Account</a></li>
-                                        <li><a href="../scripts/orderplaced.php">Order Tracking</a></li>
+                                        <li><a href="../scripts/trackorder.php">Order Tracking</a></li>
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
