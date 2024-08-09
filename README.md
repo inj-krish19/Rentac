@@ -10,7 +10,7 @@ Our extensive selection of stylish chairs, tables, and sofas ensures that you ca
 
 -------------------------------------
 
-Website: rentac.000webhostapp.com
+Website: rentac.infnityfreeapp.com
 
 -------------------------------------
 
@@ -61,5 +61,7 @@ Authors
 - Krish Shah (inj_krish19): Krish is a dedicated developer with a keen interest in creating user-friendly web applications and also brings extensive experience in backend development, database architecture , integration , ensuring robust and scalable solutions.
 
 - Vishal Baghel (Rvbaghel) : Vishal is a dedicated developer
+
+We are gonna launch the official product,user and open source API soon
 
 * It is just a project it doesn't have any relation with reality or Real World.
