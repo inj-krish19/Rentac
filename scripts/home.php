@@ -3,51 +3,37 @@
 <html lang="en">
 
 <head>
-    <!-- set the encoding of your site -->
     <meta charset="utf-8">
-    <!-- set the viewport width and initial-scale on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <!-- include the site stylesheet -->
     <link rel="shortcut icon" href="../Images/logos/home.jpg" type="image/x-icon">
     <link
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
         rel='stylesheet' type='text/css'>
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/animate.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/icon-fonts.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/main.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <?php   require_once("../scripts/connection.php");  ?>
 <body class="right-side">
-    <!-- main container of all the page elements -->
     <div id="wrapper">
-        <!-- Page Loader -->
         <div id="pre-loader" class="loader-container">
             <div class="loader">
                 <img src="../Images/rings.svg" alt="loader">
             </div>
         </div>
-        <!-- W1 start here -->
         <div class="w1">
-            <!-- mt header style18 start here -->
             <header id="mt-header" class="style4">
                 <div class="mt-bottom-bar">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12">
-                                <!-- mt logo start here -->
                                 <div class="mt-logo" style="height:50px;    width:50px;">
                                     <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
-                                <!-- mt icon list start here -->
                                 <ul class="mt-icon-list">
                                     <li class="hidden-lg hidden-md">
                                         <a href="#" class="bar-opener mobile-toggle">
@@ -57,8 +43,6 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <!-- mt icon list end here -->
-                                <!-- navigation start here -->
                                 <nav id="nav">
                                     <ul>
                                         <li>
@@ -72,12 +56,9 @@
                                         </li>
                                         <li class="drop">
                                             <a href="#">Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                            <!-- mt dropmenu start here -->
                                             <div class="mt-dropmenu text-left" style="left:60%; right:0%;">
-                                                <!-- mt frame start here -->
                                                 <div class="mt-frame"
                                                     style="max-width: 500px; width: 300px; padding: 15px;">
-                                                    <!-- mt f box start here -->
                                                     <div class="mt-col-3">
                                                         <div class="sub-dropcont">
                                                             <strong class="title"><a href="product.php"
@@ -100,13 +81,9 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                        <!-- mt col3 end here -->
                                                     </div>
-                                                    <!-- mt f box end here -->
                                                 </div>
-                                                <!-- mt frame end here -->
                                             </div>
-                                            <!-- mt dropmenu end here -->
                                             <span class="mt-mdropover"></span>
                                         </li>
                                         <li><a href="../pages/aboutus.html">About</a></li>
@@ -131,16 +108,12 @@
                                         </li>
                                     </ul>
                                 </nav>
-                                <!-- mt icon list end here -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- mt bottom bar end here -->
                 <span class="mt-side-over"></span>
-            </header><!-- mt header style4 end here -->
-            <!-- mt side menu start here -->
-            <!-- mt search popup start here -->
+            </header>
             <div class="mt-search-popup">
                 <div class="mt-holder">
                     <a href="#" class="search-close"><span></span><span></span></a>
@@ -154,13 +127,11 @@
                         </form>
                     </div>
                 </div>
-            </div><!-- mt search popup end here -->
-
+            </div>
             <main id="mt-main">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <!-- mt productsc start here -->
                             <div class="mt-productsc style2 wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="row">
                                     <div class="col-xs-12 mt-heading text-uppercase text-center">
@@ -168,11 +139,8 @@
                                         <p>FURNITURE DESIGNS IDEAS</p>
                                     </div>
                                 </div>
-                                <!-- mt productscrollbar start here -->
                                 <div id="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm" class="row" style="display:flex;   align-items:center; justify-content:space-around;">
-                                    <!-- mt holder start here -->
                                     <div class="mt-holder"  style="display: flex;flex-wrap: wrap;justify-content: space-around;">
-                                    
                                     <?php   
 
                                         $num = array(5,30,55,73,82,110,147,158,172,183,198,210);
@@ -184,27 +152,24 @@
 
                                             $recordA = mysqli_fetch_assoc($resultA);
                                     ?>
-                                        <!-- mt product start here -->
                                         <div class="mt-product1 large">
-                                            <!-- box start here -->
                                             <div class="box">
                                                 <img alt="image description" src="<?php  echo "../" . $recordA["image_path"] ?>" style="height:290px;   width:275px;">
                                                 <ul class="links">
                                                     <li><a href="cart.php?pid=<?php echo $recordA["productid"];  ?>"><i class="icon-handbag"></i></a></li>
                                                     <li><a href="productdetail.php?pid=<?php echo $recordA["productid"];  ?>"><i class="fa fa-eye"></i></a></li>
                                                 </ul>
-                                            </div><!-- box end here -->
-                                            <!-- txt end here -->
+                                            </div>
                                             <div class="txt">
                                                 <strong class="title"> <?php echo $recordA["product_name"]; ?> </strong>
                                                 <span class="price"><i class="fa fa-rupee"></i>
                                                     <span> <?php echo $recordA["price"]; ?> </span></span>
-                                            </div><!-- txt end here -->
-                                        </div><!-- mt product1 end here -->
+                                            </div>
+                                        </div>
                                     <?php   }   ?>
-                                    </div><!-- mt holder end here -->
-                                </div><!-- mt productscrollbar end here -->
-                            </div><!-- mt productsc end here -->
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mt-smallproducts wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="row">
 
@@ -216,7 +181,6 @@
                                             ?>
                                     <div class="col-xs-12 col-sm-6 col-md-3 ">
                                         <h3 class="heading"> <?php echo $event; ?> </h3>
-                                        <!-- mt product4 start here -->
                                         <?php   
                                             for($i=0;$i<3;$i++){   
                                                 
@@ -237,7 +201,7 @@
                                                 </div>
                                                 <span class="price"><i class="fa fa-rupee"></i> <?php echo $recordB["price"];  ?> </span>
                                             </div>
-                                        </div><!-- mt product4 end here -->
+                                        </div>
                                         <?php
                                             $j++;
                                            }   
@@ -249,7 +213,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- mt bottom bar start here -->
                 <div class="container">
                     <h1 class="text-center" style="color:black; margin-bottom:35px; text-transform: uppercase;font-family: 'Montserrat', sans-serif;">
                     Welcome to Rentac  </h1>
@@ -257,7 +220,6 @@
                         Whether you're looking to furnish your home, office, or event, we have a wide selection of high-quality 
                         furniture to meet your needs. From stylish chairs and tables to comfortable sofas, Rentac offers a convenient 
                         way to transform any space with minimal hassle. </h4>
-
                 <h2  style="color:black; font-family: 'Montserrat', sans-serif;">Our Services </h2>
 
                 <h4> Chairs: From dining chairs to office chairs, we have a variety to suit every style and need.  </h4>
@@ -284,13 +246,11 @@
                 <h4> Enjoy: Sit back and relax while we deliver and set up your furniture. </h4>
                 </div>
             </main>
-            <!-- footer of the Page -->
             <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
-                                <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
                                         <div class="row">
@@ -317,10 +277,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- F Widget About of the Page end -->
                             </div>
                             <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Categories</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -329,8 +287,6 @@
                                         <li><a href="../scripts/product.php?category=table">Tables</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -338,8 +294,6 @@
                                         <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -348,11 +302,9 @@
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
                             </nav>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page -->
                     <div class="footer-area">
                         <div class="container">
                             <div class="row">
@@ -362,20 +314,14 @@
                             </div>
                         </div>
                     </div>
-                </div> <!-- Footer Area of the Page end -->
+                </div> 
             </footer>
-            <!-- footer of the Page end -->
-        </div><!-- W1 end here -->
+        </div>
         <span id="back-top" class="fa fa-arrow-up"></span>
     </div>
-    <!-- include jQuery -->
     <script src="../js/jquery.js"></script>
-    <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
-    <!-- include clear console -->
     <script src="../js/clear console.js"></script>
-    <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
 </body>
-
 </html>
