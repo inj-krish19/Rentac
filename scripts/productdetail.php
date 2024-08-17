@@ -17,54 +17,36 @@
 
 <body>
     <div id="wrapper">
-        <!-- PHP Code to Fetch Product Details -->
         <?php
-        // Ensure productid is provided
-        if (empty($_REQUEST["pid"])) {
-            // header("Location:../scripts/product.php");
-            echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+            if (empty($_REQUEST["pid"])) {
+                echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+                exit;
+            }
 
-            exit; // Always exit after redirection
-        }
+            require_once("connection.php");
+            $pid = mysqli_real_escape_string($conn, $_REQUEST["pid"]);
 
-        // Include database connection
-        require_once("connection.php");
-
-        // Sanitize productid
-        $pid = mysqli_real_escape_string($conn, $_REQUEST["pid"]);
-        
-        // Query to fetch the main product details
-        $query = "SELECT productid, product_name, price, description, image_path FROM product WHERE productid = '$pid'";
-        $result = mysqli_query($conn, $query);
-        
-        // Check if product exists
-        if (mysqli_num_rows($result) > 0) {
-            $record = mysqli_fetch_assoc($result);
-            echo "<script> document.title = '". $record["product_name"] ."' </script>";
-        } else {
-            // Redirect if product not found
-            // header("Location:../scripts/product.php");
-            echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+            $query = "SELECT productid, product_name, price, description, image_path FROM product WHERE productid = '$pid'";
+            $result = mysqli_query($conn, $query);
             
-            exit;
-        }
-        
-        // Fetch RELATED PRODUCTS based on price limit query
-        $reco = (float) $record["price"];
-        $sql_related = "SELECT productid, product_name, price, image_path FROM product WHERE productid != $pid AND ( productid > $pid or productid > 207) LIMIT 6";
-        $result_related = mysqli_query($conn, $sql_related);
+            if (mysqli_num_rows($result) > 0) {
+                $record = mysqli_fetch_assoc($result);
+                echo "<script> document.title = '". $record["product_name"] ."' </script>";
+            } else {
+                echo "<script> setTimeout(() => { window.location.href = '../scripts/product.php'; }, 3000 ); </script>";
+                exit;
+            }
+            
+            $reco = (float) $record["price"];
+            $sql_related = "SELECT productid, product_name, price, image_path FROM product WHERE productid != $pid AND ( productid > $pid or productid > 207) LIMIT 6";
+            $result_related = mysqli_query($conn, $sql_related);
 
-        // Check for results
-        if (!$result_related) {
-            die('Error fetching related products: ' . mysqli_error($conn));
-        }
+            if (!$result_related) {
+                die('Error fetching related products: ' . mysqli_error($conn));
+            }
 
-        // Close connection
-        mysqli_close($conn);
+            mysqli_close($conn);
         ?>
-        <!-- PHP Code Ends -->
-
-        <!-- Header Section -->
         <header id="mt-header" class="style4">
             <div class="mt-bottom-bar">
                 <div class="container-fluid">
@@ -125,11 +107,7 @@
             </div>
             <span class="mt-side-over"></span>
         </header>
-        <!-- Header Section End -->
-
-        <!-- Main Content Section -->
         <main id="mt-main">
-            <!-- Product Details Banner Section -->
             <section class="mt-contact-banner wow fadeInUp" data-wow-delay="0.4s">
                 <div class="container">
                     <div class="row">
@@ -146,9 +124,6 @@
                     </div>
                 </div>
             </section>
-            <!-- Product Details Banner Section End -->
-
-            <!-- Product Details Section -->
             <section class="mt-product-detial" style="margin-bottom:3%;">
                 <div class="container">
                     <div class="row">
@@ -199,9 +174,6 @@
                     </div>
                 </div>
             </section>
-            <!-- Product Details Section End -->
-
-            <!-- Related Products Section -->
             <div class="related-products wow fadeInUp" data-wow-delay="0.4s">
                 <div class="container">
                     <div class="row">
@@ -211,25 +183,20 @@
                             <ul class="mt-holder" style="display: flex;flex-wrap: wrap;justify-content: space-around;align-items: center;list-style: none;">    
                             <?php while ($row = mysqli_fetch_assoc($result_related)) : ?>
                                     <li>
-                                        <!-- <div class="mt-product1"> -->
                                         <div class="product-3">
-                                            <!-- img start here -->
                                             <div class="img" style="height:300px; width:300px;">
                                                 <img alt="Preview Unavailable" src="<?php echo "../" . $row["image_path"]; ?>">
                                             </div>
-                                            <!-- txt start here -->
                                             <div class="txt">
                                                 <strong class="title"><?php echo $row["product_name"]; ?></strong>
                                                 <span class="price"><i class="fa fa-rupee"></i> <?php echo $row["price"]; ?>.00 </span>
                                             </div>
-                                            <!-- <p class="text-left pd-3" style="margin-bottom:auto;"><?php echo $row["description"]; ?></p> -->
-                                            <!-- links start here -->
                                             <ul class="links">
                                                 <li><a href="cart.php?pid=<?php echo $row['productid']; ?>"><i class="icon-handbag"></i></a></li>
                                                 <li><a href="productdetail.php?pid=<?php echo $row['productid']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                                 </li>
                                             </ul>
-                                        </div><!-- mt product 3 end here -->
+                                        </div>
                                     </li>
                                 <?php endwhile; ?>
                                 </ul>
@@ -238,15 +205,12 @@
                     </div>
                 </div>
             </div>
-            <!-- Related Products Section End -->
         </main>
-<!-- footer of the Page -->
-<footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
+            <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
-                                <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
                                         <div class="row">
@@ -273,10 +237,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- F Widget About of the Page end -->
                             </div>
                             <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Categories</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -285,8 +247,6 @@
                                         <li><a href="../scripts/product.php?category=table">Tables</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -294,8 +254,6 @@
                                         <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -304,11 +262,9 @@
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
                             </nav>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page -->
                     <div class="footer-area">
                         <div class="container">
                             <div class="row">
@@ -318,18 +274,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page end -->
-            </footer><!-- footer of the Page end -->
+            </footer>
         </div>
         <span id="back-top" class="fa fa-arrow-up"></span>
     </div>
-    <!-- include jQuery -->
     <script src="../js/jquery.js"></script>
-    <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
-    <!-- include clear console -->
     <script src="../js/clear console.js"></script>
-    <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script></body>
-
 </html>
