@@ -43,10 +43,10 @@ if( (!isset($_SESSION["user"])) || $_SESSION["user"] == "guest" ){
     if (quantity > maxQuantity) {
         document.getElementById('error').innerText = "Quantity not available";
         document.getElementById('total').innerText = "N/A";
-        return null; // Return null if quantity exceeds maxQuantity
+        return null; 
     } else {
         document.getElementById('error').innerText = "";
-        return total.toFixed(2); // Return the updated total value
+        return total.toFixed(2); 
     }
 }
 
@@ -75,21 +75,15 @@ if (mysqli_num_rows($result) > 0) {
   exit;
 }
 
-// Initialize quantity and amount
-$quantity = 1; // Default quantity
-$amount = $record['price']; // Initial amount based on default quantity
+$quantity = 1; 
+$amount = $record['price'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve and sanitize form data
-    $pid = mysqli_real_escape_string($conn, $_POST["pid"]);
-    
-    // Generate a random customer ID (1 to 10)
-    $customer_id = $_SESSION["user"];
 
-    // Assuming payment method is null initially
+    $pid = mysqli_real_escape_string($conn, $_POST["pid"]);
+    $customer_id = $_SESSION["user"];
     $payment_method = "Cash";
 
-    // Query to fetch product details
     $query = "SELECT productid, product_name, price FROM product WHERE productid = '$pid'";
     $result = mysqli_query($conn, $query);
 
@@ -99,18 +93,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $quantity = isset($_SESSION["udQ"]) ? $_SESSION["udQ"] : 1;
         $amount = isset($_SESSION["udV"]) ? $_SESSION["udV"] : $quantity * $price;
 
-        // Insert into cart table
         $insert_query = "INSERT INTO cart (product_id, customer_id, payment_method, quantity, amount) 
                          VALUES ($pid, $customer_id, 'Cash', '$quantity', '$amount')";
 
         if (mysqli_query($conn, $insert_query)) {
           $cart_id = mysqli_insert_id($conn);
-          // Redirect to order complete page with cart_id
           $_SESSION["cart_id"] = $cart_id;
           echo "<script> setTimeout(() => { window.location.href = '../scripts/billingdetail.php'; }, 3000);  </script>";
           exit;
         } else {
-            echo "Error: " . mysqli_error($conn); // Output MySQL error
+            echo "Error: " . mysqli_error($conn); 
         }
     } else {
         echo "No product found.";
@@ -308,17 +300,14 @@ mysqli_close($conn);
           </div>
         </div>
       </div>
-    </section><!-- Mt Detail Section of the Page end -->
+    </section>
 
-  </main><!-- Main of the Page end here -->
-      <!-- footer of the Page -->
-      
+  </main>
       <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
-                                <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
                                         <div class="row">
@@ -345,10 +334,8 @@ mysqli_close($conn);
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- F Widget About of the Page end -->
                             </div>
                             <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Categories</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -357,8 +344,6 @@ mysqli_close($conn);
                                         <li><a href="../scripts/product.php?category=table">Tables</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -366,8 +351,6 @@ mysqli_close($conn);
                                         <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -376,11 +359,9 @@ mysqli_close($conn);
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
                             </nav>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page -->
                     <div class="footer-area">
                         <div class="container">
                             <div class="row">
@@ -390,19 +371,14 @@ mysqli_close($conn);
                             </div>
                         </div>
                     </div>
-                  </div>  <!-- Footer Area of the Page end -->
-            </footer><!-- footer of the Page end -->
-      <!-- footer of the Page end -->
+                  </div>  
+            </footer>
     </div>
     <span id="back-top" class="fa fa-arrow-up"></span>
   </div>
-  <!-- include jQuery -->
   <script src="../js/jquery.js"></script>
-  <!-- include jQuery -->
   <script src="../js/plugins.js"></script>
-  <!-- include clear console -->
   <script src="../js/console clear.js"></script>
-  <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
 </body>
 </html>

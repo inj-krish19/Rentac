@@ -45,13 +45,9 @@ $addressResult = mysqli_query($conn,$addressQuery);
 
 $addressRecord = mysqli_fetch_assoc($addressResult);
 
-// print_r($addressRecord);
-
-// Handle form submission for address details
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate form inputs
     $errors = [];
-    $person_id = mysqli_real_escape_string($conn, $_SESSION["user"]); // Assuming you have stored customer_id in session
+    $person_id = mysqli_real_escape_string($conn, $_SESSION["user"]);
 
     $city = mysqli_real_escape_string($conn, $_POST["city"]);
     $district = mysqli_real_escape_string($conn, $_POST["district"]);
@@ -59,31 +55,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $street = mysqli_real_escape_string($conn, $_POST["street"]);
     $pincode = mysqli_real_escape_string($conn, $_POST["pincode"]);
 
-    // Simple validation
     if (empty($city)) {
         $errors[] = "City is required.";
     }
-    // Add more validation as per your requirements
 
     if (empty($errors)) {
-        // Insert into address table
         $insert_query = "INSERT INTO address (person_id, city, district, country, street, pincode)
                         VALUES (". $_SESSION['user'] .", '$city', '$district', '$country', '$street', '$pincode')";
-        
-        // echo $insert_query;
         
         mysqli_query($conn,$query);
 
         if (mysqli_query($conn, $insert_query)) {
-            // Redirect to another page after successful insertion
             echo "<script> setTimeout(() => { window.location.href = '../scripts/orderplaced.php'; }, 3000);  </script>";
             exit;
         } else {
             echo "Error: " . mysqli_error($conn);
-        }
-    } else {
-        foreach ($errors as $error) {
-            // echo "<p>$error</p>";
         }
     }
 }
@@ -343,14 +329,13 @@ mysqli_close($conn);
           </div>
         </div>
       </section>
-    </main>      <!-- footer of the Page -->
+    </main>
      
       <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
-                                <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
                                         <div class="row">
@@ -377,10 +362,8 @@ mysqli_close($conn);
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- F Widget About of the Page end -->
                             </div>
                             <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Categories</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -389,8 +372,6 @@ mysqli_close($conn);
                                         <li><a href="../scripts/product.php?category=table">Tables</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -398,8 +379,6 @@ mysqli_close($conn);
                                         <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -408,11 +387,9 @@ mysqli_close($conn);
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
                             </nav>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page -->
                     <div class="footer-area">
                         <div class="container">
                             <div class="row">
@@ -422,19 +399,14 @@ mysqli_close($conn);
                             </div>
                         </div>
                     </div>
-                </div>    <!-- Footer Area of the Page end -->
-            </footer><!-- footer of the Page end -->
-      <!-- footer of the Page end -->
+                </div> 
+            </footer>
     </div>
     <span id="back-top" class="fa fa-arrow-up"></span>
   </div>
-  <!-- include jQuery -->
   <script src="../js/jquery.js"></script>
-  <!-- include jQuery -->
   <script src="../js/plugins.js"></script>
-  <!-- include clear console -->
   <script src="../js/clear console.js"></script>
-  <!-- include jQuery -->
   <script src="../js/jquery.main.js"></script>
 </body>
 </html>
