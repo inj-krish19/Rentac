@@ -3,25 +3,16 @@
 <html lang="en">
 
 <head>
-    <!-- set the encoding of your site -->
     <meta charset="utf-8">
-    <!-- set the viewport width and initial-scale on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
     <link rel="shortcut icon" href="../Images/logos/order.jpg" type="image/x-icon">
-    <!-- include the site stylesheet -->
     <link
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
         rel='stylesheet' type='text/css'>
-    <!-- include the site stylesheet -->
-    <!-- <link rel="stylesheet" href="../css/bootstrap.css">    from connection.php -->
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/animate.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/icon-fonts.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/main.css">
-    <!-- include the site stylesheet -->
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <?php
@@ -60,34 +51,25 @@
 
     }
 
-    // print_r($_SERVER);
-
 ?>
 
 <body>
-    <!-- main container of all the page elements -->
     <div id="wrapper">
-        <!-- Page Loader -->
-        <!-- <div id="pre-loader" class="loader-container">
+        <div id="pre-loader" class="loader-container">
             <div class="loader">
                 <img src="../Images/rings.svg" alt="loader">
             </div>
-        </div> -->
-        <!-- W1 start here -->
+        </div>
         <div class="w1">
-            <!-- mt header style4 start here -->
             <header id="mt-header" class="style4">
-                <!-- mt bottom bar start here -->
                 <div class="mt-bottom-bar">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12">
-                                <!-- mt logo start here -->
                                 <div class="mt-logo" style="height:50px;    width:50px;">
                                     <a href="../scripts/home.php"><img src="../Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
-                                <!-- mt icon list end here -->
                                 <ul class="mt-icon-list">
                                     <li class="hidden-lg hidden-md">
                                         <a href="#" class="bar-opener mobile-toggle">
@@ -110,7 +92,6 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <!-- navigation start here -->
                                 <nav id="nav">
                                     <ul>
                                         <li>
@@ -125,12 +106,9 @@
                                         </li>
                                         <li class="drop">
                                             <a href="#">Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                            <!-- mt dropmenu start here -->
                                             <div class="mt-dropmenu text-left" style="left:30%; right:0%;">
-                                                <!-- mt frame start here -->
                                                 <div class="mt-frame"
                                                     style="max-width: 500px; width: 300px; padding: 15px;">
-                                                    <!-- mt f box start here -->
                                                     <div class="mt-col-3">
                                                         <div class="sub-dropcont">
                                                             <strong class="title"><a href="product.php"
@@ -149,13 +127,9 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                        <!-- mt col3 end here -->
                                                     </div>
-                                                    <!-- mt f box end here -->
                                                 </div>
-                                                <!-- mt frame end here -->
                                             </div>
-                                            <!-- mt dropmenu end here -->
                                             <span class="mt-mdropover"></span>
                                         </li>
                                         <li><a href="../pages/aboutus.html">About</a></li>
@@ -180,21 +154,16 @@
                                         </li>
                                     </ul>
                                 </nav>
-                                <!-- mt icon list end here -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- mt bottom bar end here -->
                 <span class="mt-side-over"></span>
-            </header><!-- mt header style4 end here -->
-            <!-- mt side menu start here -->
+            </header>
             <div class="mt-side-menu ">
-                <!-- mt holder start here -->
                 <div class="mt-holder">
                     <a href="#" class="side-close"><span></span><span></span></a>
                     <strong class="mt-side-title">MY ACCOUNT</strong>
-                    <!-- mt side widget start here -->
                     <div class="mt-side-widget">
                         <header>
                             <span class="mt-side-subtitle">SIGN IN</span>
@@ -208,9 +177,7 @@
                             </fieldset>
                         </form>
                     </div>
-                    <!-- mt side widget end here -->
                     <div class="or-divider"><span class="txt">or</span></div>
-                    <!-- mt side widget start here -->
                     <div class="mt-side-widget">
                         <header>
                             <span class="mt-side-subtitle">CREATE NEW ACCOUNT</span>
@@ -245,17 +212,13 @@
                             </fieldset>
                         </form>
                     </div>
-                    <!-- mt side widget end here -->
                 </div>
-                <!-- mt holder end here -->
-            </div><!-- mt side menu end here -->
-            <!-- mt main start here -->
+            </div>
             <main id="mt-main">
-                <!-- Mt Contact Banner of the Page -->
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h1>CART</h1><!-- Breadcrumbs of the Page end -->
+                            <h1>CART</h1>
                         </div>
                     </div>
                 </div>
@@ -316,14 +279,12 @@
                         <?php   }   ?>
                     </div>
                 </div>
-            </main><!-- mt main end here -->
-            <!-- footer of the Page -->
+            </main>
             <footer id="mt-footer" class="style7 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="footer-holder bg-grey">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 mt-paddingbottomsm">
-                                <!-- F Widget About of the Page -->
                                 <div class="f-widget-about">
                                     <div class="logo">
                                         <div class="row">
@@ -351,10 +312,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- F Widget About of the Page end -->
                             </div>
                             <nav class="col-xs-12 col-sm-8 col-md-5 mt-paddingbottomsm">
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Categories</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -363,8 +322,6 @@
                                         <li><a href="../scripts/product.php?category=table">Tables</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Information</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -372,8 +329,6 @@
                                         <li><a href="../pages/contactus.html">Contact Us</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
-                                <!-- Footer Nav of the Page -->
                                 <div class="nav-widget-1">
                                     <h3 class="f-widget-heading">Account</h3>
                                     <ul class="list-unstyled f-widget-nav">
@@ -382,11 +337,9 @@
                                         <li><a href="../scripts/cart.php">Shopping Cart</a></li>
                                     </ul>
                                 </div>
-                                <!-- Footer Nav of the Page end -->
                             </nav>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page -->
                     <div class="footer-area">
                         <div class="container">
                             <div class="row">
@@ -396,18 +349,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Footer Area of the Page end -->
-            </footer><!-- footer of the Page end -->
-        </div><!-- W1 end here -->
+            </footer>
+        </div>
         <span id="back-top" class="fa fa-arrow-up"></span>
     </div>
-    <!-- include jQuery -->
     <script src="../js/jquery.js"></script>
-    <!-- include jQuery -->
     <script src="../js/plugins.js"></script>
-    <!-- include clear console -->
     <script src="../js/clear console.js"></script>
-    <!-- include jQuery -->
     <script src="../js/jquery.main.js"></script>
 </body>
 </html>
