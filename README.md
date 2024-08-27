@@ -62,6 +62,6 @@ Authors
 
 - Vishal Baghel (Rvbaghel) : Vishal is a dedicated developer
 
-We are gonna launch the official product,user and open source API soon
+We are gonna launch the official product,user and open source Rentac API soon
 
 * It is just a project it doesn't have any relation with reality or Real World.
