@@ -1,6 +1,8 @@
-# Rentac
 
-Rentac
+<div style="display:flex;" >
+<img src="Images/logos/Rentac.jpg" style="height : 200px; width: 200px">
+  <h1>Rentac</h1>
+</div>
 
 This repository contains the source code for the Rentac website. 
 
