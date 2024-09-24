@@ -1,7 +1,7 @@
 
-<div style="display:flex;" >
+<div style="display:flex; height: 500px; width: 500px; justify-content: center; align-items: center" >
 <img src="Images/logos/Rentac.jpg" style="height : 200px; width: 200px">
-  <h1>Rentac</h1>
+  <h1>Rentac</h1> 
 </div>
 
 This repository contains the source code for the Rentac website. 
@@ -12,13 +12,13 @@ Our extensive selection of stylish chairs, tables, and sofas ensures that you ca
 
 -------------------------------------
 
-Website: rentac.infnityfreeapp.com
+
+
+<strong> Website: rentac.infnityfreeapp.com </strong>
 
 -------------------------------------
 
-About Rentac
-
--------------------------------------
+<strong> About Rentac </strong>
 
 At Rentac, we believe that furnishing your space should be easy, flexible, and affordable. 
 
@@ -28,7 +28,7 @@ Our products range from stylish chairs and tables to comfortable sofas, providin
 
 --------------------------------------
 
-Features
+<strong> Features </strong>
 
 - Wide range of furniture for rent
 
@@ -42,9 +42,7 @@ Features
 
 ------------------------------------
 
-Getting Started
-
-------------------------------------
+<strong> Getting Started </strong>
 
 To get started with Rentac, visit our website and browse our extensive collection of furniture. 
 
@@ -52,15 +50,15 @@ Select the items you need, choose your rental period, and enjoy the convenience 
 
 ---------------------------------------
 
-Contributing
+<strong> Contributing </strong>
 
 We welcome contributions from the community. If you have ideas for new features or improvements, please submit a pull request or open an issue.
 
 ------------------------------------------------
 
-Authors
+<strong> Authors : </strong>
 
-- Krish Shah (inj_krish19): Krish is a dedicated developer with a keen interest in creating user-friendly web applications and also brings extensive experience in backend development, database architecture , integration , ensuring robust and scalable solutions.
+- <strong> Krish Shah </strong> (inj_krish19): Krish is a dedicated developer with a keen interest in creating user-friendly web applications and also brings extensive experience in backend development, database architecture , integration , ensuring robust and scalable solutions.
 
 - Vishal Baghel (Rvbaghel) : Vishal is a dedicated developer
 
