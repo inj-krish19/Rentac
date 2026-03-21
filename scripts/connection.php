@@ -19,18 +19,18 @@
 </html>
 <?php
 
-    $serverName = "localhost";
-    $userName = "root";
-    $password = "";
-    $databaseName = "rentac";
-    $portNumber = "3000";
+    $serverName = $_ENV['DB_HOST'] ?? null;
+    $userName = $_ENV['DB_USER'] ?? null;
+    $password = $_ENV['DB_PASSWORD'] ?? null;
+    $databaseName = $_ENV['DB_NAME'] ?? null;
+    $portNumber = $_ENV['DB_PORT'] ?? null;
 
-    $conn = mysqli_connect($serverName,$userName,$password,$databaseName);
-
-    echo "<div class='conatiner mx-5 my-5'>";
-    
     try{
-
+        
+        $conn = mysqli_connect($serverName, $userName, $password, $databaseName, $portNumber);
+    
+        echo "<div class='conatiner mx-5 my-5'>";
+        
         if( $conn ){
             // echo "<div class='alert alert-success text-center' role='success'><h1>Connection Established Successfully</h1></div>";
         }else{
