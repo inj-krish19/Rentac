@@ -80,7 +80,7 @@
         }
     }
 
-    /*$query = "select productid,product_name,price,description,image_path from product ";
+    /*$query = "select product_id,product_name,price,description,image_path from product ";
 
     if( isset($_REQUEST["category"]) ){
         
@@ -511,8 +511,8 @@
                                                 <span class="price"><i class="fa fa-rupee"></i> <?php echo $record["price"]; ?>.00 </span>
                                             </div>
                                             <ul class="links">
-                                                <li><a href="cart.php?pid=<?php echo $record['productid']; ?>"><i class="icon-handbag"></i></a></li>
-                                                <li><a href="productdetail.php?pid=<?php echo $record['productid']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
+                                                <li><a href="cart.php?pid=<?php echo $record['product_id']; ?>"><i class="icon-handbag"></i></a></li>
+                                                <li><a href="productdetail.php?pid=<?php echo $record['product_id']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                                 </li>
                                             </ul>
                                         </div>

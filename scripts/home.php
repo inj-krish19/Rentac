@@ -146,7 +146,7 @@
                                         $num = array(5,30,55,73,82,110,147,158,172,183,198,210);
 
                                         for($i=0;$i<12;$i++){   
-                                            $queryA = "select productid,product_name,image_path,price,description from product limit ". $num[$i] ." ,1 ";
+                                            $queryA = "select product_id,product_name,image_path,price,description from product limit ". $num[$i] ." ,1 ";
 
                                             $resultA = mysqli_query($conn,$queryA);
 
@@ -156,8 +156,8 @@
                                             <div class="box">
                                                 <img alt="image description" src="<?php  echo "../" . $recordA["image_path"] ?>" style="height:290px;   width:275px;">
                                                 <ul class="links">
-                                                    <li><a href="cart.php?pid=<?php echo $recordA["productid"];  ?>"><i class="icon-handbag"></i></a></li>
-                                                    <li><a href="productdetail.php?pid=<?php echo $recordA["productid"];  ?>"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="cart.php?pid=<?php echo $recordA["product_id"];  ?>"><i class="icon-handbag"></i></a></li>
+                                                    <li><a href="productdetail.php?pid=<?php echo $recordA["product_id"];  ?>"><i class="fa fa-eye"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="txt">
@@ -184,7 +184,7 @@
                                         <?php   
                                             for($i=0;$i<3;$i++){   
                                                 
-                                                $queryB = "select productid,product_name,image_path,price,description from product limit ". $num[$j] ." ,1 ";
+                                                $queryB = "select product_id,product_name,image_path,price,description from product limit ". $num[$j] ." ,1 ";
                                                 $resultB = mysqli_query($conn,$queryB);
 
                                                 $recordB = mysqli_fetch_assoc($resultB);
@@ -197,7 +197,7 @@
                                             </div>
                                             <div class="text">
                                                 <div class="frame">
-                                                    <strong><a href="productdetail.php?pid=<?php echo $recordB["productid"];  ?>"> <?php  echo $recordB["product_name"];  ?> </a></strong>
+                                                    <strong><a href="productdetail.php?pid=<?php echo $recordB["product_id"];  ?>"> <?php  echo $recordB["product_name"];  ?> </a></strong>
                                                 </div>
                                                 <span class="price"><i class="fa fa-rupee"></i> <?php echo $recordB["price"];  ?> </span>
                                             </div>

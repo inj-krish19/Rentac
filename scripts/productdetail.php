@@ -26,7 +26,7 @@
             require_once("connection.php");
             $pid = mysqli_real_escape_string($conn, $_REQUEST["pid"]);
 
-            $query = "SELECT productid, product_name, price, description, image_path FROM product WHERE productid = '$pid'";
+            $query = "SELECT product_id, product_name, price, description, image_path FROM product WHERE product_id = '$pid'";
             $result = mysqli_query($conn, $query);
             
             if (mysqli_num_rows($result) > 0) {
@@ -38,7 +38,7 @@
             }
             
             $reco = (float) $record["price"];
-            $sql_related = "SELECT productid, product_name, price, image_path FROM product WHERE productid != $pid AND ( productid > $pid or productid > 207) LIMIT 6";
+            $sql_related = "SELECT product_id, product_name, price, image_path FROM product WHERE product_id != $pid AND ( product_id > $pid or product_id > 207) LIMIT 6";
             $result_related = mysqli_query($conn, $sql_related);
 
             if (!$result_related) {
@@ -167,7 +167,7 @@
                                         transition: all 0.25s linear;
                                         background: #ff8283;
                                         color: #fff;"
-                                        onclick="window.location.href='cart.php?pid=<?php  echo $record['productid'];   ?>'">ADD TO CART</button>
+                                        onclick="window.location.href='cart.php?pid=<?php  echo $record['product_id'];   ?>'">ADD TO CART</button>
                                 </div>
                             </div>
                         </div>
@@ -192,8 +192,8 @@
                                                 <span class="price"><i class="fa fa-rupee"></i> <?php echo $row["price"]; ?>.00 </span>
                                             </div>
                                             <ul class="links">
-                                                <li><a href="cart.php?pid=<?php echo $row['productid']; ?>"><i class="icon-handbag"></i></a></li>
-                                                <li><a href="productdetail.php?pid=<?php echo $row['productid']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
+                                                <li><a href="cart.php?pid=<?php echo $row['product_id']; ?>"><i class="icon-handbag"></i></a></li>
+                                                <li><a href="productdetail.php?pid=<?php echo $row['product_id']; ?>" class="lightbox"><i class="icomoon icon-eye"></i></a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -65,7 +65,7 @@ if (empty($_REQUEST["pid"])) {
 
 $pid = mysqli_real_escape_string($conn, $_REQUEST["pid"]);
 
-$query = "SELECT productid, product_name, price, description, quant, image_path FROM product WHERE productid = '$pid'";
+$query = "SELECT product_id, product_name, price, description, quant, image_path FROM product WHERE product_id = '$pid'";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer_id = $_SESSION["user"];
     $payment_method = "Cash";
 
-    $query = "SELECT productid, product_name, price FROM product WHERE productid = '$pid'";
+    $query = "SELECT product_id, product_name, price FROM product WHERE product_id = '$pid'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
@@ -293,7 +293,7 @@ mysqli_close($conn);
               </li>
             </ul>
             <form method="post">
-              <input type="hidden" name="pid" value="<?php echo $record['productid']; ?>">
+              <input type="hidden" name="pid" value="<?php echo $record['product_id']; ?>">
               <input type="hidden" name="quantity" value="<?php echo $quantity; ?>">
               <button type="submit" class="process-btn">PROCEED TO CHECKOUT <i class="fa fa-check"></i></button>
             </form>
