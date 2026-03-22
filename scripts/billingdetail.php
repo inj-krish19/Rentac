@@ -27,7 +27,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 $query = "
-  select * from cart C,product P where C.product_id =  P.productid and C.cart_id = ". $_SESSION["cart_id"] .";
+  select * from cart C,product P where C.product_id =  p.product_id and C.cart_id = ". $_SESSION["cart_id"] .";
 ";
 
 $result = mysqli_query($conn, $query);

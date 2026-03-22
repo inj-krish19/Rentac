@@ -26,7 +26,7 @@
 
     require_once("connection.php");
 
-    $query = "SELECT P.productid, P.product_name, P.price,P.image_path,C.quantity,C.payment_method,C.amount  FROM product P,cart C where P.productid = C.product_id and C.customer_id = ". $_SESSION["user"] ." group by P.productid";
+    $query = "SELECT p.product_id, P.product_name, P.price,P.image_path,C.quantity,C.payment_method,C.amount  FROM product P,cart C where p.product_id = C.product_id and C.customer_id = ". $_SESSION["user"] ." group by p.product_id";
 
     $result = mysqli_query($conn,$query);
 
@@ -362,33 +362,33 @@
 <?php
 /*
 
-select P.productid,P.product_name, P.price as 'price', P.image_path 
+select p.product_id,P.product_name, P.price as 'price', P.image_path 
 from product P 
 inner join (
     select A.product_id 
     from product_chairs A 
-    inner join product P ON P.productid = A.product_id 
+    inner join product P ON p.product_id = A.product_id 
     where A.event_id = (select event_id from event where event_name = 'Party')
     
     union all 
     
     select B.product_id 
     from product_sofas B 
-    inner join product P ON P.productid = B.product_id 
+    inner join product P ON p.product_id = B.product_id 
     where B.event_id = (select event_id from event where event_name = 'Party')
     
     union all 
     
     select C.product_id 
     from product_tables C 
-    inner join product P ON P.productid = C.product_id 
+    inner join product P ON p.product_id = C.product_id 
     where C.event_id = (select event_id from event where event_name = 'Party')
-) as A ON P.productid = A.product_id;
+) as A ON p.product_id = A.product_id;
         */
 
         /*
 
-        select COUNT(P.productid) as total_products
+        select COUNT(p.product_id) as total_products
 from product P
 inner join (
     select product_id
@@ -406,7 +406,7 @@ inner join (
     select product_id
     from product_tables
     where event_id = (select event_id from event where event_name = 'Party')
-) as A ON P.productid = A.product_id;
+) as A ON p.product_id = A.product_id;
 
 */
 ?>

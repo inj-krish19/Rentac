@@ -20,7 +20,7 @@
 
     require_once("connection.php");
 
-    $query = "SELECT P.productid, P.product_name, P.price AS 'price', P.description, P.image_path FROM product P";
+    $query = "SELECT p.product_id, P.product_name, P.price AS 'price', P.description, P.image_path FROM product P";
 
     $joins = [];
 
@@ -28,7 +28,7 @@
 
     if (isset($_REQUEST["category"])) {
         $tableName = "product_" . $_REQUEST["category"] . "s";
-        $joins[] = "INNER JOIN $tableName ON P.productid = product_id";
+        $joins[] = "INNER JOIN $tableName ON p.product_id = product_id";
     }
 
     if (isset($_REQUEST["event"])) {
@@ -42,14 +42,14 @@
                 UNION ALL 
                     SELECT C.product_id FROM product_tables C 
                     WHERE C.event_id = (SELECT event_id FROM event WHERE event_name = '$eventName')
-                ) AS Events ON P.productid = Events.product_id";
+                ) AS Events ON p.product_id = Events.product_id";
     }
 
     if (isset($_REQUEST["category"]) && isset($_REQUEST["event"])) {
         $tableName = "product_" . $_REQUEST["category"] . "s";
         $eventName = $_REQUEST["event"];
         $joins = [
-            "INNER JOIN $tableName ON P.productid = product_id"
+            "INNER JOIN $tableName ON p.product_id = product_id"
         ];
         $conditions[] = "event_id = (SELECT event_id FROM event WHERE event_name = '$eventName')";
     }
@@ -85,33 +85,33 @@
     if( isset($_REQUEST["category"]) ){
         
         $tableName = "product_".$_REQUEST["category"]."s";
-        $query = "select P.productid,P.product_name,P.price as 'price',P.description,P.image_path from product P 
-        inner join $tableName on P.productid = product_id ";
+        $query = "select p.product_id,P.product_name,P.price as 'price',P.description,P.image_path from product P 
+        inner join $tableName on p.product_id = product_id ";
     
     }
 
     if( isset($_REQUEST["event"]) ){
 
         $eventName = $_REQUEST["event"];
-        $query = "select P.productid,P.product_name,P.price as 'price',P.description,P.image_path from product P inner join (
+        $query = "select p.product_id,P.product_name,P.price as 'price',P.description,P.image_path from product P inner join (
                     
                     select A.product_id from product_chairs A 
-                    inner join product P ON P.productid = A.product_id 
+                    inner join product P ON p.product_id = A.product_id 
                     where A.event_id = (select event_id from event where event_name = '$eventName')
 
                 union all 
 
                     select B.product_id from product_sofas B
-                    inner join product P ON P.productid = B.product_id 
+                    inner join product P ON p.product_id = B.product_id 
                     where B.event_id = (select event_id from event where event_name = '$eventName')
 
                 union all 
 
                     select C.product_id from product_tables C 
-                    inner join product P ON P.productid = C.product_id 
+                    inner join product P ON p.product_id = C.product_id 
                     where C.event_id = (select event_id from event where event_name = '$eventName')
                 
-                ) as Events on P.productid = Events.product_id";
+                ) as Events on p.product_id = Events.product_id";
 
     }
 
@@ -122,8 +122,8 @@
 
         $tableName = "product_".$_REQUEST["category"]."s";
         $eventName = $_REQUEST["event"];
-        $query = "select P.productid,P.product_name,P.price as 'price',P.description,P.image_path from product P 
-                inner join $tableName on P.productid = product_id where 
+        $query = "select p.product_id,P.product_name,P.price as 'price',P.description,P.image_path from product P 
+                inner join $tableName on p.product_id = product_id where 
                 event_id = (select event_id from event where event_name = '$eventName') ";
     }
 
@@ -381,7 +381,7 @@
                                     
                                         foreach ($events as $keyE => $event) {
                                     
-                                            $eventQuery = "select COUNT(P.productid) as '$event'
+                                            $eventQuery = "select COUNT(p.product_id) as '$event'
                                                         from product P
                                                         inner join (
                                                             select product_id
@@ -399,7 +399,7 @@
                                                             select product_id
                                                             from product_tables
                                                             where event_id = (select event_id from event where event_name = '$event')
-                                                        ) as Event ON P.productid = Event.product_id";
+                                                        ) as Event ON p.product_id = Event.product_id";
 
                                                 $eventResult = mysqli_query($conn,$eventQuery);
 
@@ -425,7 +425,7 @@
 
                                             for ($keyR=0; $keyR < count($lower); $keyR++) {
 
-                                                $rangeQuery = "select COUNT(P.productid) as 'rangeCount'
+                                                $rangeQuery = "select COUNT(p.product_id) as 'rangeCount'
                                                         from product P where price between  $lower[$keyR] and $upper[$keyR] ";
 
                                                 $rangeResult = mysqli_query($conn,$rangeQuery);
@@ -604,33 +604,33 @@
 <?php
 /*
 
-select P.productid,P.product_name, P.price as 'price', P.image_path 
+select p.product_id,P.product_name, P.price as 'price', P.image_path 
 from product P 
 inner join (
     select A.product_id 
     from product_chairs A 
-    inner join product P ON P.productid = A.product_id 
+    inner join product P ON p.product_id = A.product_id 
     where A.event_id = (select event_id from event where event_name = 'Party')
     
     union all 
     
     select B.product_id 
     from product_sofas B 
-    inner join product P ON P.productid = B.product_id 
+    inner join product P ON p.product_id = B.product_id 
     where B.event_id = (select event_id from event where event_name = 'Party')
     
     union all 
     
     select C.product_id 
     from product_tables C 
-    inner join product P ON P.productid = C.product_id 
+    inner join product P ON p.product_id = C.product_id 
     where C.event_id = (select event_id from event where event_name = 'Party')
-) as A ON P.productid = A.product_id;
+) as A ON p.product_id = A.product_id;
         */
 
         /*
 
-        select COUNT(P.productid) as total_products
+        select COUNT(p.product_id) as total_products
 from product P
 inner join (
     select product_id
@@ -648,7 +648,7 @@ inner join (
     select product_id
     from product_tables
     where event_id = (select event_id from event where event_name = 'Party')
-) as A ON P.productid = A.product_id;
+) as A ON p.product_id = A.product_id;
 
 */
 ?>
