@@ -19,7 +19,7 @@
 
     $personal = mysqli_fetch_assoc($result);
 
-    $query = "select * from address where person_id = ". $_SESSION["user"] ." ";
+    $query = "select * from address where customer_id = ". $_SESSION["user"] ." ";
 
     $result = mysqli_query($conn,$query);
 

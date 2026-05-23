@@ -189,7 +189,7 @@
                                             </div>
                                             <div class="txt">
                                                 <strong class="title"><?php echo $row["product_name"]; ?></strong>
-                                                <span class="price"><i class="fa fa-rupee"></i> <?php echo $row["price"]; ?>.00 </span>
+                                                <span class="price"><i class="fa fa-rupee"></i> <?php echo $row["price"]; ?> </span>
                                             </div>
                                             <ul class="links">
                                                 <li><a href="cart.php?pid=<?php echo $row['product_id']; ?>"><i class="icon-handbag"></i></a></li>
