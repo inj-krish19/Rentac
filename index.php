@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="shortcut icon" href="Images/logos/home.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="./Images/logos/home.jpg" type="image/x-icon">
     <link
         href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic%7cMontserrat:400,700%7cOxygen:400,300,700'
         rel='stylesheet' type='text/css'>
@@ -21,7 +21,7 @@
     <div id="wrapper">
         <div id="pre-loader" class="loader-container">
             <div class="loader">
-                <img src="Images/rings.svg" alt="loader">
+                <img src="./Images/rings.svg" alt="loader">
             </div>
         </div>
         <div class="w1">
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="mt-logo" style="height:50px;    width:50px;">
-                                    <a href="scripts/home.php"><img src="Images/logos/Rentac.jpg"
+                                    <a href="scripts/home.php"><img src="./Images/logos/Rentac.jpg"
                                             alt="Rentac"></a>
                                 </div>
                                 <ul class="mt-icon-list">
@@ -154,7 +154,7 @@
                                     ?>
                                         <div class="mt-product1 large">
                                             <div class="box">
-                                                <img alt="image description" src="<?php  $recordA["image_path"] ?>" style="height:290px;   width:275px;">
+                                                <img alt="image description" src="<?php echo './' . $recordA["image_path"] ?>" style="height:290px;   width:275px;">
                                                 <ul class="links">
                                                     <li><a href="cart.php?pid=<?php echo $recordA["product_id"];  ?>"><i class="icon-handbag"></i></a></li>
                                                     <li><a href="productdetail.php?pid=<?php echo $recordA["product_id"];  ?>"><i class="fa fa-eye"></i></a></li>
@@ -192,7 +192,7 @@
                                         ?>
                                         <div class="mt-product4 mt-paddingbottom20">
                                             <div class="img">
-                                                <a href="product.php"><img src="<?php echo $recordB["image_path"];  ?>"
+                                                <a href="product.php"><img src="<?php echo './' . $recordB["image_path"];  ?>"
                                                         style=" height:80px; width:80px; " alt="image description"></a>
                                             </div>
                                             <div class="text">
@@ -255,7 +255,7 @@
                                     <div class="logo">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-8">
-                                                <a href="scripts/home.php"><img src="Images/logos/Rentac.jpg"
+                                                <a href="scripts/home.php"><img src="./Images/logos/Rentac.jpg"
                                                         alt="Rentac"></a>
                                             </div>
                                             <div class="col-xs-12 col-sm-4 text-center">

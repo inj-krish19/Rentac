@@ -26,7 +26,7 @@
     $portNumber = $_ENV['DB_PORT'] ?? null;
 
     try{
-        
+
         $conn = mysqli_connect($serverName, $userName, $password, $databaseName, $portNumber);
     
         echo "<div class='conatiner mx-5 my-5'>";
@@ -39,7 +39,7 @@
         }
 
     }catch(Exception $e){
-        // echo "<div class='alert alert-danger text-center' role='success'><h1>Internal Server Error</h1></div>";
+        echo "<div class='alert alert-danger text-center' role='success'><h1>Internal Server Error</h1></div>" . $e;
     }
 
     echo "</div>";
